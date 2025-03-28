@@ -24,11 +24,10 @@ class ForgotPasswordScreen extends StatelessWidget {
         });
       },
       child: AuthScreen(
-        title: 'ForgotPassword'.tr(context),
-
+        title: 'ForgotPasswordMessage'.tr(context),
         form: const _Form(),
-        submitButton: AppButton.secondary(
-          text: 'Send'.tr(context),
+        submitButton: AppButton.primary(
+          text: 'RecoverPassword'.tr(context),
           onPressed: context.read<ForgotPasswordCubit>().submit,
           isLoading:
               (ctx) => ctx.select(
@@ -53,7 +52,7 @@ class _Form extends StatelessWidget {
           AppInputField(
             controller: dto.emailController,
             hintText: 'Email'.tr(context),
-       
+
             keyboardType: TextInputType.emailAddress,
             autofillHints: [AutofillHints.email],
             validator: (value) => dto.validateEmail(value, context),

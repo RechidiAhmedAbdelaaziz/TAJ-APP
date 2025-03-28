@@ -55,19 +55,19 @@ abstract class AppTextStyles {
 
   static TextStyle primaryButton = TextStyle(
     fontSize: 16.spMin,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
     color: AppColors.black,
   );
 
   static TextStyle secondaryButton = TextStyle(
     fontSize: 16.spMin,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
     color: AppColors.black,
   );
 
   static TextStyle link = TextStyle(
     fontSize: 16.spMin,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
     color: AppColors.black,
     decoration: TextDecoration.underline,
   );

@@ -22,9 +22,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         VideoPlayerController.asset('assets/videos/intro.mp4')
           ..setLooping(true)
           ..initialize().then((_) {
+            setState(() {});
             _controller.play();
             _controller.setVolume(0);
-            setState(() {});
           });
   }
 
@@ -32,15 +32,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     // show video and up of it show Login button
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
           Center(
             child:
                 _controller.value.isInitialized
-                    ? Container(
-                      color: Colors.black,
-                      child: VideoPlayer(_controller),
-                    )
+                    ? VideoPlayer(_controller)
                     : const CircularProgressIndicator(),
           ),
           Positioned(
@@ -48,7 +46,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             left: 150.w,
             right: 150.w,
             child: InkWell(
-              onTap: () => context.to(AuthNavigator.login()),
+              onTap: () => context.offAll(AuthNavigator.login()),
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 17.h),
                 decoration: BoxDecoration(
