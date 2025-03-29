@@ -25,4 +25,7 @@ abstract class AppRoutes {
   //* PROFILE ROUTES
   static const String editProfile = '/edit-profile';
   static const String changePassword = '/change-password';
+
+  //* NOTIFICATION ROUTES
+  static const String notification = '/notification';
 }

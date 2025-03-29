@@ -1,3 +1,12 @@
 extension DateFormatter on DateTime {
-  String toDayMonthYear() => '$day/$month/$year';
+  /// Format date to "dd - MM - yyyy"
+  String toDayMonthYear() => '$day - $month - $year';
+
+  /// Format date to "hh:mm a"
+  String toHourMinute() {
+    final hour = this.hour > 12 ? this.hour - 12 : this.hour;
+    final minute = this.minute.toString().padLeft(2, '0');
+    final amPm = this.hour >= 12 ? 'PM' : 'AM';
+    return '$hour:$minute $amPm';
+  }
 }
