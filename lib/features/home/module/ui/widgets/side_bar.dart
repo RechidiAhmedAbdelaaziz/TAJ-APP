@@ -14,13 +14,20 @@ class _SideBar extends StatelessWidget {
             heightSpace(28),
 
             ...{
-              "AboutUs".tr(context): () {},
-              "PropertyInfo".tr(context): () {},
-              "TermsAndConditions".tr(context): () {},
+              "AboutUs": () => context.to(AboutNavigator.aboutUs()),
+
+              "PropertyInfo": () {},
+
+              "TermsAndConditions":
+                  () =>
+                      context.to(AboutNavigator.termsAndConditions()),
             }.entries.map(
               (e) => Column(
                 children: [
-                  _buildButton(text: e.key, onPressed: e.value),
+                  _buildButton(
+                    text: e.key.tr(context),
+                    onPressed: e.value,
+                  ),
                   heightSpace(35),
                 ],
               ),
@@ -30,14 +37,18 @@ class _SideBar extends StatelessWidget {
             heightSpace(35),
 
             ...{
-              "ContactUs".tr(context): () {},
-              "MyDocs".tr(context):
-                  () => context.to(DocumentsNavigator.docs()),
-              "Logout".tr(context): () {},
+              "ContactUs": () {},
+
+              "MyDocs": () => context.to(DocumentsNavigator.docs()),
+
+              "Logout": () => locator<AuthCubit>().logout(),
             }.entries.map(
               (e) => Column(
                 children: [
-                  _buildButton(text: e.key, onPressed: e.value),
+                  _buildButton(
+                    text: e.key.tr(context),
+                    onPressed: e.value,
+                  ),
                   heightSpace(35),
                 ],
               ),

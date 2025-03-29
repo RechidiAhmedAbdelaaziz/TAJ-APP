@@ -31,4 +31,8 @@ abstract class AppRoutes {
 
   //* DOCUMENTS ROUTES
   static const String documents = '/documents';
+
+  //* ABOUT ROUTES
+  static const String aboutUs = '/about-us';
+  static const String termsAndConditions = '/terms-and-conditions';
 }

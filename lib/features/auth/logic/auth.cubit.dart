@@ -54,6 +54,6 @@ class AuthCubit extends Cubit<AuthState> {
     emit(state._unauthenticated());
     await _authCache.clearTokens();
 
-    locator<AppRouter>().routerConfig.goNamed(AppRoutes.login);
+    locator<AppRouter>().routerConfig.go(AppRoutes.login);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:taj_elsafa/features/about/config/about_us_navigator.dart';
 import 'package:taj_elsafa/features/documents/config/documents_navigator.dart';
 import 'package:taj_elsafa/features/notification/config/notification_navigator.dart';
 import 'package:taj_elsafa/features/profile/config/profile_navigator.dart';
@@ -18,7 +19,10 @@ part 'navigator_base.dart';
 class AppRouter {
   final routerConfig = GoRouter(
     initialLocation: AppRoutes.splash,
-    routes: [...DocumentsNavigator.routes, ...NotificationNavigator.routes, 
+    routes: [
+      ...AboutNavigator.routes,
+      ...DocumentsNavigator.routes,
+      ...NotificationNavigator.routes,
       ...ProfileNavigator.routes,
       ...HomeNavigator.routes,
       ...AuthNavigator.routes,
