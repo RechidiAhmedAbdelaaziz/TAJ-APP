@@ -37,7 +37,8 @@ class _SideBar extends StatelessWidget {
             heightSpace(35),
 
             ...{
-              "ContactUs": () {},
+              "ContactUs":
+                  () => context.to(AboutNavigator.contactUs()),
 
               "MyDocs": () => context.to(DocumentsNavigator.docs()),
 

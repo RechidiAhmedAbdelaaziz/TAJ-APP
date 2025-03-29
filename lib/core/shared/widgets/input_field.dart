@@ -74,6 +74,11 @@ class AppInputField extends StatelessWidget {
                   color: AppColors.black,
                 ),
 
+                maxLines:
+                    keyboardType == TextInputType.multiline
+                        ? null
+                        : 1,
+
                 cursorColor: AppColors.primary,
 
                 inputFormatters: inputFormatters,

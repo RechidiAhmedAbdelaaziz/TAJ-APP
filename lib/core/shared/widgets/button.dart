@@ -1,3 +1,4 @@
+import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:flutter/material.dart';
@@ -92,29 +93,31 @@ class AppButton extends StatelessWidget {
           children: [
             if (text != null) Text(text!, style: textStyle),
 
-            // //show loading indicator if isLoading is true, else show suffixIcon if it is not null
-            // if (isLoading?.call(context) == true)
-            //   SizedBox(
-            //     // width: 16.r,
-            //     child: CircularProgressIndicator(
-            //       strokeWidth: 2,
-            //       constraints: BoxConstraints(
-            //         minHeight: 25.r,
-            //         minWidth: 25.r,
-            //       ),
-            //       valueColor: AlwaysStoppedAnimation<Color>(
-            //         textStyle.color ?? AppColors.white,
-            //       ),
-            //     ),
-            //   )
-            // else if (suffixIcon != null)
-            //   SizedBox(
-            //     child: Icon(
-            //       suffixIcon,
-            //       color: textStyle.color ?? AppColors.white,
-            //       size: 25.r,
-            //     ),
-            //   ),
+            //show loading indicator if isLoading is true, else show suffixIcon if it is not null
+            if (isLoading?.call(context) == true)
+              SizedBox(
+                // width: 16.r,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  constraints: BoxConstraints(
+                    minHeight: 25.r,
+                    minWidth: 25.r,
+                  ),
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    textStyle.color ?? AppColors.white,
+                  ),
+                ),
+              )
+            else if (suffixIcon != null) ...[
+              widthSpace(10),
+              SizedBox(
+                child: Icon(
+                  suffixIcon,
+                  color: textStyle.color ?? AppColors.white,
+                  size: 25.r,
+                ),
+              ),
+            ],
           ],
         ),
       ),

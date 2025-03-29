@@ -121,7 +121,7 @@ extension DialogExtension on BuildContext {
     showDialog(
       context: this,
       builder: (_) {
-        Future.delayed(const Duration(seconds: 3), () => back());
+        Future.delayed(const Duration(seconds: 2), () => back());
         return Material(
           color: Colors.transparent,
           child: Stack(
