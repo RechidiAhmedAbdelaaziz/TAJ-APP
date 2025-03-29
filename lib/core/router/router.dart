@@ -1,3 +1,6 @@
+import 'package:taj_elsafa/core/di/locator.dart';
+import 'package:taj_elsafa/features/auth/logic/auth.cubit.dart';
+import 'package:taj_elsafa/features/home/config/home_navigator.dart';
 import 'package:taj_elsafa/features/auth/configs/auth_navigator.dart';
 // ignore_for_file: non_constant_identifier_names
 
@@ -11,15 +14,16 @@ part 'navigator_base.dart';
 
 class AppRouter {
   final routerConfig = GoRouter(
-    initialLocation: '/', //TODO change to home
-    routes: [...AuthNavigator.routes, 
+    initialLocation: AppRoutes.splash,
+    routes: [
+      ...HomeNavigator.routes,
+      ...AuthNavigator.routes,
       GoRoute(
-        path: '/',
+        path: AppRoutes.splash,
         builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
-        path: '/welcome',
-        name: AppRoutes.welcome,
+        path: AppRoutes.welcome,
         builder: (context, state) => const WelcomeScreen(),
       ),
     ],
@@ -32,18 +36,25 @@ class AppRouter {
     BuildContext context,
     GoRouterState state,
   ) async {
-    return null; //TODO remove after adding auth
+    // ignore: no_leading_underscores_for_local_identifiers
+    bool _is(String path) => state.matchedLocation == path;
 
-    // if (AppRoutes._authPaths.any(
-    //   (path) => state.matchedLocation.contains(path),
-    // )) {
-    //   return null;
-    // }
+    // splash screen
+    if (_is(AppRoutes.splash)) return null;
 
-    // if (await locator<AuthCubit>().isAuthenticated) {
-    //   return null;
-    // }
+    //Auth routes
+    if (AppRoutes._authPaths.any(_is)) return null;
 
-    // return '/login';
+    final isAuthenticated =
+        await locator<AuthCubit>().isAuthenticated;
+
+    // welcome screen (if user is not authenticated)
+    if (!isAuthenticated) {
+      if (_is(AppRoutes.welcome)) return null;
+      return AppRoutes.login;
+    }
+
+    // DEFAULT ROUTE
+    return AppRoutes.home;
   }
 }

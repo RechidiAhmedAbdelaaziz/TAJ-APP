@@ -7,15 +7,14 @@ import 'package:taj_elsafa/features/auth/modules/login/logic/login.cubit.dart';
 import 'package:taj_elsafa/features/auth/modules/login/ui/login_screen.dart';
 
 class AuthNavigator extends AppNavigatorBase {
-  AuthNavigator.login() : super(name: AppRoutes.login);
+  AuthNavigator.login() : super(path: AppRoutes.login);
 
   AuthNavigator.forgotPassword()
-    : super(name: AppRoutes.forgetPassword);
+    : super(path: AppRoutes.forgetPassword);
 
   static List<RouteBase> routes = [
     GoRoute(
-      path: '/login',
-      name: AppRoutes.login,
+      path: AppRoutes.login,
       builder: (context, state) {
         return BlocProvider(
           create: (_) => LoginCubit(),
@@ -25,8 +24,7 @@ class AuthNavigator extends AppNavigatorBase {
     ),
 
     GoRoute(
-      path: '/forgot-password',
-      name: AppRoutes.forgetPassword,
+      path: AppRoutes.forgetPassword,
       builder: (context, state) {
         return BlocProvider(
           create: (_) => ForgotPasswordCubit(),

@@ -76,7 +76,7 @@ class AppButton extends StatelessWidget {
         // width: double.infinity,
         padding: EdgeInsets.symmetric(
           // horizontal: 16.w,
-          vertical: 12.h,
+          vertical: 8.h,
         ),
         decoration: BoxDecoration(
           color: color,
@@ -92,29 +92,29 @@ class AppButton extends StatelessWidget {
           children: [
             if (text != null) Text(text!, style: textStyle),
 
-            //show loading indicator if isLoading is true, else show suffixIcon if it is not null
-            if (isLoading?.call(context) == true)
-              SizedBox(
-                // width: 16.r,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  constraints: BoxConstraints(
-                    minHeight: 25.r,
-                    minWidth: 25.r,
-                  ),
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    textStyle.color ?? AppColors.white,
-                  ),
-                ),
-              )
-            else if (suffixIcon != null)
-              SizedBox(
-                child: Icon(
-                  suffixIcon,
-                  color: textStyle.color ?? AppColors.white,
-                  size: 25.r,
-                ),
-              ),
+            // //show loading indicator if isLoading is true, else show suffixIcon if it is not null
+            // if (isLoading?.call(context) == true)
+            //   SizedBox(
+            //     // width: 16.r,
+            //     child: CircularProgressIndicator(
+            //       strokeWidth: 2,
+            //       constraints: BoxConstraints(
+            //         minHeight: 25.r,
+            //         minWidth: 25.r,
+            //       ),
+            //       valueColor: AlwaysStoppedAnimation<Color>(
+            //         textStyle.color ?? AppColors.white,
+            //       ),
+            //     ),
+            //   )
+            // else if (suffixIcon != null)
+            //   SizedBox(
+            //     child: Icon(
+            //       suffixIcon,
+            //       color: textStyle.color ?? AppColors.white,
+            //       size: 25.r,
+            //     ),
+            //   ),
           ],
         ),
       ),

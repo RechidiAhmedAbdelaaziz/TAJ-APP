@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -74,6 +76,14 @@ class CacheService {
     debugPrint('SharedPrefHelper : getString with key : $key');
 
     return _sharedPreferences.getString(key);
+  }
+
+  Future<Map<String, dynamic>> getJson(String key) async {
+    debugPrint('SharedPrefHelper : getString with key : $key');
+
+    final string = _sharedPreferences.getString(key);
+
+    return jsonDecode(string ?? '') as Map<String, dynamic>;
   }
 
   /// Saves a [value] with a [key] in the _flutterSecureStorage.

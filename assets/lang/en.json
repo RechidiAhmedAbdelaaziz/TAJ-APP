@@ -13,5 +13,16 @@
     "Password": "Password",
     "PasswordNotMatch": "Passwords do not match",
     "RecoverPassword": "Recover Password",
-    "RequiredField": "This field is required"
+    "RequiredField": "This field is required",
+    "MyTickets": "My Tickets",
+    "MyRequest": "My Request",
+    "HandingOver": "Handing Over",
+    "ContactUs": "Contact Us",
+    "MyDocs": "My documents",
+    "Logout": "Logout",
+    "AboutUs": "About Us",
+    "PropertyInfo": "Property Info",
+    "TermsAndConditions": "Terms and Conditions",
+    "ChooseRequirement": "Choose Your Requirement",
+    "ChooseRequirementDesc": "typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus ."
 }

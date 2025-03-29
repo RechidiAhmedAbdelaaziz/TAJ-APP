@@ -5,39 +5,21 @@ import 'package:taj_elsafa/core/router/router.dart';
 
 extension NavigatorExtension on BuildContext {
   void to(AppNavigatorBase route) =>
-      kIsWeb
-          ? off(route)
-          : pushNamed(
-            route.name,
-            pathParameters: route.pathParams,
-            queryParameters: route.queryParams,
-          );
+      kIsWeb ? off(route) : push(route.path);
 
   Future<void> toWith<T>(
     AppNavigatorBase route, {
     required ValueChanged<T> onResult,
     VoidCallback? onError,
   }) async {
-    final result = await pushNamed<T>(
-      route.name,
-      pathParameters: route.pathParams,
-      queryParameters: route.queryParams,
-    );
+    final result = await push<T>(route.path);
     result != null ? onResult(result) : onError?.call();
   }
 
-  void off(AppNavigatorBase route) => goNamed(
-    route.name,
-    pathParameters: route.pathParams,
-    queryParameters: route.queryParams,
-  );
+  void off(AppNavigatorBase route) => go(route.path);
 
   void offAll(AppNavigatorBase route) {
-    goNamed(
-      route.name,
-      pathParameters: route.pathParams,
-      queryParameters: route.queryParams,
-    );
+    go(route.path);
   }
 
   void back<T>([T? result]) => Navigator.of(this).pop(result);

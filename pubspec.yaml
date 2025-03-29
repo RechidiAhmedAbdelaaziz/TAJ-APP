@@ -57,6 +57,7 @@ dependencies:
     injectable: ^2.5.0
     animated_splash_screen: ^1.3.0
     connectivity_plus: ^6.1.3
+    flutter_svg: ^2.0.17
 
 dev_dependencies:
     flutter_test:
@@ -89,6 +90,7 @@ flutter:
         - assets/videos/
         - assets/videos/intro.mp4
         - assets/lang/
+        - assets/json/
 
     fonts:
         # - family: IconsFont

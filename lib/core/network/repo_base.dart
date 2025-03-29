@@ -1,4 +1,5 @@
 import 'package:taj_elsafa/core/di/locator.dart';
+import 'package:taj_elsafa/core/network/models/api_response.model.dart';
 import 'package:taj_elsafa/core/network/types/pagination_result.dart';
 import 'package:flutter/material.dart';
 import 'package:taj_elsafa/core/services/connectivity/connectivity_helper.dart';
@@ -11,10 +12,10 @@ typedef RepoResult<T> = Future<ApiResult<T>>;
 typedef RepoListResult<T> = Future<ApiResult<PaginationResult<T>>>;
 
 class NetworkRepository {
-  Future<ApiResult<T>> tryApiCall<T>({
-    required Future<Map<String, dynamic>> Function() apiCall,
-    Future<Map<String, dynamic>> Function()? localApiCall,
-    required T Function(Map<String, dynamic> json) onResult,
+  Future<ApiResult<T>> tryApiCall<T,D extends ApiResponseModel>({
+    required Future<D> Function() apiCall,
+    Future<D> Function()? localApiCall,
+    required T Function(D response) onResult,
   }) async {
     final hasInternet =
         await locator<ConnectivityHelper>().hasInternet();

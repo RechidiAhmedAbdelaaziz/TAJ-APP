@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen>
               opacity: _fadeAnimation,
               child: SlideTransition(
                 position: _slideAnimation,
-                child: Assets.images.logo.image(width: 350),
+                child: Assets.images.name.image(width: 350),
               ),
             );
           },
