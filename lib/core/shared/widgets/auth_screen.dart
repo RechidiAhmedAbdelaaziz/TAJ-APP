@@ -32,7 +32,7 @@ class AuthScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(title, style: AppTextStyles.h4),
+                  Text(title, style: AppTextStyles.xLarge),
                   heightSpace(52),
                   form,
                   heightSpace(15),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/features/auth/configs/auth_navigator.dart';
@@ -66,7 +67,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 child: Stack(
                   children: [
                     Text(
-                      'Login',
+                      'Login'.tr(context),
                       style: AppTextStyles.medium.copyWith(
                         foreground:
                             Paint()
@@ -76,7 +77,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
                     ),
                     Text(
-                      'Login',
+                      'Login'.tr(context),
                       style: AppTextStyles.medium.copyWith(
                         color: Colors.black,
                       ),

@@ -1,1 +1,17 @@
-{}
+{
+    "CheckEmail": "Check your email",
+    "Email": "Email",
+    "ForgotPassword": "Forgot Password?",
+    "ForgotPasswordMessage": "Please Enter Your Email To Retrieve Your Password.",
+    "IncorrectPassword": "The password you entered is incorrect",
+    "InvalidEmail": "The email address is invalid",
+    "InvalidName": "The name you entered is invalid",
+    "InvalidOtp": "The OTP you entered is invalid",
+    "InvalidPassword": "The password you entered is invalid",
+    "InvalidPhoneNumber": "The phone number you entered is invalid",
+    "Login": "Login",
+    "Password": "Password",
+    "PasswordNotMatch": "Passwords do not match",
+    "RecoverPassword": "Recover Password",
+    "RequiredField": "This field is required"
+}

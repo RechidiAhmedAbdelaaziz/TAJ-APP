@@ -37,6 +37,7 @@ class AppButton extends StatelessWidget {
     isLoading: isLoading,
     color: AppColors.greyDark,
     textStyle: AppTextStyles.primaryButton,
+    borderColor: AppColors.white,
   );
 
   factory AppButton.secondary({
