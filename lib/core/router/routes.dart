@@ -2,24 +2,23 @@ part of 'router.dart';
 
 abstract class AppRoutes {
   static const _authPaths = [
-    '/login',
-    '/signup',
-    '/forget-password',
-    '/check-otp',
-    '/reset-password',
-    '/verify-account',
+    login,
+    signup,
+    forgetPassword,
+    checkOtp,
+    resetPassword,
+    verifyAccount,
   ];
 
-  static const String home = 'HOME';
-  static const String welcome = 'WELCOME';
+  static const String splash = '/';
+  static const String home = '/home';
+  static const String welcome = '/welcome';
 
   //* AUTH ROUTES
-  static const String login = 'LOGIN';
-  static const String signup = 'SIGNUP';
-  static const String forgetPassword = 'FORGET_PASSWORD';
-  static const String checkOtp = 'CHECK_OTP';
-  static const String resetPassword = 'RESET_PASSWORD';
-  static const String verifyAccount = 'VERIFY_ACCOUNT';
-
-
+  static const String login = '/login';
+  static const String signup = '/signup';
+  static const String forgetPassword = '/forget-password';
+  static const String checkOtp = '/check-otp';
+  static const String resetPassword = '/reset-password';
+  static const String verifyAccount = '/verify-account';
 }

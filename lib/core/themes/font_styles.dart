@@ -54,7 +54,7 @@ abstract class AppTextStyles {
   );
 
   static TextStyle primaryButton = TextStyle(
-    fontSize: 16.spMin,
+    fontSize: 18.spMin,
     fontWeight: FontWeight.w400,
     color: AppColors.black,
   );

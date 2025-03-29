@@ -9,6 +9,7 @@ import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/features/auth/configs/auth_navigator.dart';
 import 'package:taj_elsafa/features/auth/modules/login/logic/login.cubit.dart';
+import 'package:taj_elsafa/features/home/config/home_navigator.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -18,7 +19,7 @@ class LoginScreen extends StatelessWidget {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         state.onError(context.showErrorDialog);
-        // state.onSuccess(() => context.offAll(HomeNavigator())); //TODO go to home
+        state.onSuccess(() => context.offAll(HomeNavigator()));
       },
       child: AuthScreen(
         title: 'Login'.tr(context),
