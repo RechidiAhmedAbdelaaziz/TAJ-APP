@@ -31,7 +31,7 @@ class AppInputField extends StatelessWidget {
     this.obscureText = false,
     this.keyboardType,
     this.autofillHints,
-    this.fillColor = AppColors.greyLight,
+    this.fillColor = AppColors.white,
   });
 
   static Widget password({
@@ -52,60 +52,72 @@ class AppInputField extends StatelessWidget {
       builder: (state) {
         return Column(
           children: [
-            TextField(
-              controller: controller,
-              obscureText: obscureText,
-
-              keyboardType: keyboardType,
-              autofillHints: autofillHints,
-
-              style: AppTextStyles.medium.copyWith(
-                color: AppColors.black,
+            Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.black.withValues(alpha: 0.25),
+                    blurRadius: 4,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
               ),
 
-              cursorColor: AppColors.primary,
+              child: TextField(
+                controller: controller,
+                obscureText: obscureText,
 
-              inputFormatters: inputFormatters,
+                keyboardType: keyboardType,
+                autofillHints: autofillHints,
 
-              decoration: InputDecoration(
-                fillColor: fillColor,
-                filled: true,
-
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 10.h,
-                  horizontal: 20.w,
+                style: AppTextStyles.medium.copyWith(
+                  color: AppColors.black,
                 ),
 
-                isCollapsed: true,
-                isDense: true,
+                cursorColor: AppColors.primary,
 
-                hintText: hintText,
+                inputFormatters: inputFormatters,
 
-                error: state.hasError ? SizedBox.shrink() : null,
+                decoration: InputDecoration(
+                  fillColor: fillColor,
+                  filled: true,
 
-                suffix: suffixIcon,
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 10.h,
+                    horizontal: 20.w,
+                  ),
 
-                hintStyle: AppTextStyles.medium.copyWith(
-                  color: AppColors.grey,
-                ),
+                  isCollapsed: true,
+                  isDense: true,
 
-                border: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(5).r,
-                ),
+                  hintText: hintText,
 
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(5).r,
-                ),
+                  error: state.hasError ? SizedBox.shrink() : null,
 
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(5).r,
-                ),
-                errorBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(8).r,
+                  suffix: suffixIcon,
+
+                  hintStyle: AppTextStyles.medium.copyWith(
+                    color: AppColors.greyDark,
+                  ),
+
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(5).r,
+                  ),
+
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(5).r,
+                  ),
+
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(5).r,
+                  ),
+                  errorBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(8).r,
+                  ),
                 ),
               ),
             ),
@@ -166,6 +178,7 @@ class _PasswordFormFieldState extends State<_PasswordFormField> {
       obscureText: obscureText,
       keyboardType: TextInputType.visiblePassword,
       autofillHints: [AutofillHints.password],
+      fillColor: AppColors.white,
 
       suffixIcon: InkWell(
         child: Icon(

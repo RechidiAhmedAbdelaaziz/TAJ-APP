@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/extension/responsive_extension.dart';
 import 'package:taj_elsafa/core/localization/localization_cubit.dart';
+import 'package:taj_elsafa/core/themes/colors.dart';
 
 import 'core/di/locator.dart';
 import 'core/localization/app_localization.dart';
@@ -47,7 +48,11 @@ class _MaterialApp extends StatelessWidget {
 
     return MaterialApp.router(
       routerConfig: router.routerConfig,
-      theme: ThemeData(fontFamily: 'Abel'),
+      theme: ThemeData(
+        fontFamily: 'Abel',
+        scaffoldBackgroundColor: AppColors.white,
+        appBarTheme: AppBarTheme(backgroundColor: AppColors.grey),
+      ),
       supportedLocales: [
         Locale('fr'), // French
         Locale('en'), // English
