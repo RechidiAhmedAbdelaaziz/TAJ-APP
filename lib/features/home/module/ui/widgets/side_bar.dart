@@ -31,7 +31,8 @@ class _SideBar extends StatelessWidget {
 
             ...{
               "ContactUs".tr(context): () {},
-              "MyDocs".tr(context): () {},
+              "MyDocs".tr(context):
+                  () => context.to(DocumentsNavigator.docs()),
               "Logout".tr(context): () {},
             }.entries.map(
               (e) => Column(

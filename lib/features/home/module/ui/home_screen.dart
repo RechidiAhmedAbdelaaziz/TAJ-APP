@@ -10,6 +10,7 @@ import 'package:taj_elsafa/core/shared/widgets/button.dart';
 import 'package:taj_elsafa/core/shared/widgets/logo.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
+import 'package:taj_elsafa/features/documents/config/documents_navigator.dart';
 import 'package:taj_elsafa/features/home/data/models/banner_model.dart';
 import 'package:taj_elsafa/features/notification/modules/multinotification/ui/widgets/notification_button.dart';
 import 'package:taj_elsafa/features/profile/config/profile_navigator.dart';
