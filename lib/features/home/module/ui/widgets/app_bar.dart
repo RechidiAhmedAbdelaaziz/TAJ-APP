@@ -13,9 +13,7 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
         icon: const Icon(Icons.menu),
         onPressed: () => Scaffold.of(context).openDrawer(),
       ),
-      actions: [
-        // NotificationButton() //TODO : Uncomment when NotificationButton is implemented (in notifications feature)
-      ],
+      actions: [NotificationButton()],
     );
   }
 
