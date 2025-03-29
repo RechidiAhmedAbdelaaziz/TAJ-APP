@@ -28,4 +28,7 @@ abstract class AppRoutes {
 
   //* NOTIFICATION ROUTES
   static const String notification = '/notification';
+
+  //* DOCUMENTS ROUTES
+  static const String documents = '/documents';
 }
