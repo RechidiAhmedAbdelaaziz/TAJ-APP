@@ -47,7 +47,10 @@ class _DrawerHeder extends StatelessWidget {
                       bottom: 0,
                       end: 5.w,
                       child: InkWell(
-                        onTap: () {}, //TODO go to edit profile
+                        onTap:
+                            () => context.to(
+                              ProfileNavigator.editProfile(),
+                            ),
                         child: CircleAvatar(
                           backgroundColor: AppColors.white,
                           radius: 13.r,

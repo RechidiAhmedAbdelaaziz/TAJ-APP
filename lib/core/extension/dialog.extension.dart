@@ -1,3 +1,5 @@
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/button.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/core/themes/icons.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
+import 'package:taj_elsafa/gen/assets.gen.dart';
 
 import '../themes/colors.dart';
 
@@ -111,6 +114,52 @@ extension DialogExtension on BuildContext {
               ),
             ],
           ),
+    );
+  }
+
+  void showSuccessDialog(String message) {
+    showDialog(
+      context: this,
+      builder: (_) {
+        Future.delayed(const Duration(seconds: 3), () => back());
+        return Material(
+          color: Colors.transparent,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                constraints: BoxConstraints(maxWidth: 241.w),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 48.w,
+                  vertical: 32.h,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(5).r,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SvgPicture.asset(
+                      Assets.icons.successCheck,
+                      width: 129.w,
+                      height: 129.h,
+                    ),
+                    heightSpace(8),
+                    Text(
+                      message,
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.large.copyWith(
+                        color: AppColors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

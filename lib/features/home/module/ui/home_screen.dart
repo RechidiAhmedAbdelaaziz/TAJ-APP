@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
+import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/button.dart';
 import 'package:taj_elsafa/core/shared/widgets/logo.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/features/home/data/models/banner_model.dart';
+import 'package:taj_elsafa/features/profile/config/profile_navigator.dart';
 import 'package:taj_elsafa/gen/assets.gen.dart';
 
 part 'widgets/app_bar.dart';

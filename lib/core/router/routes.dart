@@ -21,4 +21,8 @@ abstract class AppRoutes {
   static const String checkOtp = '/check-otp';
   static const String resetPassword = '/reset-password';
   static const String verifyAccount = '/verify-account';
+
+  //* PROFILE ROUTES
+  static const String editProfile = '/edit-profile';
+  static const String changePassword = '/change-password';
 }

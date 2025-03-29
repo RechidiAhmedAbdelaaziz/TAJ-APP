@@ -1,3 +1,4 @@
+import 'package:taj_elsafa/features/profile/config/profile_navigator.dart';
 import 'package:taj_elsafa/core/di/locator.dart';
 import 'package:taj_elsafa/features/auth/logic/auth.cubit.dart';
 import 'package:taj_elsafa/features/home/config/home_navigator.dart';
@@ -16,6 +17,7 @@ class AppRouter {
   final routerConfig = GoRouter(
     initialLocation: AppRoutes.splash,
     routes: [
+      ...ProfileNavigator.routes,
       ...HomeNavigator.routes,
       ...AuthNavigator.routes,
       GoRoute(
@@ -49,12 +51,10 @@ class AppRouter {
         await locator<AuthCubit>().isAuthenticated;
 
     // welcome screen (if user is not authenticated)
-    if (!isAuthenticated) {
-      if (_is(AppRoutes.welcome)) return null;
-      return AppRoutes.login;
+    if (_is(AppRoutes.welcome)) {
+      return isAuthenticated ? AppRoutes.home : null;
     }
 
-    // DEFAULT ROUTE
-    return AppRoutes.home;
+    return null;
   }
 }

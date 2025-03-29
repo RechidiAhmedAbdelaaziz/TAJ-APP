@@ -1,6 +1,10 @@
 {
     "CheckEmail": "Check your email",
     "Email": "Email",
+    "OldPassword": "Current Password",
+    "NewPassword": "New Password",
+    "PasswordUpdated": "Password updated successfully",
+    "ConfirmPassword": "Confirm Password",
     "ForgotPassword": "Forgot Password?",
     "ForgotPasswordMessage": "Please Enter Your Email To Retrieve Your Password.",
     "IncorrectPassword": "The password you entered is incorrect",
@@ -23,6 +27,9 @@
     "AboutUs": "About Us",
     "PropertyInfo": "Property Info",
     "TermsAndConditions": "Terms and Conditions",
+    "EditProfile": "Edit Profile",
+    "ChangePassword": "Change Password",
+    "Save": "Save Changes",
     "ChooseRequirement": "Choose Your Requirement",
     "ChooseRequirementDesc": "typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus ."
 }
