@@ -87,6 +87,11 @@ class AppDropDownField<T> extends StatelessWidget {
               DropdownSearch<T>(
                 itemAsString: itemToString,
 
+                compareFn: (item1, item2) {
+                  if (item1 == null || item2 == null) return false;
+                  return item1.toString() == item2.toString();
+                },
+
                 autoValidateMode: AutovalidateMode.onUserInteraction,
 
                 items: (filter, loadProps) => itemsBuilder(context),

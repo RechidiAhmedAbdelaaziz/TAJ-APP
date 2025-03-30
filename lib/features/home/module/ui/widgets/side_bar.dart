@@ -16,7 +16,8 @@ class _SideBar extends StatelessWidget {
             ...{
               "AboutUs": () => context.to(AboutNavigator.aboutUs()),
 
-              "PropertyInfo": () {},
+              "PropertyInfo":
+                  () => context.to(RealStatesNavigator.states()),
 
               "TermsAndConditions":
                   () =>

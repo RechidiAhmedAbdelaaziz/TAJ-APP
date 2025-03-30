@@ -27,6 +27,13 @@ class TermsCondition extends StatelessWidget {
                   color: AppColors.black,
                 ),
               ),
+              heightSpace(45),
+              Text(
+                "typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                style: AppTextStyles.normal.copyWith(
+                  color: AppColors.black,
+                ),
+              ),
             ],
           ),
         ),

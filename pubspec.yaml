@@ -81,6 +81,7 @@ dev_dependencies:
     injectable_generator: ^2.7.0
     flutter_gen_runner: ^5.10.0
 
+
 flutter_gen:
     output: lib/gen/ # Output folder for generated code
 

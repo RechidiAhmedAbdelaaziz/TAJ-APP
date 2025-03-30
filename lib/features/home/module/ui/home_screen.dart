@@ -17,6 +17,7 @@ import 'package:taj_elsafa/features/documents/config/documents_navigator.dart';
 import 'package:taj_elsafa/features/home/data/models/banner_model.dart';
 import 'package:taj_elsafa/features/notification/modules/multinotification/ui/widgets/notification_button.dart';
 import 'package:taj_elsafa/features/profile/config/profile_navigator.dart';
+import 'package:taj_elsafa/features/realstates/config/real_states_navigator.dart';
 import 'package:taj_elsafa/gen/assets.gen.dart';
 
 part 'widgets/app_bar.dart';

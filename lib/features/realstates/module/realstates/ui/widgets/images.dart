@@ -1,31 +1,14 @@
-part of '../home_screen.dart';
+part of '../real_states_screen.dart';
 
-final _banners = [
-  BannerModel(
-    id: '1',
-    imageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTN95v_Wp3ArxMA0_de_60qBBZG2eYFBDO0A&s',
-  ),
-  BannerModel(
-    id: '2',
-    imageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI82m2wkwyxYvdjGDo7KW4-dXxEvpIWBVmcQ&s',
-  ),
-  BannerModel(
-    id: '3',
-    imageUrl:
-        'https://zb2g8qspmxpc-u2909.pressidiumcdn.com/wp-content/uploads/2024/07/Hotels.jpg',
-  ),
-];
-
-class _Banners extends StatefulWidget {
-  const _Banners();
+class _Images extends StatefulWidget {
+  final List<String> images;
+  const _Images(this.images);
 
   @override
-  State<_Banners> createState() => _BannersState();
+  State<_Images> createState() => _ImagesState();
 }
 
-class _BannersState extends State<_Banners> {
+class _ImagesState extends State<_Images> {
   late Timer _timer;
   late PageController _pageController;
   int _currentPage = 0;
@@ -41,7 +24,7 @@ class _BannersState extends State<_Banners> {
     _timer = Timer.periodic(const Duration(seconds: 4), (
       Timer timer,
     ) {
-      if (_currentPage < _banners.length - 1) {
+      if (_currentPage < widget.images.length - 1) {
         _currentPage++;
       } else {
         _currentPage = 0;
@@ -65,19 +48,18 @@ class _BannersState extends State<_Banners> {
 
   @override
   Widget build(BuildContext context) {
-    // page view with indicators
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Stack(
         children: [
           SizedBox(
-            height: 226.h,
+            height: 247.h,
             child: PageView.builder(
               controller: _pageController,
-              itemCount: _banners.length,
+              itemCount: widget.images.length,
               itemBuilder: (context, index) {
                 return Image.network(
-                  _banners[index].imageUrl!,
+                  widget.images[index],
                   fit: BoxFit.contain,
                   filterQuality: FilterQuality.high,
                   width: double.infinity,
@@ -93,7 +75,7 @@ class _BannersState extends State<_Banners> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: List.generate(
-                _banners.length,
+                widget.images.length,
                 (index) => AnimatedContainer(
                   duration: const Duration(milliseconds: 250),
                   margin: const EdgeInsets.symmetric(horizontal: 4),

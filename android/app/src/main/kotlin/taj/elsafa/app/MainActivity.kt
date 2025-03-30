@@ -1,4 +1,4 @@
-package com.example.taj_elsafa
+package taj.elsafa.app
 
 import io.flutter.embedding.android.FlutterActivity
 

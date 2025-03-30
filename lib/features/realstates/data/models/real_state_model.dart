@@ -9,6 +9,7 @@ class RealStateModel extends Equatable {
   final String? name;
   final String? address;
   final String? type;
+  final int? area;
   final DateTime? purshaseDate;
   final DateTime? warrantyDate;
   final int? constructionYear;
@@ -27,6 +28,7 @@ class RealStateModel extends Equatable {
     this.constructionYear,
     this.plansFileUrl,
     this.profileFileUrl,
+    this.area,
     required this.imagesUrls,
   });
 
