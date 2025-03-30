@@ -4,6 +4,7 @@
     "OldPassword": "Current Password",
     "NewPassword": "New Password",
     "PasswordUpdated": "Password updated successfully",
+    "TryAgain": "Please try again",
     "ConfirmPassword": "Confirm Password",
     "ForgotPassword": "Forgot Password?",
     "ForgotPasswordMessage": "Please Enter Your Email To Retrieve Your Password.",

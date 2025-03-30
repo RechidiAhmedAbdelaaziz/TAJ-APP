@@ -91,7 +91,7 @@ extension DialogExtension on BuildContext {
               spacing: 8.w,
               children: [
                 Icon(
-                  AppIcons.error,
+                  Icons.error,
                   color: AppColors.red,
                   size: 32.r,
                 ),

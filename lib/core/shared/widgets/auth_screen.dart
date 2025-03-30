@@ -12,11 +12,14 @@ class AuthScreen extends StatelessWidget {
 
   final AppButton submitButton;
 
+  final Widget? oAuthButtons;
+
   const AuthScreen({
     super.key,
     required this.title,
     required this.form,
     required this.submitButton,
+    this.oAuthButtons,
   });
 
   @override
@@ -32,11 +35,19 @@ class AuthScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  heightSpace(35),
                   Text(title, style: AppTextStyles.xLarge),
                   heightSpace(52),
+
                   form,
                   heightSpace(15),
+
                   submitButton,
+
+                  if (oAuthButtons != null) ...[
+                    heightSpace(35),
+                    oAuthButtons!,
+                  ],
                 ],
               ),
             ),

@@ -10,10 +10,15 @@ abstract class AuthCache {
   Future<String?> get refreshToken;
   Future<void> clearTokens();
 
-  Future<bool> get isAuthenticated async {
-    final accessToken = await this.accessToken;
-    return accessToken != null;
+  Future<void> setLocalAuth(bool isAuthenticated) async {
+    await _cacheHelper.setData('IS_AUTHENTICATED', isAuthenticated);
   }
+
+  Future<bool> get getLocalAuth async =>
+      await _cacheHelper.getBool('IS_AUTHENTICATED') ?? false;
+
+  Future<bool> get isAuthenticated async =>
+      await getLocalAuth || (await accessToken) != null;
 }
 
 class SecureAuthCache extends AuthCache {
