@@ -4,7 +4,7 @@ part of 'login.cubit.dart';
 
 enum _LoginStatus { initial, loading, success, error }
 
-class LoginState extends ErrorState {
+class LoginState extends CubitErrorState {
   final LoginDTO loginDTO;
 
   final _LoginStatus status;

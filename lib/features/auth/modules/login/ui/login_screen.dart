@@ -8,6 +8,7 @@ import 'package:taj_elsafa/core/extension/dialog.extension.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/features/auth/configs/auth_navigator.dart';
+import 'package:taj_elsafa/features/auth/modules/localauth/ui/fingerprint_auth.dart';
 import 'package:taj_elsafa/features/auth/modules/login/logic/login.cubit.dart';
 import 'package:taj_elsafa/features/home/config/home_navigator.dart';
 
@@ -24,6 +25,7 @@ class LoginScreen extends StatelessWidget {
       child: AuthScreen(
         title: 'Login'.tr(context),
         form: const _Form(),
+        oAuthButtons: FingerprintAuthWidget(),
         submitButton: AppButton.primary(
           text: 'Login'.tr(context),
           onPressed: context.read<LoginCubit>().login,

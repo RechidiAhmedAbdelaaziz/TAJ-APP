@@ -36,4 +36,7 @@ abstract class AppRoutes {
   static const String aboutUs = '/about-us';
   static const String termsAndConditions = '/terms-and-conditions';
   static const String contactUs = '/contact-us';
+
+  //* REAL STATES ROUTES
+  static const String realStates = '/real-states';
 }

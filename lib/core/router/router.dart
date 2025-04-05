@@ -1,3 +1,4 @@
+import 'package:taj_elsafa/features/realstates/config/real_states_navigator.dart';
 import 'package:taj_elsafa/features/about/config/about_us_navigator.dart';
 import 'package:taj_elsafa/features/documents/config/documents_navigator.dart';
 import 'package:taj_elsafa/features/notification/config/notification_navigator.dart';
@@ -20,16 +21,19 @@ class AppRouter {
   final routerConfig = GoRouter(
     initialLocation: AppRoutes.splash,
     routes: [
+      ...RealStatesNavigator.routes,
       ...AboutNavigator.routes,
       ...DocumentsNavigator.routes,
       ...NotificationNavigator.routes,
       ...ProfileNavigator.routes,
       ...HomeNavigator.routes,
       ...AuthNavigator.routes,
+
       GoRoute(
         path: AppRoutes.splash,
         builder: (context, state) => const SplashScreen(),
       ),
+
       GoRoute(
         path: AppRoutes.welcome,
         builder: (context, state) => const WelcomeScreen(),

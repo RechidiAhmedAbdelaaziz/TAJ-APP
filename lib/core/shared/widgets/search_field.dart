@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/widgets/input_field.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
-import 'package:taj_elsafa/core/themes/icons.dart';
 import 'package:flutter/material.dart';
 
 /// Search field widget

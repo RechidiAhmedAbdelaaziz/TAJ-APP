@@ -78,7 +78,7 @@ class _BannersState extends State<_Banners> {
               itemBuilder: (context, index) {
                 return Image.network(
                   _banners[index].imageUrl!,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                   filterQuality: FilterQuality.high,
                   width: double.infinity,
                 );

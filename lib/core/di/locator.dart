@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:taj_elsafa/core/router/router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taj_elsafa/core/services/cache/cache.service.dart';
@@ -19,6 +20,9 @@ void configureDependencies() => locator.init();
 
 Future<void> setupLocator() async {
   configureDependencies();
+
+  // Local Authentication
+  locator.registerLazySingleton(() => LocalAuthentication());
 
   // SharedPreferences and FlutterSecureStorage
   final sharedpref = await SharedPreferences.getInstance();

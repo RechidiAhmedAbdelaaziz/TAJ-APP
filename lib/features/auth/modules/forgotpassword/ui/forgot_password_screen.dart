@@ -4,7 +4,6 @@ import 'package:taj_elsafa/core/extension/snackbar.extension.dart';
 import 'package:taj_elsafa/core/shared/widgets/auth_screen.dart';
 import 'package:taj_elsafa/core/shared/widgets/button.dart';
 import 'package:taj_elsafa/core/shared/widgets/input_field.dart';
-import 'package:taj_elsafa/core/themes/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:taj_elsafa/core/di/locator.dart';
 import 'package:taj_elsafa/core/network/models/api_response.model.dart';
 import 'package:taj_elsafa/core/router/router.dart';
@@ -14,6 +15,7 @@ part 'auth.state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final _authRepo = locator<AuthRepo>();
   final _authCache = locator<AuthCache>();
+  final _localAuth = locator<LocalAuthentication>();
 
   AuthCubit() : super(AuthState.initial());
 
@@ -26,8 +28,11 @@ class AuthCubit extends Cubit<AuthState> {
         : emit(state._unauthenticated());
   }
 
-  void authenticate(AuthTokens tokens) async {
-    await _authCache.setTokens(tokens);
+  void authenticate([AuthTokens? tokens]) async {
+    tokens != null
+        ? await _authCache.setTokens(tokens)
+        : await _authCache.setLocalAuth(true);
+
     emit(state._authenticated());
   }
 
@@ -52,7 +57,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   void logout() async {
     emit(state._unauthenticated());
-    await _authCache.clearTokens();
+    await Future.wait([
+      _authCache.clearTokens(),
+      _authCache.setLocalAuth(false),
+    ]);
 
     locator<AppRouter>().routerConfig.go(AppRoutes.login);
   }

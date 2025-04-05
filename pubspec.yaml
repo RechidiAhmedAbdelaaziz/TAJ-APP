@@ -60,6 +60,8 @@ dependencies:
     flutter_svg: ^2.0.17
     permission_handler: ^11.4.0
     path_provider: ^2.1.5
+    local_auth: ^2.3.0
+    flutter_cached_pdfview: ^0.4.3
 
 dev_dependencies:
     flutter_test:
@@ -80,6 +82,7 @@ dev_dependencies:
     freezed: ^3.0.4
     injectable_generator: ^2.7.0
     flutter_gen_runner: ^5.10.0
+
 
 flutter_gen:
     output: lib/gen/ # Output folder for generated code
