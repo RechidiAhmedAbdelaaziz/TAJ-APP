@@ -14,7 +14,10 @@ class NotificationNavigator extends AppNavigatorBase {
       path: AppRoutes.notification,
       builder: (context, state) {
         return BlocProvider(
-          create: (context) => MultiNotificationCubit(),
+          lazy: false,
+          create:
+              (context) =>
+                  MultiNotificationCubit()..getNotifications(),
           child: const NotificationsScreen(),
         );
       },

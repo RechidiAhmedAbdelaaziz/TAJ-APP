@@ -20,17 +20,20 @@ part 'navigator_base.dart';
 class AppRouter {
   final routerConfig = GoRouter(
     initialLocation: AppRoutes.splash,
-    routes: [...RealStatesNavigator.routes, 
+    routes: [
+      ...RealStatesNavigator.routes,
       ...AboutNavigator.routes,
       ...DocumentsNavigator.routes,
       ...NotificationNavigator.routes,
       ...ProfileNavigator.routes,
       ...HomeNavigator.routes,
       ...AuthNavigator.routes,
+
       GoRoute(
         path: AppRoutes.splash,
         builder: (context, state) => const SplashScreen(),
       ),
+
       GoRoute(
         path: AppRoutes.welcome,
         builder: (context, state) => const WelcomeScreen(),

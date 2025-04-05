@@ -27,44 +27,9 @@ class _Files extends StatelessWidget {
       children: [
         Text(title, style: AppTextStyles.medium),
         heightSpace(8),
-        FileDownloader(
+        PdfView.fromUrl(
+          title: '${realState.name} $title',
           url: fileUrl ?? "",
-          fileName: fileUrl?.split("/").last ?? "",
-          builder: (context, isDownloading) {
-            return Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                vertical: 8.h,
-                horizontal: 20.w,
-              ),
-              decoration: BoxDecoration(
-                color: AppColors.greyDark,
-                borderRadius: BorderRadius.circular(5).r,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 12.w,
-                children: [
-                  isDownloading
-                      ? CircularProgressIndicator(
-                        color: AppColors.white,
-                        constraints: BoxConstraints(
-                          minHeight: 20.h,
-                          minWidth: 20.h,
-                        ),
-                      )
-                      : SvgPicture.asset(Assets.icons.pdfIcon),
-
-                  Text(
-                    'Download File',
-                    style: AppTextStyles.normal.copyWith(
-                      color: AppColors.white,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
         ),
       ],
     );

@@ -4,7 +4,7 @@ part of 'local_auth_cubit.dart';
 
 enum _LocalAuthStatus { initial, loading, success, error }
 
-class LocalAuthState extends ErrorState {
+class LocalAuthState extends CubitErrorState {
   final _LocalAuthStatus _status;
 
   LocalAuthState({

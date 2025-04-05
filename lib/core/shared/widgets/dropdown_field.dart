@@ -2,7 +2,6 @@ import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
-import 'package:taj_elsafa/core/themes/icons.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,7 +74,7 @@ class AppDropDownField<T> extends StatelessWidget {
                         // Add button
                         onTap: onAdd,
                         child: Icon(
-                          AppIcons.add_circle_outline,
+                          Icons.add_circle_outline,
                           color: AppColors.black,
                         ),
                       ),

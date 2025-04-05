@@ -1,7 +1,6 @@
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
-import 'package:taj_elsafa/core/themes/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

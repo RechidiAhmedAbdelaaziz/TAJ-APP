@@ -12,7 +12,8 @@ class RealStatesNavigator extends AppNavigatorBase {
       path: AppRoutes.realStates,
       builder: (context, state) {
         return BlocProvider(
-          create: (context) => RealStatesCubit(),
+          lazy: false,
+          create: (context) => RealStatesCubit()..getRealStates(),
           child: const RealStatesScreen(),
         );
       },

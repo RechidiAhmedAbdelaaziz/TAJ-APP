@@ -8,6 +8,7 @@ class _StatesDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final states = context.watch<RealStatesCubit>().realStates;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 35.h),
@@ -52,7 +53,7 @@ class _StatesDropdown extends StatelessWidget {
         ),
 
         dropdownMenuEntries:
-            _states
+            states
                 .map(
                   (state) => DropdownMenuEntry(
                     value: state,

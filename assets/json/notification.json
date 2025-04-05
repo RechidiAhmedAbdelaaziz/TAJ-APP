@@ -1,0 +1,18 @@
+{
+    "data": [
+        {
+            "id": "1",
+            "title": "Ticket No.10",
+            "body": "Maintenance work was carried out and completed required. All the mentioned problems were fixed.",
+            "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcRoJSK_GJ42SeBNQSRy2dUhmgsXtMTB66sQ&s",
+            "date": "2023-10-01T12:00:00Z"
+        },
+        {
+            "id": "2",
+            "title": "Ticket No.11",
+            "body": "Maintenance work was carried out and completed required. All the mentioned problems were fixed.",
+            "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXe2zFagy5yWp05gwX_VBZC1wxoH7uOAKeGA&s",
+            "date": "2023-10-01T12:00:00Z"
+        }
+    ]
+}

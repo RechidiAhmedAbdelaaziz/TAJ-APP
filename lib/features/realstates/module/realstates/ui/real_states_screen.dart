@@ -1,21 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:taj_elsafa/core/extension/date_formatter.extension.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
-import 'package:taj_elsafa/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
-import 'package:taj_elsafa/core/shared/classes/editioncontollers/list_generic_editingcontroller.dart';
-import 'package:taj_elsafa/core/shared/widgets/dropdown_field.dart';
-import 'package:taj_elsafa/core/shared/widgets/file_downloader.dart';
+import 'package:taj_elsafa/core/shared/widgets/pdf_view.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/features/realstates/data/models/real_state_model.dart';
-import 'package:taj_elsafa/gen/assets.gen.dart';
-
-part 'dummy.dart';
+import 'package:taj_elsafa/features/realstates/module/realstates/logic/real_states_cubit.dart';
 
 part 'widgets/files.dart';
 part 'widgets/images.dart';
@@ -30,16 +25,10 @@ class RealStatesScreen extends StatefulWidget {
 }
 
 class _RealStatesScreenState extends State<RealStatesScreen> {
-  RealStateModel? realState;
-
-  @override
-  void initState() {
-    realState = _states.firstOrNull;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final realState =
+        context.watch<RealStatesCubit>().selectedRealState;
     return Scaffold(
       appBar: AppBar(
         title: Text("Real State Info"),
@@ -52,20 +41,23 @@ class _RealStatesScreenState extends State<RealStatesScreen> {
                 child: Column(
                   children: [
                     _StatesDropdown(
-                      realState!,
+                      realState,
                       onChanged: (value) {
-                        setState(() => realState = value);
+                        if (value == null) return;
+                        context
+                            .read<RealStatesCubit>()
+                            .selectRealState(value);
                       },
                     ),
                     heightSpace(25),
 
-                    _Info(realState!),
+                    _Info(realState),
                     heightSpace(45),
 
-                    _Files(realState!),
+                    _Files(realState),
                     heightSpace(45),
 
-                    _Images(realState!.imagesUrls),
+                    _Images(realState.imagesUrls),
                     heightSpace(25),
                   ],
                 ),

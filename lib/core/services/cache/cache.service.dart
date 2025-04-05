@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taj_elsafa/core/di/locator.dart';
@@ -78,12 +79,14 @@ class CacheService {
     return _sharedPreferences.getString(key);
   }
 
-  Future<Map<String, dynamic>> getJson(String key) async {
-    debugPrint('SharedPrefHelper : getString with key : $key');
+  Future<Map<String, dynamic>> getJson(String path) async {
+    debugPrint('SharedPrefHelper : getJson with path : $path');
 
-    final string = _sharedPreferences.getString(key);
+    String jsonString = await rootBundle.loadString(path);
 
-    return jsonDecode(string ?? '') as Map<String, dynamic>;
+    Map<String, dynamic> jsonMap = json.decode(jsonString);
+
+    return jsonMap;
   }
 
   /// Saves a [value] with a [key] in the _flutterSecureStorage.

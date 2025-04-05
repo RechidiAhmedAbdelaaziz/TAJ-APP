@@ -7,7 +7,6 @@ import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/button.dart';
 import 'package:taj_elsafa/core/shared/widgets/input_field.dart';
 import 'package:taj_elsafa/core/shared/widgets/logo.dart';
-import 'package:taj_elsafa/core/shared/widgets/text_field.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/gen/assets.gen.dart';

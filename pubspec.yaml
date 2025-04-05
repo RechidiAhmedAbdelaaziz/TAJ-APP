@@ -61,6 +61,7 @@ dependencies:
     permission_handler: ^11.4.0
     path_provider: ^2.1.5
     local_auth: ^2.3.0
+    flutter_cached_pdfview: ^0.4.3
 
 dev_dependencies:
     flutter_test:
