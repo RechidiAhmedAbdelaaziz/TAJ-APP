@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
-import 'package:taj_elsafa/core/shared/widgets/file_downloader.dart';
+import 'package:taj_elsafa/core/shared/widgets/pdf_view.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/features/documents/data/models/document_model.dart';
-import 'package:taj_elsafa/gen/assets.gen.dart';
 
 class DocumentsScreen extends StatelessWidget {
   const DocumentsScreen({super.key});
@@ -167,44 +165,9 @@ class _DocumentTabView extends StatelessWidget {
               ),
               heightSpace(22),
 
-              FileDownloader(
+              PdfView.fromUrl(
                 url: doc.fileUrl!,
-                fileName: '${doc.docNumber}.pdf',
-                builder: (context, isDownloading) {
-                  return Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(
-                      vertical: 8.h,
-                      horizontal: 20.w,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.greyDark,
-                      borderRadius: BorderRadius.circular(5).r,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      spacing: 12.w,
-                      children: [
-                        isDownloading
-                            ? CircularProgressIndicator(
-                              color: AppColors.white,
-                              constraints: BoxConstraints(
-                                minHeight: 20.h,
-                                minWidth: 20.h,
-                              ),
-                            )
-                            : SvgPicture.asset(Assets.icons.pdfIcon),
-
-                        Text(
-                          'Download File',
-                          style: AppTextStyles.normal.copyWith(
-                            color: AppColors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                title: '${doc.docNumber}',
               ),
             ],
           ),
