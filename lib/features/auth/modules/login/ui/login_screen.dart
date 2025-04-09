@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taj_elsafa/core/extension/dialog.extension.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
+import 'package:taj_elsafa/core/themes/colors.dart';
+import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/features/auth/configs/auth_navigator.dart';
 import 'package:taj_elsafa/features/auth/modules/localauth/ui/fingerprint_auth.dart';
 import 'package:taj_elsafa/features/auth/modules/login/logic/login.cubit.dart';
@@ -26,8 +28,11 @@ class LoginScreen extends StatelessWidget {
         title: 'Login'.tr(context),
         form: const _Form(),
         oAuthButtons: FingerprintAuthWidget(),
-        submitButton: AppButton.primary(
+        submitButton: AppButton(
           text: 'Login'.tr(context),
+          textStyle: AppTextStyles.primaryButton,
+          color: AppColors.buttonColor,
+          borderColor: AppColors.white,
           onPressed: context.read<LoginCubit>().login,
           isLoading:
               (ctx) => ctx.select(

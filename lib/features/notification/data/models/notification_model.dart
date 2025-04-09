@@ -10,6 +10,7 @@ class NotificationModel extends Equatable {
   final String? title;
   final String? body;
   final String? imageUrl;
+  final bool? isRead;
 
   const NotificationModel({
     this.id,
@@ -17,6 +18,7 @@ class NotificationModel extends Equatable {
     this.title,
     this.body,
     this.imageUrl,
+    this.isRead,
   });
 
   @override

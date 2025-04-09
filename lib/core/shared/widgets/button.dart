@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppButton extends StatelessWidget {
-  final String? text;
+  final String text;
   final IconData? suffixIcon;
 
   final void Function()? onPressed;
@@ -16,8 +16,9 @@ class AppButton extends StatelessWidget {
   final Color? borderColor;
   final TextStyle textStyle;
 
-  const AppButton._({
-    this.text,
+  const AppButton({
+    super.key,
+    required this.text,
     this.suffixIcon,
     this.onPressed,
     this.isLoading,
@@ -27,11 +28,11 @@ class AppButton extends StatelessWidget {
   });
 
   factory AppButton.primary({
-    String? text,
+    required String text,
     IconData? suffixIcon,
     void Function()? onPressed,
     bool Function(BuildContext context)? isLoading,
-  }) => AppButton._(
+  }) => AppButton(
     text: text,
     suffixIcon: suffixIcon,
     onPressed: onPressed,
@@ -42,11 +43,11 @@ class AppButton extends StatelessWidget {
   );
 
   factory AppButton.secondary({
-    String? text,
+    required String text,
     IconData? suffixIcon,
     void Function()? onPressed,
     bool Function(BuildContext context)? isLoading,
-  }) => AppButton._(
+  }) => AppButton(
     text: text,
     suffixIcon: suffixIcon,
     onPressed: onPressed,
@@ -60,7 +61,7 @@ class AppButton extends StatelessWidget {
     IconData? suffixIcon,
     void Function()? onPressed,
     bool Function(BuildContext context)? isLoading,
-  }) => AppButton._(
+  }) => AppButton(
     text: text,
     suffixIcon: suffixIcon,
     onPressed: onPressed,
@@ -77,7 +78,7 @@ class AppButton extends StatelessWidget {
         // width: double.infinity,
         padding: EdgeInsets.symmetric(
           // horizontal: 16.w,
-          vertical: 8.h,
+          vertical: 6.h,
         ),
         decoration: BoxDecoration(
           color: color,
@@ -91,7 +92,7 @@ class AppButton extends StatelessWidget {
           // mainAxisSize: MainAxisSize.min,
           spacing: 12.w,
           children: [
-            if (text != null) Text(text!, style: textStyle),
+            Text(text, style: textStyle),
 
             //show loading indicator if isLoading is true, else show suffixIcon if it is not null
             if (isLoading?.call(context) == true)

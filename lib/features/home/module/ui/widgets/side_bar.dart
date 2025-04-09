@@ -6,7 +6,11 @@ class _SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Drawer(
+      child: Container(
+        height: double.infinity,
+        width: 304.w,
+        color: AppColors.white,
+
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
