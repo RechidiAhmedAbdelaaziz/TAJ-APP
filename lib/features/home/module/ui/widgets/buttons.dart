@@ -31,6 +31,13 @@ class _Buttons extends StatelessWidget {
     required String text,
     required VoidCallback onPressed,
   }) {
-    return AppButton.primary(text: text, onPressed: onPressed);
+    return AppButton(
+      text: text,
+      textStyle: AppTextStyles.primaryButton,
+      color: Color(0xffc5c1c1).withValues(alpha: 0.6),
+      borderColor: Color(0xffc5c1c1),
+
+      onPressed: onPressed,
+    );
   }
 }

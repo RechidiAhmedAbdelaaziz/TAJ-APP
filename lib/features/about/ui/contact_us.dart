@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taj_elsafa/core/extension/dialog.extension.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
+import 'package:taj_elsafa/core/extension/snackbar.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
+import 'package:taj_elsafa/core/shared/widgets/back_button.dart';
 import 'package:taj_elsafa/core/shared/widgets/button.dart';
 import 'package:taj_elsafa/core/shared/widgets/input_field.dart';
 import 'package:taj_elsafa/core/shared/widgets/logo.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/gen/assets.gen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactUs extends StatelessWidget {
   const ContactUs({super.key});
@@ -18,6 +22,8 @@ class ContactUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: AppBackButton(),
+
         title: const Text('Contact Us'),
         centerTitle: true,
       ),
@@ -27,18 +33,47 @@ class ContactUs extends StatelessWidget {
             _buildLogo(),
             heightSpace(20),
 
-            ...{
-              "Phone Number": "00962799263003",
+            // ...{
+            //   "Phone Number": "00962799263003",
 
-              "Site":
-                  "Prince Rashid District, King Abdullah Street next to Zain, Amman, Jordan",
+            //   "Site":
+            //       "Prince Rashid District, King Abdullah Street next to Zain, Amman, Jordan",
 
-              "E-mail": "info@tajalsafa.com",
-            }.entries.map((e) => _buildInfo(e.key, e.value)),
+            //   "E-mail": "info@tajalsafa.com",
+            // }
+            _buildInfo(
+              "Phone Number",
+              "00962799263003",
+              onTap:
+                  () async => await launchUrl(
+                    Uri.parse("tel:00962799263003"),
+                  ),
+            ),
 
-            _buildSocialMedia(),
+            _buildInfo(
+              "Site",
+              "Prince Rashid District, King Abdullah Street next to Zain, Amman, Jordan",
+            ),
 
-            _buildInfo("Website", "www.Tajalsafa.com"),
+            _buildInfo(
+              "Email",
+              "info@tajalsafa.com",
+              onTap:
+                  () async => await launchUrl(
+                    Uri.parse("mailto:info@tajalsafa.com"),
+                  ),
+            ),
+
+            _buildSocialMedia(context),
+
+            _buildInfo(
+              "Website",
+              "www.Tajalsafa.com",
+              onTap:
+                  () async => await launchUrl(
+                    Uri.parse("https://www.tajalsafa.com/"),
+                  ),
+            ),
 
             _buildSuggestionSubmission(context),
           ],
@@ -59,10 +94,9 @@ class ContactUs extends StatelessWidget {
             ),
           ),
           heightSpace(8),
-          AppButton.secondary(
-            text: "Submit Suggestions",
-            suffixIcon: Icons.arrow_right,
-            onPressed: () {
+
+          InkWell(
+            onTap: () {
               context.dialogWith<bool>(
                 child: SubmitSuggestions(),
                 onResult: (_) {
@@ -72,6 +106,22 @@ class ContactUs extends StatelessWidget {
                 },
               );
             },
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(10.r),
+              decoration: BoxDecoration(
+                color: AppColors.grey,
+                borderRadius: BorderRadius.circular(5).r,
+                border: Border(
+                  bottom: BorderSide(
+                    color: AppColors.greyDark,
+                    width: 4.r,
+                  ),
+                ),
+              ),
+              alignment: AlignmentDirectional.centerEnd,
+              child: Icon(Icons.arrow_forward),
+            ),
           ),
 
           heightSpace(10),
@@ -82,7 +132,7 @@ class ContactUs extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialMedia() {
+  Widget _buildSocialMedia(BuildContext context) {
     return _buildInfoSeparator(
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,19 +143,22 @@ class ContactUs extends StatelessWidget {
               color: AppColors.black,
             ),
           ),
-          heightSpace(4),
+          heightSpace(22),
           Row(
+            spacing: 20.w,
             children: [
               ...{
                 Assets.icons.twitter: "https://twitter.com/",
                 Assets.icons.facebook: "https://www.facebook.com/",
+                Assets.icons.youtub: "https://www.youtube.com/",
                 Assets.icons.instagram: "https://www.instagram.com/",
                 Assets.icons.linkedin: "https://www.linkedin.com/",
-                Assets.icons.youtub: "https://www.youtube.com/",
-              }.entries.map((e) => _buildIcon(e.key, e.value)),
+              }.entries.map(
+                (e) => _buildIcon(e.key, e.value, context),
+              ),
             ],
           ),
-          heightSpace(10),
+          heightSpace(22),
           const Divider(),
           heightSpace(16),
         ],
@@ -113,12 +166,18 @@ class ContactUs extends StatelessWidget {
     );
   }
 
-  Widget _buildIcon(String icon, String link) {
+  Widget _buildIcon(
+    AssetGenImage icon,
+    String link,
+    BuildContext context,
+  ) {
     return InkWell(
-      onTap: () {
-        //TODO: Open the link in a web browser
+      onTap: () async {
+        if (!await launchUrl(Uri.parse(link))) {
+          context.showErrorSnackbar("Error opening link");
+        }
       },
-      child: SvgPicture.asset(icon, width: 24.w, height: 24.h),
+      child: icon.image(height: 18),
     );
   }
 
@@ -131,7 +190,11 @@ class ContactUs extends StatelessWidget {
     );
   }
 
-  Widget _buildInfo(String title, String item) {
+  Widget _buildInfo(
+    String title,
+    String item, {
+    VoidCallback? onTap,
+  }) {
     return _buildInfoSeparator(
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,10 +206,13 @@ class ContactUs extends StatelessWidget {
             ),
           ),
           heightSpace(4),
-          Text(
-            item,
-            style: AppTextStyles.normal.copyWith(
-              color: AppColors.blackLight,
+          InkWell(
+            onTap: onTap,
+            child: Text(
+              item,
+              style: AppTextStyles.normal.copyWith(
+                color: AppColors.blackLight,
+              ),
             ),
           ),
 
@@ -175,31 +241,48 @@ class SubmitSuggestions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 371.w,
       padding: EdgeInsets.all(32.w),
-      margin: EdgeInsets.symmetric(horizontal: 32.w),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: Color(0xFFFAF7FF),
         borderRadius: BorderRadius.circular(5).r,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "Submit Your Suggestions",
+            "Your Suggestions".tr(context),
             style: AppTextStyles.xLarge.copyWith(
               color: AppColors.black,
             ),
           ),
-          heightSpace(16),
-          AppInputField(
-            controller: TextEditingController(),
-            hintText: "Your Suggestion Here",
-            keyboardType: TextInputType.multiline,
-          ),
-          heightSpace(16),
+          heightSpace(35),
 
-          AppButton.primary(
-            text: "Send",
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16).r,
+            decoration: BoxDecoration(
+              color: Color(0x9F9F9F99),
+              borderRadius: BorderRadius.circular(5).r,
+            ),
+            child: TextField(
+              maxLines: 8,
+              decoration: InputDecoration(
+                hintText: "Write Here ...",
+                hintStyle: AppTextStyles.normal.copyWith(
+                  color: AppColors.black,
+                ),
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+          heightSpace(35),
+
+          AppButton(
+            text: "Send".tr(context),
+            color: AppColors.buttonColor,
+            textStyle: AppTextStyles.primaryButton.copyWith(
+              color: AppColors.white,
+            ),
             onPressed: () => context.back(true),
           ),
         ],

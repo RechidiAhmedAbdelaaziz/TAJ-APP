@@ -51,7 +51,8 @@ class _MaterialApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Abel',
         scaffoldBackgroundColor: AppColors.white,
-        appBarTheme: AppBarTheme(backgroundColor: AppColors.grey),
+        appBarTheme: AppBarTheme(backgroundColor: AppColors.grey , ),
+        
       ),
       supportedLocales: [
         Locale('fr'), // French

@@ -42,6 +42,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ? VideoPlayer(_controller)
                     : const CircularProgressIndicator(),
           ),
+
+          Align(
+            alignment: AlignmentDirectional.center,
+            child: Text(
+              'Maintenance',
+              style: TextStyle(
+                fontFamily: 'Emeralde Chamerions',
+                fontSize: 40.spMin,
+                color: Colors.white,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+
           Positioned(
             bottom: 52.h,
             left: 150.w,

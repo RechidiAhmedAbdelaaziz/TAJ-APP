@@ -6,6 +6,8 @@ import 'package:taj_elsafa/core/shared/widgets/button.dart';
 import 'package:taj_elsafa/core/shared/widgets/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taj_elsafa/core/themes/colors.dart';
+import 'package:taj_elsafa/core/themes/font_styles.dart';
 
 import '../logic/forgot_password_cubit.dart';
 
@@ -25,8 +27,12 @@ class ForgotPasswordScreen extends StatelessWidget {
       child: AuthScreen(
         title: 'ForgotPasswordMessage'.tr(context),
         form: const _Form(),
-        submitButton: AppButton.primary(
+        backButton: true,
+        submitButton: AppButton(
           text: 'RecoverPassword'.tr(context),
+          textStyle: AppTextStyles.primaryButton,
+          color: AppColors.buttonColor,
+          borderColor: AppColors.white,
           onPressed: context.read<ForgotPasswordCubit>().submit,
           isLoading:
               (ctx) => ctx.select(

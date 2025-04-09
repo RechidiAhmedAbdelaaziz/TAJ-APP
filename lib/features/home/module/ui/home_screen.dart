@@ -35,39 +35,39 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: AppColors.white,
       appBar: const _AppBar(),
       drawer: const _SideBar(),
-      body: Column(
-        children: [
-          heightSpace(21),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            heightSpace(21),
 
-          const _Banners(),
-          heightSpace(15),
+            const _Banners(),
+            heightSpace(15),
 
-          _buildText(
-            'ChooseRequirement'.tr(context),
-            AppTextStyles.medium.copyWith(color: AppColors.black),
-          ),
-          heightSpace(24),
+            _buildText(
+              'ChooseRequirement'.tr(context),
+              AppTextStyles.medium.copyWith(color: AppColors.black),
+            ),
+            heightSpace(24),
 
-          Expanded(
-            child: _buildText(
+            _buildText(
               'ChooseRequirementDesc'.tr(context),
               AppTextStyles.medium.copyWith(color: AppColors.black),
               textAlign: TextAlign.justify,
             ),
-          ),
-          heightSpace(8),
+            heightSpace(72),
 
-          const _Buttons(),
-          heightSpace(140),
+            const _Buttons(),
+            heightSpace(140),
 
-          _buildText(
-            "typesetting, remaining essentially  versions of".tr(
-              context,
+            _buildText(
+              "typesetting, remaining essentially  versions of".tr(
+                context,
+              ),
+              AppTextStyles.normal.copyWith(color: AppColors.black),
             ),
-            AppTextStyles.normal.copyWith(color: AppColors.black),
-          ),
-          heightSpace(20),
-        ],
+            heightSpace(20),
+          ],
+        ),
       ),
     );
   }

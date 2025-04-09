@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/extension/date_formatter.extension.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
+import 'package:taj_elsafa/core/shared/widgets/back_button.dart';
 import 'package:taj_elsafa/core/shared/widgets/pdf_view.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
@@ -31,6 +32,7 @@ class _RealStatesScreenState extends State<RealStatesScreen> {
         context.watch<RealStatesCubit>().selectedRealState;
     return Scaffold(
       appBar: AppBar(
+        leading: AppBackButton(),
         title: Text("Real State Info"),
         centerTitle: true,
       ),
