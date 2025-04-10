@@ -1,13 +1,9 @@
 part of 'filepick.service.dart';
 
-class MobileFilePicker extends ImagePickerService<MobileImageDTO> {
+class MobileFilePicker extends MediaPickerService {
   @override
-  Future<MobileImageDTO?> pickFile() async {
+  Future<XFile?> pickFile() async {
     final imagePicker = ImagePicker();
-    final xfile = await imagePicker.pickImage(
-      source: ImageSource.gallery,
-    );
-
-    return xfile != null ? MobileImageDTO(file: xfile) : null;
+    return await imagePicker.pickMedia();
   }
 }

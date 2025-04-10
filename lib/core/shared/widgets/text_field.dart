@@ -7,8 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextField extends StatelessWidget {
   final TextEditingController controller;
-  final String label;
+
   final String? Function(String?)? validator;
+
+  final String label;
+  final String? hintText;
 
   final List<TextInputFormatter>? inputFormatters;
 
@@ -21,10 +24,9 @@ class AppTextField extends StatelessWidget {
     required this.controller,
     required this.label,
     this.validator,
-
+    this.hintText,
     this.inputFormatters,
     this.isRequired = false,
-
     this.width = double.infinity,
   });
 
@@ -88,6 +90,8 @@ class AppTextField extends StatelessWidget {
                     ),
 
                     error: SizedBox.shrink(),
+
+                    hintText: hintText,
 
                     prefixIconConstraints: BoxConstraints(
                       minWidth: 8.w,

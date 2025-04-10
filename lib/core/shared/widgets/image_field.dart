@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:taj_elsafa/core/di/locator.dart';
+import 'package:taj_elsafa/core/extension/xfile_extension.dart';
 import 'package:taj_elsafa/core/services/filepicker/filepick.service.dart';
 import 'package:taj_elsafa/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
 import 'package:taj_elsafa/core/shared/dto/imagedto/image.dto.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 
-class ImageField extends StatelessWidget {
-  final EditingController<ImageDTO> imageController;
+class MediaField extends StatelessWidget {
+  final EditingController<MediaDTO> imageController;
 
   final double width;
   final double height;
@@ -17,7 +17,7 @@ class ImageField extends StatelessWidget {
 
   final Widget uploadIcon;
 
-  ImageField({
+  MediaField({
     super.key,
     EditingController<ImageDTO>? imageController,
     this.width = 100,
@@ -31,10 +31,10 @@ class ImageField extends StatelessWidget {
 
   void _uploadImage() async {
     final pickedImage =
-        await locator<ImagePickerService>().pickFile();
+        await locator<MediaPickerService>().pickFile();
 
     if (pickedImage != null) {
-      imageController.setValue(pickedImage);
+      imageController.setValue(pickedImage.toMediaDTO());
     }
   }
 
@@ -42,7 +42,7 @@ class ImageField extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: imageController,
-      builder: (_, ImageDTO? imageDto, __) {
+      builder: (_, imageDto, __) {
         return InkWell(
           onTap: _uploadImage,
           child: Container(
@@ -54,17 +54,26 @@ class ImageField extends StatelessWidget {
                 color: borderColor,
                 width: borderWidth,
               ),
-              image:
-                  imageDto != null
-                      ? DecorationImage(
-                        image: imageDto.image,
-                        fit: BoxFit.contain,
-                      )
-                      : null,
             ),
-            child: Align(
-              alignment: AlignmentDirectional.bottomEnd,
-              child: InkWell(onTap: _uploadImage, child: uploadIcon),
+            child: Stack(
+              children: [
+                if (imageDto != null)
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(borderRadius),
+                    child: imageDto.buildWidget(
+                      width: width,
+                      height: height,
+                    ),
+                  ),
+
+                Align(
+                  alignment: AlignmentDirectional.bottomEnd,
+                  child: InkWell(
+                    onTap: _uploadImage,
+                    child: uploadIcon,
+                  ),
+                ),
+              ],
             ),
           ),
         );

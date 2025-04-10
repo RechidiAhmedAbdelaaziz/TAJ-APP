@@ -62,7 +62,7 @@ abstract class VideoDTO extends MediaDTO {
 }
 
 extension FileDtoMapper on List<MediaDTO> {
-  Future<List<String>> get imageUrls async {
+  Future<List<String>> get urls async {
     return Future.wait(map((e) => e.url));
   }
 }

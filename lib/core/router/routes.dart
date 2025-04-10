@@ -42,4 +42,8 @@ abstract class AppRoutes {
 
   //* REQUESTS ROUTES
   static const String myRequests = '/my-requests';
+
+  //* NOTES ROUTES
+  static const String notes = '/notes';
+  static const String createNote = '/create-note';
 }

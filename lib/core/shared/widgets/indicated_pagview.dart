@@ -25,7 +25,10 @@ class _IndicatedPagviewState extends State<IndicatedPagview> {
 
   @override
   void initState() {
-    _pageController = PageController(initialPage: _currentPage);
+    _pageController = PageController(
+      initialPage: _currentPage,
+      keepPage: true,
+    );
 
     _pageController.addListener(() {
       setState(() => _currentPage = _pageController.page!.round());

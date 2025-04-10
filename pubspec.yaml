@@ -64,6 +64,9 @@ dependencies:
     flutter_cached_pdfview: ^0.4.3
     url_launcher: ^6.3.1
     share_plus: ^10.1.4
+    conditional_builder_null_safety: ^0.0.6
+    mime: ^2.0.0
+
 
 dev_dependencies:
     flutter_test:

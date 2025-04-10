@@ -10,5 +10,5 @@ abstract class FilePickerService<T> {
   Future<T?> pickFile();
 }
 
-abstract class ImagePickerService<T extends LocalImageDTO>
-    extends FilePickerService<T> {}
+abstract class MediaPickerService
+    extends FilePickerService<XFile> {}

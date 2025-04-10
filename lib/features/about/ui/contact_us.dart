@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taj_elsafa/core/extension/dialog.extension.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
@@ -8,7 +7,6 @@ import 'package:taj_elsafa/core/extension/snackbar.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/back_button.dart';
 import 'package:taj_elsafa/core/shared/widgets/button.dart';
-import 'package:taj_elsafa/core/shared/widgets/input_field.dart';
 import 'package:taj_elsafa/core/shared/widgets/logo.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
@@ -174,6 +172,7 @@ class ContactUs extends StatelessWidget {
     return InkWell(
       onTap: () async {
         if (!await launchUrl(Uri.parse(link))) {
+          // ignore: use_build_context_synchronously
           context.showErrorSnackbar("Error opening link");
         }
       },
