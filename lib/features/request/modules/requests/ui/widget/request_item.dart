@@ -66,7 +66,17 @@ class _RequestItem extends StatelessWidget {
                   ),
                   color: AppColors.buttonColor,
 
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      //TODO change it after create request details module
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) =>
+                                RequesDetailsScreen(request: request),
+                      ),
+                    );
+                  },
                 ),
               ),
 
@@ -81,7 +91,11 @@ class _RequestItem extends StatelessWidget {
 
                     prefixIcon: SvgPicture.asset(Assets.icons.qr),
 
-                    onPressed: () {}, //TODO: open qr code
+                    onPressed: () {
+                      context.dialog(
+                        child: _QrCode(request.qrCodeUrl!),
+                      );
+                    },
                   ),
                 ),
             ],

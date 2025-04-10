@@ -46,10 +46,6 @@ class RequestsState extends CubitErrorState {
         status: _RequestsStatus.loaded,
       );
 
-  RequestsState _selectRequest(RequestModel request) => _copyWith(
-    selectedRequest: request,
-    status: _RequestsStatus.loaded,
-  );
 
   RequestsState _error(String error) =>
       _copyWith(status: _RequestsStatus.error, error: error);

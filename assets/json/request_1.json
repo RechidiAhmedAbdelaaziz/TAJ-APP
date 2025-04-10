@@ -14,14 +14,15 @@
             "status": "Open",
             "createdAt": "2025-04-01T10:00:00.000Z",
             "appointmentDate": "2025-04-15T14:00:00.000Z",
+            "qrCodeUrl" : "https://upload.wikimedia.org/wikipedia/commons/7/78/Qrcode_wikipedia_fr_v2clean.png",
             "attachments": [
                 {
-                    "url": "https://example.com/image1.jpg",
+                    "url": "https://lh3.googleusercontent.com/p/AF1QipPBPLg3VXK2j1BZlE7m7rMvaBgnmAZqLes0E761=s680-w680-h510",
                     "type": "image"
                 },
                 {
-                    "url": "https://example.com/image2.jpg",
-                    "type": "image"
+                    "url": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+                    "type": "video"
                 }
             ]
         },

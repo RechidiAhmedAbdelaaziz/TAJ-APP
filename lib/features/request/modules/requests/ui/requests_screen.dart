@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:taj_elsafa/core/extension/bottom_sheet.extension.dart';
 import 'package:taj_elsafa/core/extension/date_formatter.extension.dart';
+import 'package:taj_elsafa/core/extension/dialog.extension.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
+import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/button.dart';
 import 'package:taj_elsafa/core/shared/widgets/loadign_indicator.dart';
@@ -12,10 +16,12 @@ import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/features/request/data/models/request_model.dart';
 import 'package:taj_elsafa/features/request/modules/requests/logic/requests_cubit.dart';
+import 'package:taj_elsafa/features/request/modules/requests/ui/reques_details_screen.dart';
 import 'package:taj_elsafa/gen/assets.gen.dart';
 
 part 'widget/request_item.dart';
 part 'widget/filter_button.dart';
+part 'widget/qr_code.dart';
 
 class RequestsScreen extends StatelessWidget {
   const RequestsScreen({super.key});
@@ -29,11 +35,11 @@ class RequestsScreen extends StatelessWidget {
     return StatesPage(
       title: "My Requests",
 
-      onChange:
-          (state) =>
-              context
-                  .read<RequestsCubit>()
-                  .getRequests(), //TODO change it to get filtered requests by state
+      onChange: (state) {
+        final cubit = context.read<RequestsCubit>();
+        cubit.filter.stateController.setValue(state);
+        cubit.getFilteredRequests();
+      },
 
       builder: (context, state) {
         if (isLoading) return AppLoadignIndicator();
@@ -65,7 +71,15 @@ class RequestsScreen extends StatelessWidget {
               const Divider(color: Color(0x26000000)),
               heightSpace(20),
 
-              ...requests.map((request) => _RequestItem(request)),
+              if (requests.isEmpty)
+                Center(
+                  child: Text(
+                    'No Requests'.tr(context),
+                    style: AppTextStyles.medium,
+                  ),
+                )
+              else
+                ...requests.map((request) => _RequestItem(request)),
             ],
           ),
         );

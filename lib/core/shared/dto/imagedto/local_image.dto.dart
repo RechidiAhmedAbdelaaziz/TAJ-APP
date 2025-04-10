@@ -7,10 +7,7 @@ abstract class LocalImageDTO extends ImageDTO {
   LocalImageDTO({required this.file});
 
   @override
-  ImageProvider get image;
-
-  @override
-  Future<String> get imageUrl async =>
+  Future<String> get url async =>
       await _cloudStorageService.upload(file);
 }
 
@@ -28,4 +25,29 @@ class WebImageDTO extends LocalImageDTO {
   ImageProvider get image => NetworkImage(file.path);
 }
 
+abstract class LocalVideoDTO extends VideoDTO {
+  final XFile file;
+  final _cloudStorageService = locator<VideoCloudStorageService>();
 
+  LocalVideoDTO({required this.file});
+
+  @override
+  Future<String> get url async =>
+      await _cloudStorageService.upload(file);
+}
+
+class MobileVideoDTO extends LocalVideoDTO {
+  MobileVideoDTO({required super.file});
+
+  @override
+  VideoPlayerController get videoController =>
+      VideoPlayerController.file(File(file.path));
+}
+
+class WebVideoDTO extends LocalVideoDTO {
+  WebVideoDTO({required super.file});
+
+  @override
+  VideoPlayerController get videoController =>
+      VideoPlayerController.networkUrl(Uri.parse(file.path));
+}

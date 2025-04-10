@@ -34,6 +34,8 @@ class PaginationResult<T> {
     );
   }
 
+  
+
   bool get isEmpty => data.isEmpty;
   bool get isNotEmpty => data.isNotEmpty;
 

@@ -21,8 +21,7 @@ class RequestNavigator extends AppNavigatorBase {
             BlocProvider(
               create:
                   (context) =>
-                      RequestsCubit()
-                        ..getRequests(), //TODO change to get filtered requests by state
+                      RequestsCubit(), //TODO change to get filtered requests by state
             ),
           ],
           child: const RequestsScreen(),

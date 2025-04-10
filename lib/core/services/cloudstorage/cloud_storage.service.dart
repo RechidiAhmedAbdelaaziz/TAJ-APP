@@ -6,3 +6,5 @@ abstract class _CloudStorageService<TFile> {
 }
 
 abstract class ImageCloudStorageService extends _CloudStorageService<XFile> {}
+
+abstract class VideoCloudStorageService extends _CloudStorageService<XFile> {}
