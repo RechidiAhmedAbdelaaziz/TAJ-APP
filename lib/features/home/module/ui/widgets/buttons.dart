@@ -16,7 +16,8 @@ class _Buttons extends StatelessWidget {
           ),
           _buildButton(
             text: 'MyRequest'.tr(context),
-            onPressed: () {},
+            onPressed:
+                () => context.to(RequestNavigator.myRequests()),
           ),
           _buildButton(
             text: 'HandingOver'.tr(context),

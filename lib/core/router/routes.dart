@@ -39,4 +39,7 @@ abstract class AppRoutes {
 
   //* REAL STATES ROUTES
   static const String realStates = '/real-states';
+
+  //* REQUESTS ROUTES
+  static const String myRequests = '/my-requests';
 }

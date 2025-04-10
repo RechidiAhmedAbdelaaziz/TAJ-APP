@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:taj_elsafa/core/shared/models/attachment_model.dart';
 import 'package:taj_elsafa/features/realstates/data/models/real_state_model.dart';
@@ -19,6 +20,19 @@ class RequestModel extends Equatable {
   final String? status;
   final DateTime? createdAt;
   final DateTime? appointmentDate;
+  final String? qrCodeUrl;
+
+  bool get needConfirmation => status == 'Waiting for confirmation';
+  Color get statusColor {
+    switch (status) {
+      case 'Completed':
+        return Colors.green;
+      case 'Rejected':
+        return Colors.red;
+      default:
+        return Colors.black;
+    }
+  }
 
   final List<AttachmentModel> attachments;
 
@@ -33,6 +47,7 @@ class RequestModel extends Equatable {
     this.status,
     this.createdAt,
     this.appointmentDate,
+    this.qrCodeUrl,
     this.attachments = const [],
   });
 

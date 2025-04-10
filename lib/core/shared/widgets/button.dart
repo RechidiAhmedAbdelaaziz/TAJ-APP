@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppButton extends StatelessWidget {
   final String text;
   final IconData? suffixIcon;
+  final Widget? prefixIcon;
 
   final void Function()? onPressed;
 
@@ -24,6 +25,7 @@ class AppButton extends StatelessWidget {
     this.isLoading,
     this.color,
     this.borderColor,
+    this.prefixIcon,
     required this.textStyle,
   });
 
@@ -92,6 +94,9 @@ class AppButton extends StatelessWidget {
           // mainAxisSize: MainAxisSize.min,
           spacing: 12.w,
           children: [
+            //show prefixIcon if it is not null
+            if (prefixIcon != null) ...[prefixIcon!],
+
             Text(text, style: textStyle),
 
             //show loading indicator if isLoading is true, else show suffixIcon if it is not null

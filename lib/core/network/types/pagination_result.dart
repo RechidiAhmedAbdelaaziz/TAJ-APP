@@ -18,8 +18,6 @@ class PaginationResult<T> {
     pagination: result.pagination,
   );
 
-  
-
   PaginationResult<T> remove(T item) =>
       copyWith(data: data.without(item));
 
@@ -36,7 +34,8 @@ class PaginationResult<T> {
     );
   }
 
-  void clear() => data.clear();
+  bool get isEmpty => data.isEmpty;
+  bool get isNotEmpty => data.isNotEmpty;
 
   PaginationResult.fromResponse({
     required PaginatedDataResponse response,

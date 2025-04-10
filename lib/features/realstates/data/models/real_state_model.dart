@@ -18,6 +18,15 @@ class RealStateModel extends Equatable {
   final String? profileFileUrl;
   final List<String> imagesUrls;
 
+  // Added fileds related to user
+
+  final DateTime? warrantyEndDate;
+  bool? get waarrantyIsActive =>
+      warrantyEndDate != null
+          ? DateTime.now().isBefore(warrantyEndDate!)
+          : null;
+  final int? ticketsLeft;
+
   const RealStateModel({
     this.id,
     this.name,
@@ -29,7 +38,9 @@ class RealStateModel extends Equatable {
     this.plansFileUrl,
     this.profileFileUrl,
     this.area,
-    required this.imagesUrls,
+    this.imagesUrls = const [],
+    this.warrantyEndDate,
+    this.ticketsLeft,
   });
 
   @override
