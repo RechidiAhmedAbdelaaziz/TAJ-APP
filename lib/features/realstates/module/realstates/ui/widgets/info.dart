@@ -7,7 +7,6 @@ class _Info extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),

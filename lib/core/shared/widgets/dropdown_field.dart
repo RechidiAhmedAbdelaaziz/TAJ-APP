@@ -8,6 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppDropDownField<T> extends StatelessWidget {
   final EditingController<T> controller;
+  final T? initialValue;
+
   final String label;
 
   final List<T> Function(BuildContext context) itemsBuilder;
@@ -23,6 +25,7 @@ class AppDropDownField<T> extends StatelessWidget {
 
   const AppDropDownField({
     super.key,
+    this.initialValue,
     required this.controller,
     required this.label,
     this.validator,
@@ -43,94 +46,122 @@ class AppDropDownField<T> extends StatelessWidget {
         builder: (state) {
           return Column(
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.only(
-                  bottom: 2.h,
-                  start: 8.w,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text.rich(
-                        TextSpan(
-                          text: label,
-                          children: [
-                            TextSpan(
-                              text: isRequired ? ' *' : '',
-                              style: AppTextStyles.large.copyWith(
-                                color: AppColors.red,
-                              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text.rich(
+                      TextSpan(
+                        text: label,
+                        children: [
+                          TextSpan(
+                            text: isRequired ? ' *' : '',
+                            style: AppTextStyles.medium.copyWith(
+                              color: AppColors.red,
                             ),
-                          ],
-                        ),
-                        style: AppTextStyles.large.copyWith(
-                          color: AppColors.black,
-                        ),
+                          ),
+                        ],
+                      ),
+                      style: AppTextStyles.medium.copyWith(
+                        color: AppColors.black,
                       ),
                     ),
-
-                    if (onAdd != null) ...[
-                      InkWell(
-                        // Add button
-                        onTap: onAdd,
-                        child: Icon(
-                          Icons.add_circle_outline,
-                          color: AppColors.black,
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-
-              DropdownSearch<T>(
-                itemAsString: itemToString,
-
-                compareFn: (item1, item2) {
-                  if (item1 == null || item2 == null) return false;
-                  return item1.toString() == item2.toString();
-                },
-
-                autoValidateMode: AutovalidateMode.onUserInteraction,
-
-                items: (filter, loadProps) => itemsBuilder(context),
-
-                validator: (value) => validator?.call(value),
-
-                onChanged:
-                    (value) =>
-                        value != null
-                            ? controller.setValue(value)
-                            : controller.clear(),
-
-                decoratorProps: DropDownDecoratorProps(
-                  baseStyle: AppTextStyles.medium.copyWith(
-                    color: AppColors.black,
                   ),
 
-                  decoration: InputDecoration(
-                    error: SizedBox.shrink(),
-
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 12.h,
-                      horizontal: 12.w,
-                    ),
-
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12).r,
-                      borderSide: BorderSide(color: AppColors.grey),
-                    ),
-
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12).r,
-                      borderSide: BorderSide(
-                        color: AppColors.primary,
+                  if (onAdd != null) ...[
+                    InkWell(
+                      // Add button
+                      onTap: onAdd,
+                      child: Icon(
+                        Icons.add_circle_outline,
+                        color: AppColors.black,
                       ),
                     ),
+                  ],
+                ],
+              ),
+              heightSpace(8),
 
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12).r,
-                      borderSide: BorderSide(color: AppColors.red),
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0x40000000),
+                      blurRadius: 4.r,
+                    ),
+                  ],
+                ),
+                child: DropdownSearch<T>(
+                  itemAsString: itemToString,
+
+                  selectedItem: initialValue,
+
+                  // compareFn: (item1, item2) {
+                  //   if (item1 == null || item2 == null) return false;
+                  //   return item1.toString() == item2.toString();
+                  // },
+                  autoValidateMode:
+                      AutovalidateMode.onUserInteraction,
+
+                  suffixProps: DropdownSuffixProps(
+                    dropdownButtonProps: DropdownButtonProps(
+                      iconOpened: Icon(
+                        Icons.keyboard_arrow_up,
+                        color: AppColors.black,
+                        size: 32.r,
+                      ),
+                      iconClosed: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: AppColors.black,
+                        size: 32.r,
+                      ),
+                    ),
+                  ),
+                  items: (filter, loadProps) => itemsBuilder(context),
+
+                  validator: (value) => validator?.call(value),
+
+                  onChanged:
+                      (value) =>
+                          value != null
+                              ? controller.setValue(value)
+                              : controller.clear(),
+
+                  decoratorProps: DropDownDecoratorProps(
+                    baseStyle: AppTextStyles.medium.copyWith(
+                      color: AppColors.black,
+                    ),
+
+                    decoration: InputDecoration(
+                      error: state.hasError ? const SizedBox() : null,
+                      errorText: null,
+
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 12.h,
+                        horizontal: 12.w,
+                      ),
+
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(2).r,
+                        borderSide: BorderSide(color: AppColors.grey),
+                      ),
+
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(2).r,
+                        borderSide: BorderSide(color: AppColors.grey),
+                      ),
+
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(2).r,
+                        borderSide: BorderSide(
+                          color: AppColors.primary,
+                        ),
+                      ),
+
+                      // errorBorder: OutlineInputBorder(
+                      //   borderRadius: BorderRadius.circular(2).r,
+                      //   borderSide: BorderSide(color: AppColors.red),
+                      // ),
                     ),
                   ),
                 ),

@@ -14,6 +14,7 @@ import 'package:taj_elsafa/core/shared/widgets/loadign_indicator.dart';
 import 'package:taj_elsafa/core/shared/widgets/states_page.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
+import 'package:taj_elsafa/features/request/config/request_navigator.dart';
 import 'package:taj_elsafa/features/request/data/models/request_model.dart';
 import 'package:taj_elsafa/features/request/modules/requests/logic/requests_cubit.dart';
 import 'package:taj_elsafa/features/request/modules/requests/ui/reques_details_screen.dart';
@@ -86,7 +87,7 @@ class RequestsScreen extends StatelessWidget {
       },
 
       floatingActionButton: InkWell(
-        onTap: () {}, //TODO: go to add request screen
+        onTap: () => context.to(RequestNavigator.createRequest()),
         child: SvgPicture.asset(Assets.icons.addButton),
       ),
     );

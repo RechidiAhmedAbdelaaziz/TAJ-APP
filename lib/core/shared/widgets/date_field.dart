@@ -34,99 +34,114 @@ class AppDateField extends StatelessWidget {
       builder: (state) {
         return Column(
           children: [
-            Padding(
-              padding: EdgeInsetsDirectional.only(
-                bottom: 2.h,
-                start: 8.w,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text.rich(
-                      TextSpan(
-                        text: label,
-                        children: [
-                          TextSpan(
-                            text: isRequired ? ' *' : '',
-                            style: TextStyle(color: Colors.red),
+            Row(
+              children: [
+                Expanded(
+                  child: Text.rich(
+                    TextSpan(
+                      text: label,
+                      children: [
+                        TextSpan(
+                          text: isRequired ? ' *' : '',
+                          style: AppTextStyles.medium.copyWith(
+                            color: AppColors.red,
                           ),
-                        ],
-                      ),
-                      style: TextStyle(color: Colors.black),
+                        ),
+                      ],
                     ),
+                    style: AppTextStyles.medium.copyWith(
+                      color: AppColors.black,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            heightSpace(8),
+
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0x40000000),
+                    blurRadius: 4.r,
                   ),
                 ],
               ),
-            ),
+              child: ValueListenableBuilder(
+                valueListenable: controller,
+                builder: (context, value, child) {
+                  return TextField(
+                    readOnly: true,
 
-            ValueListenableBuilder(
-              valueListenable: controller,
-              builder: (context, value, child) {
-                return TextField(
-                  readOnly: true,
-
-                  controller: TextEditingController(
-                    text: controller.value?.toDayMonthYear() ?? '',
-                  ),
-
-                  style: AppTextStyles.medium.copyWith(
-                    color:
-                        state.hasError
-                            ? AppColors.red
-                            : controller.value != null
-                            ? AppColors.black
-                            : AppColors.greyDark,
-                  ),
-
-                  onTap: () async {
-                    final date = await showDatePicker(
-                      context: context,
-                      initialDate: controller.value,
-                      firstDate: firstDate,
-                      lastDate: lastDate,
-                    );
-
-                    if (date != null) controller.setValue(date);
-                  },
-
-                  decoration: InputDecoration(
-                    hintText: 'dd/mm/yyyy',
-
-                    prefixIconConstraints: BoxConstraints(
-                      minWidth: 8.w,
+                    controller: TextEditingController(
+                      text: controller.value?.toDayMonthYear() ?? '',
                     ),
 
-                    suffixIconConstraints: BoxConstraints(
-                      minWidth: 8.w,
+                    style: AppTextStyles.medium.copyWith(
+                      color:
+                          state.hasError
+                              ? AppColors.red
+                              : controller.value != null
+                              ? AppColors.black
+                              : AppColors.greyDark,
                     ),
 
-                    hintStyle: AppTextStyles.medium.copyWith(
-                      color: AppColors.greyDark,
-                    ),
+                    onTap: () async {
+                      final date = await showDatePicker(
+                        context: context,
+                        initialDate: controller.value,
+                        firstDate: firstDate,
+                        lastDate: lastDate,
+                      );
 
-                    suffix: Icon(Icons.calendar_month_outlined),
+                      if (date != null) controller.setValue(date);
+                    },
 
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide(
+                    decoration: InputDecoration(
+                      error:
+                          state.hasError ? SizedBox.shrink() : null,
+
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 12.w,
+                        vertical: 12.h,
+                      ),
+
+                      hintText: 'dd/mm/yyyy',
+
+                      hintStyle: AppTextStyles.medium.copyWith(
                         color: AppColors.greyDark,
                       ),
-                      borderRadius: BorderRadius.circular(8).r,
-                    ),
 
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: AppColors.primary,
+                      suffixIcon: Icon(Icons.calendar_month_outlined),
+
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.grey),
+                        borderRadius: BorderRadius.circular(2).r,
                       ),
-                      borderRadius: BorderRadius.circular(8).r,
-                    ),
 
-                    errorBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.red),
-                      borderRadius: BorderRadius.circular(8).r,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.grey),
+                        borderRadius: BorderRadius.circular(2).r,
+                      ),
+
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppColors.primary,
+                        ),
+                        borderRadius: BorderRadius.circular(2).r,
+                      ),
+
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppColors.primary,
+                        ),
+                        borderRadius: BorderRadius.circular(2).r,
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
 
             if (state.hasError) ...[
