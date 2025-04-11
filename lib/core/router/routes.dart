@@ -44,7 +44,7 @@ abstract class AppRoutes {
   static const String myRequests = '/my-requests';
 
   //* NOTES ROUTES
-  static const String notes = '/notes';
+  static const String notes = '/notes/request/:requestId';
   static const String createNote = '/create-note';
 
   //* RATING ROUTES

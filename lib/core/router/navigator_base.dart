@@ -11,10 +11,9 @@ abstract class AppNavigatorBase {
     this.queryParams = const {},
   }) : _path = path;
 
-
   String get path =>
       _path.replaceAllMapped(
-        RegExp(r'{(\w+)}'),
+        RegExp(r':(\w+)'),
         (match) => pathParams[match.group(1)!] ?? '',
       ) +
       (queryParams.isNotEmpty

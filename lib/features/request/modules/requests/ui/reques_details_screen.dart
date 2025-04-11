@@ -20,16 +20,25 @@ class RequesDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Request Details No.${request.id}")),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20).r,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildInfos(),
-            heightSpace(24),
-            _buildAttachments(),
-          ],
-        ),
+      body: Column(
+        children: [
+          if (request.needConfirmation)
+            _buildShowNotesButton(context),
+
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20).r,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildInfos(),
+                  heightSpace(24),
+                  _buildAttachments(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar:
           request.needConfirmation
@@ -80,6 +89,22 @@ class RequesDetailsScreen extends StatelessWidget {
                 ),
               )
               : null,
+    );
+  }
+
+  Widget _buildShowNotesButton(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+      decoration: BoxDecoration(color: AppColors.grey),
+      child: AppButton(
+        text: 'Attached notes',
+        textStyle: AppTextStyles.normal.copyWith(
+          color: AppColors.black,
+        ),
+        color: AppColors.buttonColor,
+        onPressed: () => context.to(NotesNavigator.notes(request)),
+      ),
     );
   }
 
