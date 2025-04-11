@@ -1,3 +1,4 @@
+import 'package:taj_elsafa/features/rating/config/rating_navigator.dart';
 import 'package:taj_elsafa/features/notes/config/notes_navigator.dart';
 import 'package:taj_elsafa/features/request/config/request_navigator.dart';
 import 'package:taj_elsafa/features/realstates/config/real_states_navigator.dart';
@@ -22,7 +23,7 @@ part 'navigator_base.dart';
 class AppRouter {
   final routerConfig = GoRouter(
     initialLocation: AppRoutes.splash,
-    routes: [...NotesNavigator.routes, ...RequestNavigator.routes, 
+    routes: [...RatingNavigator.routes, ...NotesNavigator.routes, ...RequestNavigator.routes, 
       ...RealStatesNavigator.routes,
       ...AboutNavigator.routes,
       ...DocumentsNavigator.routes,

@@ -21,8 +21,14 @@ class AppInputField extends StatelessWidget {
   final bool obscureText;
 
   final Color fillColor;
+  final Color textColor;
+  final Color hintColor;
 
   final int maxLines;
+
+  final double borderRadius;
+
+  final bool withShadow;
 
   const AppInputField({
     super.key,
@@ -37,6 +43,10 @@ class AppInputField extends StatelessWidget {
     this.maxLines = 1,
     this.autofillHints,
     this.fillColor = AppColors.white,
+    this.textColor = AppColors.black,
+    this.hintColor = AppColors.greyDark,
+    this.borderRadius = 5,
+    this.withShadow = true,
   });
 
   static Widget password({
@@ -69,13 +79,18 @@ class AppInputField extends StatelessWidget {
             ],
             Container(
               decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.black.withValues(alpha: 0.25),
-                    blurRadius: 4,
-                    offset: const Offset(0, 0),
-                  ),
-                ],
+                boxShadow:
+                    withShadow
+                        ? [
+                          BoxShadow(
+                            color: AppColors.black.withValues(
+                              alpha: 0.25,
+                            ),
+                            blurRadius: 4,
+                            offset: const Offset(0, 0),
+                          ),
+                        ]
+                        : null,
               ),
 
               child: TextField(
@@ -86,7 +101,7 @@ class AppInputField extends StatelessWidget {
                 autofillHints: autofillHints,
 
                 style: AppTextStyles.medium.copyWith(
-                  color: AppColors.black,
+                  color: textColor,
                 ),
 
                 maxLines:
@@ -111,32 +126,35 @@ class AppInputField extends StatelessWidget {
                   isDense: true,
 
                   hintText: hintText,
+                  hintStyle: AppTextStyles.medium.copyWith(
+                    color: hintColor,
+                  ),
 
                   error: state.hasError ? SizedBox.shrink() : null,
 
                   suffix: suffixIcon,
 
-                  hintStyle: AppTextStyles.medium.copyWith(
-                    color: AppColors.greyDark,
-                  ),
-
                   border: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(5).r,
+                    borderRadius:
+                        BorderRadius.circular(borderRadius).r,
                   ),
 
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(5).r,
+                    borderRadius:
+                        BorderRadius.circular(borderRadius).r,
                   ),
 
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(5).r,
+                    borderRadius:
+                        BorderRadius.circular(borderRadius).r,
                   ),
                   errorBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(8).r,
+                    borderRadius:
+                        BorderRadius.circular(borderRadius).r,
                   ),
                 ),
               ),

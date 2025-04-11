@@ -10,7 +10,7 @@ class AppTextField extends StatelessWidget {
 
   final String? Function(String?)? validator;
 
-  final String label;
+  final String? label;
   final String? hintText;
 
   final List<TextInputFormatter>? inputFormatters;
@@ -22,7 +22,7 @@ class AppTextField extends StatelessWidget {
   const AppTextField({
     super.key,
     required this.controller,
-    required this.label,
+    this.label,
     this.validator,
     this.hintText,
     this.inputFormatters,

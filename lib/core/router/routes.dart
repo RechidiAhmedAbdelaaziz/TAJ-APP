@@ -46,4 +46,7 @@ abstract class AppRoutes {
   //* NOTES ROUTES
   static const String notes = '/notes';
   static const String createNote = '/create-note';
+
+  //* RATING ROUTES
+  static const String createRating = '/create-rating';
 }

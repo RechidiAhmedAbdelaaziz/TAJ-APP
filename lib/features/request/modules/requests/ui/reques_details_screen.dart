@@ -9,6 +9,7 @@ import 'package:taj_elsafa/core/shared/widgets/zoomable_widget.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/features/notes/config/notes_navigator.dart';
+import 'package:taj_elsafa/features/rating/config/rating_navigator.dart';
 import 'package:taj_elsafa/features/request/data/models/request_model.dart';
 
 class RequesDetailsScreen extends StatelessWidget {
@@ -31,8 +32,7 @@ class RequesDetailsScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar:
-          !request
-                  .needConfirmation //TODO remove not(!)
+          request.needConfirmation
               ? Container(
                 padding: EdgeInsets.symmetric(
                   horizontal: 35.w,
@@ -70,6 +70,10 @@ class RequesDetailsScreen extends StatelessWidget {
                         ),
                         borderColor: AppColors.white,
                         color: Color(0x40FFFFFF),
+
+                        onPressed:
+                            () =>
+                                context.to(RatingNavigator.create()),
                       ),
                     ),
                   ],

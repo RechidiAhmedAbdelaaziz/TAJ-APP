@@ -11,7 +11,6 @@ class IntEditingcontroller extends ValueNotifier<int> {
   void clear() => value = 0;
 }
 
-
 class DoubleEditingcontroller extends ValueNotifier<double> {
   DoubleEditingcontroller([super._value = 0.0]);
 
