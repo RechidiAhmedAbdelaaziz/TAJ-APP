@@ -1,8 +1,8 @@
-part of '../requests_screen.dart';
+part of '../tickets_screen.dart';
 
-class _RequestItem extends StatelessWidget {
-  final RequestModel request;
-  const _RequestItem(this.request);
+class _TicketItem extends StatelessWidget {
+  final TicketModel ticket;
+  const _TicketItem(this.ticket);
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +23,19 @@ class _RequestItem extends StatelessWidget {
           heightSpace(16),
 
           _buildInfo(
-            title: 'Request Number:',
-            value: request.id.toString(),
+            title: 'Ticket Number:',
+            value: ticket.id.toString(),
           ),
           heightSpace(12),
-          _buildInfo(title: 'Title:', value: request.title),
+          _buildInfo(title: 'Title:', value: ticket.title),
           heightSpace(12),
-          _buildInfo(
-            title: 'Request Status:',
-            value: request.status,
-            color: request.statusColor,
+          _buildInfo(title: 'Ticket Status:', value: ticket.status, 
+            color: ticket.statusColor,
           ),
 
           heightSpace(36),
 
-          if (request.needConfirmation) ...[
+          if (ticket.needConfirmation) ...[
             const Divider(color: Color(0x1A000000), height: 1),
             heightSpace(8),
             Row(
@@ -72,19 +70,19 @@ class _RequestItem extends StatelessWidget {
 
                   onPressed: () {
                     Navigator.push(
-                      //TODO change it after create request details module
+                      //TODO change it after create ticket details module
                       context,
                       MaterialPageRoute(
                         builder:
                             (context) =>
-                                RequesDetailsScreen(request: request),
+                                TicketDetailsScreen(ticket: ticket),
                       ),
                     );
                   },
                 ),
               ),
 
-              if (request.qrCodeUrl != null)
+              if (ticket.qrCodeUrl != null)
                 Expanded(
                   child: AppButton(
                     text: 'Open QR'.tr(context),
@@ -97,7 +95,7 @@ class _RequestItem extends StatelessWidget {
 
                     onPressed: () {
                       context.dialog(
-                        child: _QrCode(request.qrCodeUrl!),
+                        child: _QrCode(ticket.qrCodeUrl!),
                       );
                     },
                   ),
@@ -110,7 +108,7 @@ class _RequestItem extends StatelessWidget {
   }
 
   Widget _buildDate() {
-    final date = request.createdAt;
+    final date = ticket.createdAt;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -130,11 +128,7 @@ class _RequestItem extends StatelessWidget {
     );
   }
 
-  Widget _buildInfo({
-    required String title,
-    String? value,
-    Color? color,
-  }) {
+  Widget _buildInfo({required String title, String? value, Color? color}) {
     return Row(
       children: [
         Text(

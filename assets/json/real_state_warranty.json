@@ -1,0 +1,76 @@
+{
+    "data": [
+        {
+            "id": "1",
+            "address": "Morocco",
+            "constructionYear": 2024,
+            "name": "DUMMY PROJECT 1",
+            "plansFileUrl": "https://pdfobject.com/pdf/sample.pdf",
+            "profileFileUrl": "https://pdfobject.com/pdf/sample.pdf",
+            "purshaseDate": "2023-01-01T00:00:00.000Z",
+            "type": "Apartment",
+            "area": 150,
+            "warrantyDate": "2025-01-01T00:00:00.000Z",
+            "warrantyEndDate": "2026-01-01T00:00:00.000Z",
+            "ticketsLeft": 10,
+            "imagesUrls": [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq4EBXGMfJpTIW_0mgy4Daj7DW7aZn-mNlmA&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoHupgoIYvW1FB_ou0i-Ky-1aF62MYxpSJ5Q&s"
+            ]
+        },
+        {
+            "id": "2",
+            "address": "Egypt",
+            "constructionYear": 2028,
+            "name": "DUMMY PROJECT 2",
+            "plansFileUrl": "https://pdfobject.com/pdf/sample.pdf",
+            "profileFileUrl": "https://pdfobject.com/pdf/sample.pdf",
+            "purshaseDate": "2027-01-01T00:00:00.000Z",
+            "type": "Office",
+            "area": 300,
+            "warrantyDate": "2029-01-01T00:00:00.000Z",
+            "warrantyEndDate": "2030-01-01T00:00:00.000Z",
+            "ticketsLeft": 15,
+            "imagesUrls": [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZcbpXFAaAnyZDVn9mRnJ-II-GFKrQwXmJGQ&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXAzXlPrJsXihlKM_gRLQKN6uflxTo1Mexyg&s"
+            ]
+        },
+        {
+            "id": "3",
+            "address": "Algeria",
+            "constructionYear": 2025,
+            "name": "DUMMY PROJECT 3",
+            "plansFileUrl": "https://pdfobject.com/pdf/sample.pdf",
+            "profileFileUrl": "https://pdfobject.com/pdf/sample.pdf",
+            "purshaseDate": "2024-01-01T00:00:00.000Z",
+            "type": "Villa",
+            "area": 400,
+            "warrantyDate": "2026-01-01T00:00:00.000Z",
+            "warrantyEndDate": "2027-01-01T00:00:00.000Z",
+            "ticketsLeft": 20,
+            "imagesUrls": [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq4EBXGMfJpTIW_0mgy4Daj7DW7aZn-mNlmA&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoHupgoIYvW1FB_ou0i-Ky-1aF62MYxpSJ5Q&s"
+            ]
+        },
+        {
+            "id": "4",
+            "address": "Tunisia",
+            "constructionYear": 2026,
+            "name": "DUMMY PROJECT 4",
+            "plansFileUrl": "https://pdfobject.com/pdf/sample.pdf",
+            "profileFileUrl": "https://pdfobject.com/pdf/sample.pdf",
+            "purshaseDate": "2025-01-01T00:00:00.000Z",
+            "type": "Shop",
+            "area": 200,
+            "warrantyDate": "2027-01-01T00:00:00.000Z",
+            "warrantyEndDate": "2028-01-01T00:00:00.000Z",
+            "ticketsLeft": 5,
+            "imagesUrls": [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZcbpXFAaAnyZDVn9mRnJ-II-GFKrQwXmJGQ&s",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXAzXlPrJsXihlKM_gRLQKN6uflxTo1Mexyg&s"
+            ]
+        }
+    ]
+}

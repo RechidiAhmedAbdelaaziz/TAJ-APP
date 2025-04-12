@@ -19,6 +19,7 @@ import 'package:taj_elsafa/features/notification/modules/multinotification/ui/wi
 import 'package:taj_elsafa/features/profile/config/profile_navigator.dart';
 import 'package:taj_elsafa/features/realstates/config/real_states_navigator.dart';
 import 'package:taj_elsafa/features/request/config/request_navigator.dart';
+import 'package:taj_elsafa/features/ticket/config/ticket_navigator.dart';
 import 'package:taj_elsafa/gen/assets.gen.dart';
 
 part 'widgets/app_bar.dart';

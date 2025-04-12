@@ -14,34 +14,34 @@ import 'package:taj_elsafa/core/shared/widgets/loadign_indicator.dart';
 import 'package:taj_elsafa/core/shared/widgets/states_page.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
-import 'package:taj_elsafa/features/request/config/request_navigator.dart';
-import 'package:taj_elsafa/features/request/data/models/request_model.dart';
-import 'package:taj_elsafa/features/request/modules/requests/logic/requests_cubit.dart';
-import 'package:taj_elsafa/features/request/modules/requests/ui/reques_details_screen.dart';
+import 'package:taj_elsafa/features/ticket/config/ticket_navigator.dart';
+import 'package:taj_elsafa/features/ticket/data/models/ticket_model.dart';
+import 'package:taj_elsafa/features/ticket/modules/tickets/logic/tickets_cubit.dart';
+import 'package:taj_elsafa/features/ticket/modules/tickets/ui/ticket_details_screen.dart';
 import 'package:taj_elsafa/gen/assets.gen.dart';
 
-part 'widget/request_item.dart';
+part 'widget/ticket_item.dart';
 part 'widget/filter_button.dart';
 part 'widget/qr_code.dart';
 
-class RequestsScreen extends StatelessWidget {
-  const RequestsScreen({super.key});
+class TicketsScreen extends StatelessWidget {
+  const TicketsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final isLoading = context.select(
-      (RequestsCubit cubit) =>
-          cubit.requests.isEmpty && cubit.state.isLoading,
+      (TicketsCubit cubit) =>
+          cubit.tickets.isEmpty && cubit.state.isLoading,
     );
     return StatesPage(
-      title: "My Requests",
+      title: "My Tickets",
 
 
       builder: (context, state) {
         if (isLoading) return AppLoadignIndicator();
 
-        final requests = context.select(
-          (RequestsCubit cubit) => cubit.requests,
+        final tickets = context.select(
+          (TicketsCubit cubit) => cubit.tickets,
         );
 
         return Padding(
@@ -55,7 +55,7 @@ class RequestsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Track Request'.tr(context),
+                    'Track Ticket'.tr(context),
                     style: AppTextStyles.medium.copyWith(
                       color: AppColors.black,
                     ),
@@ -67,22 +67,22 @@ class RequestsScreen extends StatelessWidget {
               const Divider(color: Color(0x26000000)),
               heightSpace(20),
 
-              if (requests.isEmpty)
+              if (tickets.isEmpty)
                 Center(
                   child: Text(
-                    'No Requests'.tr(context),
+                    'No Tickets'.tr(context),
                     style: AppTextStyles.medium,
                   ),
                 )
               else
-                ...requests.map((request) => _RequestItem(request)),
+                ...tickets.map((ticket) => _TicketItem(ticket)),
             ],
           ),
         );
       },
 
       floatingActionButton: InkWell(
-        onTap: () => context.to(RequestNavigator.createRequest()),
+        onTap: () => context.to(TicketNavigator.createTicket()),
         child: SvgPicture.asset(Assets.icons.addButton),
       ),
     );

@@ -19,7 +19,6 @@ class RealStateModel extends Equatable {
   final List<String> imagesUrls;
 
   // Added fileds related to user
-
   final DateTime? warrantyEndDate;
   bool? get waarrantyIsActive =>
       warrantyEndDate != null

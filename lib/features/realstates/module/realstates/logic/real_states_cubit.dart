@@ -34,4 +34,20 @@ class RealStatesCubit extends Cubit<RealStatesState> {
       error: (error) => emit(state._error(error.message)),
     );
   }
+
+  void getRealStatesWarranty() async {
+    emit(state._loading());
+
+    final result = await _repo.getRealStatesWarranty();
+
+    result.when(
+      success: (response) {
+        emit(state._loaded(response));
+        if (response.data.isNotEmpty) {
+          selectedStateController.initValue(response.data.first);
+        }
+      },
+      error: (error) => emit(state._error(error.message)),
+    );
+  }
 }

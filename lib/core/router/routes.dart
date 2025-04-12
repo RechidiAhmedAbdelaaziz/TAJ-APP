@@ -50,4 +50,8 @@ abstract class AppRoutes {
 
   //* RATING ROUTES
   static const String createRating = '/create-rating';
+
+  //* TICKETS ROUTES
+  static const String myTickets = '/my-tickets';
+  static const String createTicket = '/create-ticket';
 }

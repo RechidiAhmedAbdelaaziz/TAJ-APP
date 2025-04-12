@@ -1,9 +1,7 @@
 part of '../real_states_screen.dart';
 
 class StatesHeader extends StatelessWidget {
-  final ValueChanged<RealStateModel>? onChange;
-
-  const StatesHeader({super.key, this.onChange});
+  const StatesHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +117,7 @@ class StatesHeader extends StatelessWidget {
     return DropdownMenu(
       width: double.infinity,
       hintText: "Select State ...",
+      initialSelection: controller.value,
       inputDecorationTheme: InputDecorationTheme(
         fillColor: AppColors.white.withValues(alpha: 0.25),
         filled: true,
@@ -169,7 +168,6 @@ class StatesHeader extends StatelessWidget {
       onSelected: (value) {
         if (value == null) return;
         controller.setValue(value);
-        onChange?.call(value);
       },
     );
   }
