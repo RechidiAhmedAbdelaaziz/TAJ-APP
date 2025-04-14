@@ -61,8 +61,8 @@ class AppSelectorField<T> extends StatelessWidget {
         return InkWell(
           onTap: () => controller.setValue(item),
           child: Container(
-            width: 24.r,
-            height: 24.r,
+            width: 28.spMin,
+            height: 28.spMin,
             padding: EdgeInsets.all(4.r),
             decoration: BoxDecoration(
               color: Colors.white,

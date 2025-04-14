@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/extension/date_formatter.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
+import 'package:taj_elsafa/core/shared/widgets/back_button.dart';
 import 'package:taj_elsafa/core/shared/widgets/button.dart';
 import 'package:taj_elsafa/core/shared/widgets/indicated_pagview.dart';
 import 'package:taj_elsafa/core/shared/widgets/zoomable_widget.dart';
@@ -19,7 +20,9 @@ class RequesDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Request Details No.${request.id}")),
+      appBar: AppBar(
+        leading: const AppBackButton(),
+        title: Text("Request Details No.${request.id}")),
       body: Column(
         children: [
           if (request.needConfirmation)

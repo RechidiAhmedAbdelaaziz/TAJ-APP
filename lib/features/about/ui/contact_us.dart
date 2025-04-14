@@ -25,57 +25,63 @@ class ContactUs extends StatelessWidget {
         title: const Text('Contact Us'),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildLogo(),
-            heightSpace(20),
+      body: Column(
+        children: [
+          _buildLogo(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  heightSpace(16),
 
-            // ...{
-            //   "Phone Number": "00962799263003",
+                  // ...{
+                  //   "Phone Number": "00962799263003",
 
-            //   "Site":
-            //       "Prince Rashid District, King Abdullah Street next to Zain, Amman, Jordan",
+                  //   "Site":
+                  //       "Prince Rashid District, King Abdullah Street next to Zain, Amman, Jordan",
 
-            //   "E-mail": "info@tajalsafa.com",
-            // }
-            _buildInfo(
-              "Phone Number",
-              "00962799263003",
-              onTap:
-                  () async => await launchUrl(
-                    Uri.parse("tel:00962799263003"),
+                  //   "E-mail": "info@tajalsafa.com",
+                  // }
+                  _buildInfo(
+                    "Phone Number",
+                    "00962799263003",
+                    onTap:
+                        () async => await launchUrl(
+                          Uri.parse("tel:00962799263003"),
+                        ),
                   ),
-            ),
 
-            _buildInfo(
-              "Site",
-              "Prince Rashid District, King Abdullah Street next to Zain, Amman, Jordan",
-            ),
-
-            _buildInfo(
-              "Email",
-              "info@tajalsafa.com",
-              onTap:
-                  () async => await launchUrl(
-                    Uri.parse("mailto:info@tajalsafa.com"),
+                  _buildInfo(
+                    "Site",
+                    "Prince Rashid District, King Abdullah Street next to Zain, Amman, Jordan",
                   ),
-            ),
 
-            _buildSocialMedia(context),
-
-            _buildInfo(
-              "Website",
-              "www.Tajalsafa.com",
-              onTap:
-                  () async => await launchUrl(
-                    Uri.parse("https://www.tajalsafa.com/"),
+                  _buildInfo(
+                    "Email",
+                    "info@tajalsafa.com",
+                    onTap:
+                        () async => await launchUrl(
+                          Uri.parse("mailto:info@tajalsafa.com"),
+                        ),
                   ),
-            ),
 
-            _buildSuggestionSubmission(context),
-          ],
-        ),
+                  _buildSocialMedia(context),
+
+                  _buildInfo(
+                    "Website",
+                    "www.Tajalsafa.com",
+                    onTap:
+                        () async => await launchUrl(
+                          Uri.parse("https://www.tajalsafa.com/"),
+                        ),
+                  ),
+
+                  _buildSuggestionSubmission(context),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/app.dart';
@@ -20,6 +21,12 @@ void main() async {
 
   // Ensure the screen size is set
   await ScreenUtil.ensureScreenSize();
+
+  // Set the preferred orientations
+  // This is important to ensure the app runs in portrait mode
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   runApp(const TajApp());
 }

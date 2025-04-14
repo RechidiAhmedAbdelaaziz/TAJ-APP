@@ -22,7 +22,7 @@ class ImageWidget extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
-        image: DecorationImage(image: image, fit: BoxFit.contain),
+        image: DecorationImage(image: image, fit: BoxFit.cover),
       ),
     );
   }

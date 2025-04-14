@@ -6,4 +6,10 @@ class MobileFilePicker extends MediaPickerService {
     final imagePicker = ImagePicker();
     return await imagePicker.pickMedia();
   }
+
+  @override
+  Future<List<XFile>> pickFiles([int? limit]) async {
+    final imagePicker = ImagePicker();
+    return await imagePicker.pickMultipleMedia(limit: limit);
+  }
 }

@@ -19,7 +19,7 @@ class StatesHeader extends StatelessWidget {
           width: double.infinity,
           padding: EdgeInsets.symmetric(
             horizontal: 20.w,
-            vertical: 35.h,
+            vertical: 12.h,
           ),
           color: AppColors.grey,
           child: Column(
@@ -65,7 +65,7 @@ class StatesHeader extends StatelessWidget {
                 ),
               ],
             ),
-            heightSpace(20),
+            heightSpace(8),
           ],
         );
   }
@@ -76,7 +76,7 @@ class StatesHeader extends StatelessWidget {
         ? const SizedBox.shrink()
         : Column(
           children: [
-            heightSpace(22),
+            heightSpace(8),
             const Divider(color: Color(0x59FFFFFF)),
             heightSpace(10),
             _buildInfo(

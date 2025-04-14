@@ -22,3 +22,9 @@ extension XfileExtension on XFile {
     }
   }
 }
+
+extension XFileListExtension on List<XFile> {
+  List<T> toMediaDTOList<T extends MediaDTO>() {
+    return map((file) => file.toMediaDTO<T>()).toList();
+  }
+}

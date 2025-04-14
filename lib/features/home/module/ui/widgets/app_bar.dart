@@ -6,17 +6,17 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: AppLogo(),
+      title: AppLogo(height: kTextTabBarHeight),
       centerTitle: true,
       backgroundColor: AppColors.grey,
       leading: IconButton(
-        icon: const Icon(Icons.menu),
+        icon: Icon(Icons.menu, size: 32.r),
         onPressed: () => Scaffold.of(context).openDrawer(),
       ),
-      actions: [NotificationButton()],
+      actions: [NotificationButton(), widthSpace(8)],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }

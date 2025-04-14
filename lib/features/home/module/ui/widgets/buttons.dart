@@ -21,7 +21,7 @@ class _Buttons extends StatelessWidget {
           ),
           _buildButton(
             text: 'HandingOver'.tr(context),
-            onPressed: () {},
+            onPressed: () => context.to(HandingOverNavigator()),
           ),
         ],
       ),

@@ -9,10 +9,10 @@ import '../modules/notes/logic/notes_cubit.dart';
 import '../modules/notes/ui/notes_screen.dart';
 
 class NotesNavigator extends AppNavigatorBase {
-  NotesNavigator.notes(RequestModel request)
+  NotesNavigator.notes([RequestModel? request])
     : super(
         path: AppRoutes.notes,
-        pathParams: {'requestId': request.id!},
+        pathParams: {'requestId': request?.id ?? '1'},
       );
 
   NotesNavigator.create() : super(path: AppRoutes.createNote);

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/extension/responsive_extension.dart';
 import 'package:taj_elsafa/core/localization/localization_cubit.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
+import 'package:taj_elsafa/gen/fonts.gen.dart';
 
 import 'core/di/locator.dart';
 import 'core/localization/app_localization.dart';
@@ -22,7 +23,9 @@ class TajApp extends StatelessWidget {
               constraints.isMobile
                   ? Size(430, 932)
                   : constraints.isTablet
-                  ? Size(1280, 800)
+                  ? constraints.isLandscape
+                      ? Size(1024, 768)
+                      : Size(600, 1024)
                   : Size(1440, 1024),
 
           builder: (_, __) {
@@ -49,11 +52,14 @@ class _MaterialApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router.routerConfig,
       theme: ThemeData(
-        fontFamily: 'Abel',
+        fontFamily: FontFamily.centuryGothic,
         scaffoldBackgroundColor: AppColors.white,
         appBarTheme: AppBarTheme(
-          backgroundColor: AppColors.grey,
+          // backgroundColor: AppColors.grey,
           centerTitle: true,
+          scrolledUnderElevation: 0,
+          color: AppColors.grey,
+          elevation: 0,
         ),
       ),
       supportedLocales: [

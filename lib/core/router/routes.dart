@@ -54,4 +54,7 @@ abstract class AppRoutes {
   //* TICKETS ROUTES
   static const String myTickets = '/my-tickets';
   static const String createTicket = '/create-ticket';
+
+  //* HANDING OVER ROUTES
+  static const String handingOver = '/handing-over';
 }

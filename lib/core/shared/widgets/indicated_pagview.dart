@@ -86,7 +86,7 @@ class _IndicatedPagviewState extends State<IndicatedPagview> {
         widget.pages.length,
         (index) => AnimatedContainer(
           duration: const Duration(milliseconds: 250),
-          margin: const EdgeInsets.symmetric(horizontal: 4),
+          margin: EdgeInsets.symmetric(horizontal: 4.w),
           width: _currentPage == index ? 12.w : 8.w,
           height: _currentPage == index ? 12.h : 8.h,
           decoration: BoxDecoration(

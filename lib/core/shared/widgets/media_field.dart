@@ -40,7 +40,7 @@ class MultiMediaField<T extends MediaDTO> extends StatelessWidget {
           valueListenable: controller,
           builder: (context, medias, child) {
             return SizedBox(
-              height: 280.h,
+              height: medias.isEmpty ? 0 : 280.h,
               child: IndicatedPagview(
                 pages: [
                   ...medias.map(
@@ -102,13 +102,27 @@ class MultiMediaField<T extends MediaDTO> extends StatelessWidget {
       ),
       color: Color(0x999F9F9F),
       prefixIcon: Icon(Icons.camera_alt, color: Color(0xff7FD1AE)),
-      onPressed: _uploadMedia,
+      onPressed: maxMedia == 1 ? _uploadMedia : _uploadMedias,
     );
   }
 
   void _uploadMedia() async {
     if (controller.value.length >= maxMedia) return;
+
     final xfile = await locator<MediaPickerService>().pickFile();
+
     if (xfile != null) controller.addValue(xfile.toMediaDTO<T>());
+  }
+
+  void _uploadMedias() async {
+    if (controller.value.length >= maxMedia) return;
+
+    final xfiles = await locator<MediaPickerService>().pickFiles(
+      maxMedia - controller.value.length,
+    );
+
+    for (var xfile in xfiles) {
+      controller.addValue(xfile.toMediaDTO<T>());
+    }
   }
 }

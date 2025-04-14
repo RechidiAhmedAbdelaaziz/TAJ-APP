@@ -8,6 +8,8 @@ part 'mobile_filepicker.dart';
 
 abstract class FilePickerService<T> {
   Future<T?> pickFile();
+
+  Future<List<T>> pickFiles([int? limit]);
 }
 
 abstract class MediaPickerService

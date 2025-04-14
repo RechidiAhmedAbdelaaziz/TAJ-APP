@@ -57,7 +57,7 @@ class RequestFormScreen extends StatelessWidget {
         bottomNavigationBar: Container(
           width: double.infinity,
           padding: EdgeInsets.symmetric(
-            horizontal: 35.w,
+            horizontal: 24.w,
             vertical: 16.h,
           ),
           decoration: BoxDecoration(

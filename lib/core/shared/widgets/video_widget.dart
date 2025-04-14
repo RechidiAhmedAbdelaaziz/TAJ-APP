@@ -60,7 +60,14 @@ class _VideoWidgetState extends State<VideoWidget> {
         borderRadius: BorderRadius.circular(widget.borderRadius),
         child: Stack(
           children: [
-            VideoPlayer(widget.controller),
+            FittedBox(
+              fit: BoxFit.contain,
+              child: SizedBox(
+                width: widget.controller.value.size.width,
+                height: widget.controller.value.size.height,
+                child: VideoPlayer(widget.controller),
+              ),
+            ),
 
             if (widget.showControls)
               Center(

@@ -66,7 +66,7 @@ dependencies:
     share_plus: ^10.1.4
     conditional_builder_null_safety: ^0.0.6
     mime: ^2.0.0
-
+    signature: ^6.0.0
 
 dev_dependencies:
     flutter_test:
@@ -87,7 +87,6 @@ dev_dependencies:
     freezed: ^3.0.4
     injectable_generator: ^2.7.0
     flutter_gen_runner: ^5.10.0
-    
 
 flutter_gen:
     output: lib/gen/ # Output folder for generated code
@@ -111,3 +110,8 @@ flutter:
         - family: Emeralde Chamerions
           fonts:
               - asset: assets/fonts/emeralde_chamerions_serif/Emeralde Chamerions Serif.ttf
+        - family: Century Gothic
+          fonts:
+              - asset: assets/fonts/CenturyGothic/centurygothic.ttf
+              - asset: assets/fonts/CenturyGothic/centurygothic_bold.ttf
+                weight: 700
