@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
-import 'package:taj_elsafa/core/shared/widgets/text_field.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 
 class AppSelectorField<T> extends StatelessWidget {
   final EditingController<T> controller;
+
+  final ValueChanged<T>? onChanged;
 
   final String label;
 
@@ -22,6 +23,7 @@ class AppSelectorField<T> extends StatelessWidget {
     required this.controller,
     required this.items,
     required this.builder,
+    this.onChanged,
   });
 
   @override
@@ -59,7 +61,10 @@ class AppSelectorField<T> extends StatelessWidget {
       builder: (_, value, _) {
         final selected = value == item;
         return InkWell(
-          onTap: () => controller.setValue(item),
+          onTap: () {
+            controller.setValue(item);
+            onChanged?.call(item);
+          },
           child: Container(
             width: 28.spMin,
             height: 28.spMin,

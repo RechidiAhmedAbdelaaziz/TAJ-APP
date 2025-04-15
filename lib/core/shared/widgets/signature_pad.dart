@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
+import 'package:taj_elsafa/core/extension/xfile_extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
 import 'package:taj_elsafa/core/shared/dto/imagedto/image.dto.dart';
@@ -29,6 +30,8 @@ class SignaturePad extends StatelessWidget {
   );
 
   Future<void> _exportSignature() async {
+    if (_options.value == 'Upload Image') return;
+
     if (_controller.isNotEmpty) {
       final Uint8List? data = await _controller.toPngBytes();
 
@@ -39,9 +42,7 @@ class SignaturePad extends StatelessWidget {
         final file = File(filePath);
         await file.writeAsBytes(data);
 
-        XFile(
-          file.path,
-        ); //TODO: Use this file path to upload the image or do something with it
+        imageController.setValue(XFile(file.path).toMediaDTO());
       }
     }
   }
@@ -84,7 +85,13 @@ class SignaturePad extends StatelessWidget {
                 controller: _options,
                 // select between two options : upload image or draw signature
                 items: (_) => ['Draw Signature', 'Upload Image'],
+                onChanged: (value) {
+                  if (value != 'Draw Signature') _controller.clear();
 
+                  if (value != 'Upload Image') {
+                    imageController.clear();
+                  }
+                },
                 builder:
                     (context, checkBox, item) => Row(
                       mainAxisSize: MainAxisSize.min,
@@ -106,11 +113,28 @@ class SignaturePad extends StatelessWidget {
                 valueListenable: _options,
                 builder: (context, value, _) {
                   return value == 'Draw Signature'
-                      ? Signature(
-                        controller: _controller,
-                        height: 206.h,
-                        width: double.infinity,
-                        backgroundColor: AppColors.buttonColor,
+                      ? Stack(
+                        children: [
+                          Signature(
+                            controller: _controller,
+                            height: 206.h,
+                            width: double.infinity,
+                            backgroundColor: AppColors.buttonColor,
+                          ),
+
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.clear_outlined,
+                                color: Colors.red,
+                                size: 30.r,
+                              ),
+                              onPressed: () => _controller.clear(),
+                            ),
+                          ),
+                        ],
                       )
                       : MediaField(
                         imageController: imageController,
@@ -146,7 +170,7 @@ class SignaturePad extends StatelessWidget {
           borderColor: AppColors.black,
 
           onPressed: () async {
-            // await _exportSignature();  //TODO uncomment this line to export the signature
+            await _exportSignature();
             context.back(true);
           },
         ),
