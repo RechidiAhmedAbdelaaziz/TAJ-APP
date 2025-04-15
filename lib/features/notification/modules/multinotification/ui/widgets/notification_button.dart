@@ -15,7 +15,7 @@ class NotificationButton extends StatelessWidget {
         context.to(NotificationNavigator.notifications());
       },
       child: SizedBox(
-        width: 40.w,
+        width: 40.r,
         child: Stack(
           children: [
             Icon(
