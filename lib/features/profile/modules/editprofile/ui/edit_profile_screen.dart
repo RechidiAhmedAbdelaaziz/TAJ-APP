@@ -138,8 +138,8 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 
-  ImageField _buildImageField() {
-    return ImageField(
+  MediaField _buildImageField() {
+    return MediaField(
       imageController: _dto.imageController,
       height: 105.r,
       width: 105.r,

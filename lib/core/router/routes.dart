@@ -42,4 +42,19 @@ abstract class AppRoutes {
 
   //* REQUESTS ROUTES
   static const String myRequests = '/my-requests';
+  static const String createRequest = '/create-request';
+
+  //* NOTES ROUTES
+  static const String notes = '/notes/request/:requestId';
+  static const String createNote = '/create-note';
+
+  //* RATING ROUTES
+  static const String createRating = '/create-rating';
+
+  //* TICKETS ROUTES
+  static const String myTickets = '/my-tickets';
+  static const String createTicket = '/create-ticket';
+
+  //* HANDING OVER ROUTES
+  static const String handingOver = '/handing-over';
 }

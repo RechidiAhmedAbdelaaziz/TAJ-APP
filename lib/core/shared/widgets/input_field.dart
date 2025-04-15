@@ -7,8 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppInputField extends StatelessWidget {
   final TextEditingController controller;
-  final String hintText;
   final String? Function(String?)? validator;
+
+  final String hintText;
+  final String? label;
 
   final Widget? suffixIcon;
 
@@ -19,18 +21,32 @@ class AppInputField extends StatelessWidget {
   final bool obscureText;
 
   final Color fillColor;
+  final Color textColor;
+  final Color hintColor;
+
+  final int maxLines;
+
+  final double borderRadius;
+
+  final bool withShadow;
 
   const AppInputField({
     super.key,
     required this.controller,
     required this.hintText,
     this.validator,
+    this.label,
     this.suffixIcon,
     this.inputFormatters,
     this.obscureText = false,
     this.keyboardType,
+    this.maxLines = 1,
     this.autofillHints,
     this.fillColor = AppColors.white,
+    this.textColor = AppColors.black,
+    this.hintColor = AppColors.greyDark,
+    this.borderRadius = 5,
+    this.withShadow = true,
   });
 
   static Widget password({
@@ -50,16 +66,31 @@ class AppInputField extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUnfocus,
       builder: (state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (label != null) ...[
+              Text(
+                label!,
+                style: AppTextStyles.medium.copyWith(
+                  color: AppColors.black,
+                ),
+              ),
+              heightSpace(8),
+            ],
             Container(
               decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.black.withValues(alpha: 0.25),
-                    blurRadius: 4,
-                    offset: const Offset(0, 0),
-                  ),
-                ],
+                boxShadow:
+                    withShadow
+                        ? [
+                          BoxShadow(
+                            color: AppColors.black.withValues(
+                              alpha: 0.25,
+                            ),
+                            blurRadius: 4,
+                            offset: const Offset(0, 0),
+                          ),
+                        ]
+                        : null,
               ),
 
               child: TextField(
@@ -70,13 +101,13 @@ class AppInputField extends StatelessWidget {
                 autofillHints: autofillHints,
 
                 style: AppTextStyles.medium.copyWith(
-                  color: AppColors.black,
+                  color: textColor,
                 ),
 
                 maxLines:
                     keyboardType == TextInputType.multiline
                         ? null
-                        : 1,
+                        : maxLines,
 
                 cursorColor: AppColors.primary,
 
@@ -95,32 +126,35 @@ class AppInputField extends StatelessWidget {
                   isDense: true,
 
                   hintText: hintText,
+                  hintStyle: AppTextStyles.medium.copyWith(
+                    color: hintColor,
+                  ),
 
                   error: state.hasError ? SizedBox.shrink() : null,
 
                   suffix: suffixIcon,
 
-                  hintStyle: AppTextStyles.medium.copyWith(
-                    color: AppColors.greyDark,
-                  ),
-
                   border: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(5).r,
+                    borderRadius:
+                        BorderRadius.circular(borderRadius).r,
                   ),
 
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(5).r,
+                    borderRadius:
+                        BorderRadius.circular(borderRadius).r,
                   ),
 
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(5).r,
+                    borderRadius:
+                        BorderRadius.circular(borderRadius).r,
                   ),
                   errorBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(8).r,
+                    borderRadius:
+                        BorderRadius.circular(borderRadius).r,
                   ),
                 ),
               ),

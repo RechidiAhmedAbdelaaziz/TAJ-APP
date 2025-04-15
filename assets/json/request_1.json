@@ -1,0 +1,99 @@
+{
+    "data": [
+        {
+            "id": "req1",
+            "realState": {
+                "id": "rs1",
+                "name": "Apartment 101"
+            },
+            "title": "Leaking Faucet",
+            "description": "The kitchen faucet is leaking.",
+            "maintenanceClassification": "Plumbing",
+            "type": "Repair",
+            "urgency": "High",
+            "status": "Open",
+            "createdAt": "2025-04-01T10:00:00.000Z",
+            "appointmentDate": "2025-04-15T14:00:00.000Z",
+            "qrCodeUrl": "https://upload.wikimedia.org/wikipedia/commons/7/78/Qrcode_wikipedia_fr_v2clean.png",
+            "attachments": [
+                {
+                    "url": "https://lh3.googleusercontent.com/p/AF1QipPBPLg3VXK2j1BZlE7m7rMvaBgnmAZqLes0E761=s680-w680-h510",
+                    "type": "image"
+                },
+                {
+                    "url": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+                    "type": "video"
+                }
+            ]
+        },
+        {
+            "id": "req2",
+            "realState": {
+                "id": "rs2",
+                "name": "Villa 202"
+            },
+            "title": "Broken Window",
+            "description": "The living room window is broken.",
+            "maintenanceClassification": "Carpentry",
+            "type": "Replacement",
+            "urgency": "Medium",
+            "status": "In Progress",
+            "createdAt": "2025-03-25T08:30:00.000Z",
+            "appointmentDate": "2025-04-20T10:00:00.000Z",
+            "attachments": [
+                {
+                    "url": "https://example.com/image3.jpg",
+                    "type": "image"
+                }
+            ]
+        },
+        {
+            "id": "req3",
+            "realState": {
+                "id": "rs3",
+                "name": "Office 303"
+            },
+            "title": "Air Conditioning Issue",
+            "description": "The air conditioner is not cooling properly.",
+            "maintenanceClassification": "HVAC",
+            "type": "Repair",
+            "urgency": "Low",
+            "status": "Waiting for confirmation",
+            "createdAt": "2025-02-15T09:00:00.000Z",
+            "appointmentDate": "2025-03-01T11:00:00.000Z",
+            "attachments": []
+        },
+        {
+            "id": "req3",
+            "realState": {
+                "id": "rs3",
+                "name": "Office 303"
+            },
+            "title": "Air Conditioning Issue",
+            "description": "The air conditioner is not cooling properly.",
+            "maintenanceClassification": "HVAC",
+            "type": "Repair",
+            "urgency": "Low",
+            "status": "Completed",
+            "createdAt": "2025-02-15T09:00:00.000Z",
+            "appointmentDate": "2025-03-01T11:00:00.000Z",
+            "attachments": []
+        },
+        {
+            "id": "req3",
+            "realState": {
+                "id": "rs3",
+                "name": "Office 303"
+            },
+            "title": "Air Conditioning Issue",
+            "description": "The air conditioner is not cooling properly.",
+            "maintenanceClassification": "HVAC",
+            "type": "Repair",
+            "urgency": "Low",
+            "status": "Rejected",
+            "createdAt": "2025-02-15T09:00:00.000Z",
+            "appointmentDate": "2025-03-01T11:00:00.000Z",
+            "attachments": []
+        }
+    ]
+}

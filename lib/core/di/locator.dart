@@ -42,13 +42,16 @@ Future<void> setupLocator() async {
   locator.registerSingleton(AppRouter());
 
   //File Picker
-  locator.registerLazySingleton<ImagePickerService>(
+  locator.registerLazySingleton<MediaPickerService>(
     () => kIsWeb ? WebFilePicker() : MobileFilePicker(),
   );
 
   //Cloud storage service
   locator.registerLazySingleton<ImageCloudStorageService>(
-    () => CloudinaryService(),
+    () => ImageCloudinaryService(),
+  );
+  locator.registerLazySingleton<VideoCloudStorageService>(
+    () => VideoCloudinaryService(),
   );
 
   locator.allowReassignment = true;

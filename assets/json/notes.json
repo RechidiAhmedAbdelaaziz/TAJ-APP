@@ -1,0 +1,17 @@
+{
+    "data": [
+        {
+            "id": "1",
+            "title": "Water supply failure",
+            "description": "The kitchen needs a set of maintenance operations, including electrical maintenance, water extension maintenance, and there is also a malfunction in the fire system.",
+            "attachments": [
+                {
+                    "id": "1",
+                    "url": "https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg",
+                    "type": "image"
+                }
+            ],
+            "createdAt": "2023-10-01T12:00:00Z"
+        }
+    ]
+}

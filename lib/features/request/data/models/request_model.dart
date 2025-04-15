@@ -47,9 +47,9 @@ class RequestModel extends Equatable {
     this.status,
     this.createdAt,
     this.appointmentDate,
-    this.qrCodeUrl,
+    String? qrCodeUrl,
     this.attachments = const [],
-  });
+  }) : qrCodeUrl = status == 'Open' ? qrCodeUrl : null;
 
   factory RequestModel.fromJson(Map<String, dynamic> json) =>
       _$RequestModelFromJson(json);

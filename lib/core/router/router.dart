@@ -1,3 +1,6 @@
+import 'package:taj_elsafa/features/handingover/config/handing_over_navigator.dart';
+import 'package:taj_elsafa/features/rating/config/rating_navigator.dart';
+import 'package:taj_elsafa/features/notes/config/notes_navigator.dart';
 import 'package:taj_elsafa/features/request/config/request_navigator.dart';
 import 'package:taj_elsafa/features/realstates/config/real_states_navigator.dart';
 import 'package:taj_elsafa/features/about/config/about_us_navigator.dart';
@@ -15,13 +18,17 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:taj_elsafa/features/intro/welcome_screen.dart';
 import 'package:taj_elsafa/features/splashscreen/splash_screen.dart';
+import 'package:taj_elsafa/features/ticket/config/ticket_navigator.dart';
 part 'routes.dart';
 part 'navigator_base.dart';
 
 class AppRouter {
   final routerConfig = GoRouter(
     initialLocation: AppRoutes.splash,
-    routes: [...RequestNavigator.routes, 
+    routes: [...HandingOverNavigator.routes, 
+      ...RatingNavigator.routes,
+      ...NotesNavigator.routes,
+      ...RequestNavigator.routes,
       ...RealStatesNavigator.routes,
       ...AboutNavigator.routes,
       ...DocumentsNavigator.routes,
@@ -29,6 +36,7 @@ class AppRouter {
       ...ProfileNavigator.routes,
       ...HomeNavigator.routes,
       ...AuthNavigator.routes,
+      ...TicketNavigator.routes,
 
       GoRoute(
         path: AppRoutes.splash,

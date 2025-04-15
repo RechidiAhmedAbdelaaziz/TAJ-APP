@@ -15,4 +15,13 @@ class RealStatesCache {
 
     return PaginatedDataResponse.fromJson(json);
   }
+
+  Future<PaginatedDataResponse> getRealStatesWarranty() async {
+    //TODO change to get by key
+    final json = await _cacheService.getJson(
+      "assets/json/real_state_warranty.json",
+    );
+
+    return PaginatedDataResponse.fromJson(json);
+  }
 }

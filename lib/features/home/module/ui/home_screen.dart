@@ -14,11 +14,13 @@ import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/features/about/config/about_us_navigator.dart';
 import 'package:taj_elsafa/features/auth/logic/auth.cubit.dart';
 import 'package:taj_elsafa/features/documents/config/documents_navigator.dart';
+import 'package:taj_elsafa/features/handingover/config/handing_over_navigator.dart';
 import 'package:taj_elsafa/features/home/data/models/banner_model.dart';
 import 'package:taj_elsafa/features/notification/modules/multinotification/ui/widgets/notification_button.dart';
 import 'package:taj_elsafa/features/profile/config/profile_navigator.dart';
 import 'package:taj_elsafa/features/realstates/config/real_states_navigator.dart';
 import 'package:taj_elsafa/features/request/config/request_navigator.dart';
+import 'package:taj_elsafa/features/ticket/config/ticket_navigator.dart';
 import 'package:taj_elsafa/gen/assets.gen.dart';
 
 part 'widgets/app_bar.dart';
@@ -58,7 +60,7 @@ class HomeScreen extends StatelessWidget {
             heightSpace(72),
 
             const _Buttons(),
-            heightSpace(140),
+            heightSpace(85),
 
             _buildText(
               "typesetting, remaining essentially  versions of".tr(

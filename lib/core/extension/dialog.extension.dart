@@ -89,11 +89,7 @@ extension DialogExtension on BuildContext {
             title: Row(
               spacing: 8.w,
               children: [
-                Icon(
-                  Icons.error,
-                  color: AppColors.red,
-                  size: 32.r,
-                ),
+                Icon(Icons.error, color: AppColors.red, size: 32.r),
                 Text(
                   'Error'.tr(this),
                   style: AppTextStyles.h3.copyWith(
@@ -127,11 +123,11 @@ extension DialogExtension on BuildContext {
             alignment: Alignment.center,
             children: [
               Container(
-                constraints: BoxConstraints(maxWidth: 241.w),
                 padding: EdgeInsets.symmetric(
                   horizontal: 48.w,
                   vertical: 32.h,
                 ),
+                margin: EdgeInsets.symmetric(horizontal: 64.w),
                 decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(5).r,

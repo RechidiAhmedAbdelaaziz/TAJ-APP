@@ -10,7 +10,7 @@ class UpdateUserDto extends FormDTO {
   UpdateUserDto(this._user)
     : imageController = EditingController<ImageDTO>(
         _user.imageUrl != null
-            ? RemoteImageDTO(url: _user.imageUrl!)
+            ? RemoteImageDTO( _user.imageUrl!)
             : null,
       ),
       nameController = TextEditingController(text: _user.name),
@@ -41,7 +41,7 @@ class UpdateUserDto extends FormDTO {
 
   @override
   Future<Map<String, dynamic>> toMap() async {
-    final imageUrl = await imageController.value?.imageUrl;
+    final imageUrl = await imageController.value?.url;
 
     return {
       if (imageUrl != _user.imageUrl) 'image': imageUrl,

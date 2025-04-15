@@ -24,4 +24,18 @@ class RealStatesRepo extends NetworkRepository {
           ),
     );
   }
+
+  RepoListResult<RealStateModel> getRealStatesWarranty() {
+    return tryApiCall(
+      apiCall:
+          () => throw UnimplementedError(), //TODO implement API call
+      localApiCall:
+          () async => await _statesCache.getRealStatesWarranty(),
+      onResult:
+          (response) => PaginationResult.fromResponse(
+            response: response,
+            fromJson: RealStateModel.fromJson,
+          ),
+    );
+  }
 }

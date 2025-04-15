@@ -7,10 +7,12 @@ class RequestCache {
   final CacheService _cacheService;
   RequestCache(this._cacheService);
 
-  Future<PaginatedDataResponse> getRequest() async {
+  Future<PaginatedDataResponse> getRequest({
+    required String stateId,
+  }) async {
     //TODO change to get by key
     final json = await _cacheService.getJson(
-      "assets/json/request.json",
+      "assets/json/request_$stateId.json",
     );
 
     return PaginatedDataResponse.fromJson(json);

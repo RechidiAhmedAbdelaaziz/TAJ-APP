@@ -1,9 +1,7 @@
 part of '../real_states_screen.dart';
 
 class StatesHeader extends StatelessWidget {
-  final ValueChanged<RealStateModel>? onChange;
-
-  const StatesHeader({super.key , this.onChange});
+  const StatesHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class StatesHeader extends StatelessWidget {
           width: double.infinity,
           padding: EdgeInsets.symmetric(
             horizontal: 20.w,
-            vertical: 35.h,
+            vertical: 12.h,
           ),
           color: AppColors.grey,
           child: Column(
@@ -67,7 +65,7 @@ class StatesHeader extends StatelessWidget {
                 ),
               ],
             ),
-            heightSpace(20),
+            heightSpace(8),
           ],
         );
   }
@@ -78,7 +76,7 @@ class StatesHeader extends StatelessWidget {
         ? const SizedBox.shrink()
         : Column(
           children: [
-            heightSpace(22),
+            heightSpace(8),
             const Divider(color: Color(0x59FFFFFF)),
             heightSpace(10),
             _buildInfo(
@@ -118,6 +116,8 @@ class StatesHeader extends StatelessWidget {
   ) {
     return DropdownMenu(
       width: double.infinity,
+      hintText: "Select State ...",
+      initialSelection: controller.value,
       inputDecorationTheme: InputDecorationTheme(
         fillColor: AppColors.white.withValues(alpha: 0.25),
         filled: true,
@@ -164,11 +164,10 @@ class StatesHeader extends StatelessWidget {
                 ),
               )
               .toList(),
-      initialSelection: value,
+      // initialSelection: value,
       onSelected: (value) {
         if (value == null) return;
         controller.setValue(value);
-        onChange?.call(value);
       },
     );
   }

@@ -12,7 +12,7 @@ class _Buttons extends StatelessWidget {
         children: [
           _buildButton(
             text: 'MyTickets'.tr(context),
-            onPressed: () {},
+            onPressed: () => context.to(TicketNavigator.myTickets()),
           ),
           _buildButton(
             text: 'MyRequest'.tr(context),
@@ -21,7 +21,7 @@ class _Buttons extends StatelessWidget {
           ),
           _buildButton(
             text: 'HandingOver'.tr(context),
-            onPressed: () {},
+            onPressed: () => context.to(HandingOverNavigator()),
           ),
         ],
       ),

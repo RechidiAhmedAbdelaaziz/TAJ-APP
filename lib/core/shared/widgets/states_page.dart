@@ -9,19 +9,18 @@ import 'package:taj_elsafa/features/realstates/module/realstates/ui/real_states_
 class StatesPage extends StatelessWidget {
   final String title;
 
-  final ValueChanged<RealStateModel>? onChange;
-
   final Widget Function(BuildContext context, RealStateModel state)
   builder;
 
   final Widget? floatingActionButton;
+  final Widget Function(BuildContext context)? bottomNavigationBar;
 
   const StatesPage({
     super.key,
     required this.title,
-    this.onChange,
     required this.builder,
     this.floatingActionButton,
+    this.bottomNavigationBar,
   });
 
   @override
@@ -32,7 +31,7 @@ class StatesPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          _AppBar(title, onChange: onChange),
+          _AppBar(title),
 
           Expanded(
             child: ValueListenableBuilder(
@@ -55,26 +54,28 @@ class StatesPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: floatingActionButton,
+      bottomNavigationBar:
+          bottomNavigationBar != null
+              ? bottomNavigationBar!(context)
+              : null,
     );
   }
 }
 
 class _AppBar extends StatelessWidget {
   final String title;
-  final ValueChanged<RealStateModel>? onChange;
 
-  const _AppBar(this.title, {this.onChange});
+  const _AppBar(this.title);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      color: Color(0x999F9F9F),
       child: Column(
         children: [
           AppBar(title: Text(title), leading: AppBackButton()),
 
-          StatesHeader(onChange: onChange),
+          StatesHeader(),
         ],
       ),
     );

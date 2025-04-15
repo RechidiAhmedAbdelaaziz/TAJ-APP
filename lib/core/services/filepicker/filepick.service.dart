@@ -8,7 +8,9 @@ part 'mobile_filepicker.dart';
 
 abstract class FilePickerService<T> {
   Future<T?> pickFile();
+
+  Future<List<T>> pickFiles([int? limit]);
 }
 
-abstract class ImagePickerService<T extends LocalImageDTO>
-    extends FilePickerService<T> {}
+abstract class MediaPickerService
+    extends FilePickerService<XFile> {}

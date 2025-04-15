@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:taj_elsafa/core/shared/dto/imagedto/image.dto.dart';
 
 part 'attachment_model.g.dart';
 
@@ -16,5 +17,14 @@ class AttachmentModel extends Equatable {
   @override
   List<Object?> get props => [url, type];
 
-  // TODO : convert attachment to MediaDTO
+  MediaDTO get mediaDto {
+    switch (type) {
+      case 'image':
+        return RemoteImageDTO(url!);
+      case 'video':
+        return RemoteVideoDTO(url!);
+      default:
+        throw Exception('Unsupported media type: $type');
+    }
+  }
 }

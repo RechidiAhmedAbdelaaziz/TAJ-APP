@@ -29,7 +29,11 @@ class _RequestItem extends StatelessWidget {
           heightSpace(12),
           _buildInfo(title: 'Title:', value: request.title),
           heightSpace(12),
-          _buildInfo(title: 'Request Status:', value: request.status),
+          _buildInfo(
+            title: 'Request Status:',
+            value: request.status,
+            color: request.statusColor,
+          ),
 
           heightSpace(36),
 
@@ -66,7 +70,17 @@ class _RequestItem extends StatelessWidget {
                   ),
                   color: AppColors.buttonColor,
 
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      //TODO change it after create request details module
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) =>
+                                RequesDetailsScreen(request: request),
+                      ),
+                    );
+                  },
                 ),
               ),
 
@@ -81,7 +95,11 @@ class _RequestItem extends StatelessWidget {
 
                     prefixIcon: SvgPicture.asset(Assets.icons.qr),
 
-                    onPressed: () {}, //TODO: open qr code
+                    onPressed: () {
+                      context.dialog(
+                        child: _QrCode(request.qrCodeUrl!),
+                      );
+                    },
                   ),
                 ),
             ],
@@ -112,7 +130,11 @@ class _RequestItem extends StatelessWidget {
     );
   }
 
-  Widget _buildInfo({required String title, String? value}) {
+  Widget _buildInfo({
+    required String title,
+    String? value,
+    Color? color,
+  }) {
     return Row(
       children: [
         Text(
@@ -124,7 +146,7 @@ class _RequestItem extends StatelessWidget {
         Text(
           ' ${value ?? ''}',
           style: AppTextStyles.normal.copyWith(
-            color: request.statusColor,
+            color: color ?? AppColors.black,
           ),
         ),
       ],

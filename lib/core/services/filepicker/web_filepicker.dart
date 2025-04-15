@@ -1,16 +1,15 @@
 part of 'filepick.service.dart';
 
-class WebFilePicker extends ImagePickerService<WebImageDTO> {
+class WebFilePicker extends MediaPickerService {
   @override
-  Future<WebImageDTO?> pickFile() async {
-    final xfile = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-    );
+  Future<XFile?> pickFile() async {
+    final imagePicker = ImagePicker();
+    return await imagePicker.pickMedia();
+  }
 
-    if (xfile != null) {
-      return WebImageDTO(file: xfile);
-    } else {
-      throw Exception("No file picked");
-    }
+  @override
+  Future<List<XFile>> pickFiles([int? limit]) async {
+    final imagePicker = ImagePicker();
+    return await imagePicker.pickMultipleMedia(limit: limit);
   }
 }

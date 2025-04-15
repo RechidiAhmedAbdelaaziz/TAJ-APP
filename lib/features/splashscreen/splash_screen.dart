@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen>
       // Navigate after animation completes
       Future.delayed(const Duration(milliseconds: 1000), () {
         // ignore: use_build_context_synchronously
-        context.go('/welcome'); // ✅ Navigates using go_router
+        context.go('/welcome'); 
       });
     });
   }
