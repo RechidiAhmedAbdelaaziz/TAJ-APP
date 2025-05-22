@@ -1,21 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:local_auth/local_auth.dart';
 import 'package:taj_elsafa/core/di/locator.dart';
-import 'package:taj_elsafa/core/network/models/api_response.model.dart';
 import 'package:taj_elsafa/core/router/router.dart';
 import 'package:taj_elsafa/core/types/cubitstate/error.state.dart';
+import 'package:taj_elsafa/features/profile/data/models/user_model.dart';
 
 import '../configs/auth_cache.dart';
-import '../data/repository/auth_repository.dart';
 
 part 'auth.state.dart';
 
 @lazySingleton
 class AuthCubit extends Cubit<AuthState> {
-  final _authRepo = locator<AuthRepo>();
   final _authCache = locator<AuthCache>();
-  final _localAuth = locator<LocalAuthentication>();
 
   AuthCubit() : super(AuthState.initial());
 
@@ -28,31 +24,18 @@ class AuthCubit extends Cubit<AuthState> {
         : emit(state._unauthenticated());
   }
 
-  void authenticate([AuthTokens? tokens]) async {
-    tokens != null
-        ? await _authCache.setTokens(tokens)
-        : await _authCache.setLocalAuth(true);
+  void authenticate([String? token, UserModel? user]) async {
+    if (token != null && user != null) {
+      await Future.wait([
+        _authCache.setToken(token),
+        _authCache.setUser(user),
+      ]);
+      return emit(state._authenticated());
+    }
+    
+    await _authCache.setLocalAuth(true);
 
     emit(state._authenticated());
-  }
-
-  Future<void> refreshToken() async {
-    emit(state._loading());
-
-    final refreshToken = await _authCache.refreshToken;
-
-    if (refreshToken == null) return logout();
-
-    //TODO implement refresh token logic
-    // final result = await _authRepo.refreshToken(refreshToken);
-
-    // result.when(
-    //   success: (tokens) => authenticate(tokens),
-    //   error: (error) {
-    //     emit(state._error(error.message));
-    //     logout();
-    //   },
-    // );
   }
 
   void logout() async {

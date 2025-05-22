@@ -9,7 +9,7 @@ typedef RepoResult<T> = Future<ApiResult<T>>;
 typedef RepoListResult<T> = Future<ApiResult<PaginationResult<T>>>;
 
 class NetworkRepository {
-  Future<ApiResult<T>> tryApiCall<T, D extends ApiResponseModel>({
+  Future<ApiResult<T>> tryApiCall<T, D>({
     required Future<D> Function() apiCall,
     Future<D> Function()? localApiCall,
     required T Function(D response) onResult,

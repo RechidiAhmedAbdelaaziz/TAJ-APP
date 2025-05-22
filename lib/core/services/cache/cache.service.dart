@@ -89,6 +89,18 @@ class CacheService {
     return jsonMap;
   }
 
+  Map<String, dynamic>? getMap(String key)  {
+    debugPrint('SharedPrefHelper : getMap with key : $key');
+
+    String? jsonString = _sharedPreferences.getString(key);
+
+    if (jsonString != null) {
+      Map<String, dynamic> jsonMap = json.decode(jsonString);
+      return jsonMap;
+    }
+    return null;
+  }
+
   /// Saves a [value] with a [key] in the _flutterSecureStorage.
   Future<void> setSecuredString(String key, String value) async {
     debugPrint(

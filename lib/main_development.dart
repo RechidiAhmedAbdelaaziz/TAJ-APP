@@ -9,12 +9,13 @@ void main() async {
   // Define the flavor
   FlavorConfig(
     name: "DEVELOPMENT MOBILE",
-    variables: {"baseUrl": "http://192.168.1.9:3000/api/v1"},
+    variables: {
+      "baseUrl": "https://tajalsafa-staging-20522007.dev.odoo.com/",
+    },
   );
 
   // Initialize the ScreenUtil
   WidgetsFlutterBinding.ensureInitialized();
-
 
   // Setup the dependency injection
   await setupLocator();

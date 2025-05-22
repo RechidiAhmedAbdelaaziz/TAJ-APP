@@ -5,6 +5,8 @@ class _DrawerHeder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = locator<AuthCache>().user!;
+
     return Stack(
       children: [
         Assets.images.sideCover.image(
@@ -38,9 +40,11 @@ class _DrawerHeder extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Assets.images.userPic.image(
+                    Image.network(
+                      user.imageUrl ?? '',
                       width: 95.r,
                       height: 95.r,
+                      fit: BoxFit.cover,
                     ),
 
                     PositionedDirectional(
@@ -68,7 +72,7 @@ class _DrawerHeder extends StatelessWidget {
 
               heightSpace(4),
               Text(
-                'Rechidi Ahmed',
+                user.name ?? '',
                 style: AppTextStyles.normal.copyWith(
                   color: AppColors.black,
                   letterSpacing: 1.2,

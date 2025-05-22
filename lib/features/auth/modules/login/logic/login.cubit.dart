@@ -1,7 +1,6 @@
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taj_elsafa/core/di/locator.dart';
-import 'package:taj_elsafa/core/network/models/api_response.model.dart';
 import 'package:taj_elsafa/core/types/cubitstate/error.state.dart';
 import 'package:taj_elsafa/features/auth/data/dto/login.dto.dart';
 import 'package:taj_elsafa/features/auth/data/repository/auth_repository.dart';
@@ -19,27 +18,20 @@ class LoginCubit extends Cubit<LoginState> {
 
     emit(state._loading());
 
-    await Future.delayed(const Duration(seconds: 2));
+    final result = await _authRepo.login(state.loginDTO);
 
-    locator<AuthCubit>().authenticate(
-      AuthTokens(
-        accessToken: 'accessToken',
-        refreshToken: 'refreshToken',
-      ),
+    result.when(
+      success: (response) {
+      
+
+        locator<AuthCubit>().authenticate(
+          response.apiToken,
+          response.user,
+        );
+        emit(state._success());
+      },
+      error: (error) => emit(state._error(error.message)),
     );
-    return emit(
-      state._success(),
-    ); //TODO remove after api is implemented
-
-    // final result = await _authRepo.login(state.loginDTO);
-
-    // result.when(
-    //   success: (tokens) {
-    //     locator<AuthCubit>().authenticate(tokens);
-    //     emit(state._success());
-    //   },
-    //   error: (error) => emit(state._error(error.message)),
-    // );
   }
 
   @override

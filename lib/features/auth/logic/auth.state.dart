@@ -1,15 +1,16 @@
 part of 'auth.cubit.dart';
 
 class AuthState extends CubitErrorState {
-  AuthState({String? error}) : super(error);
+  final UserModel? user;
+
+  AuthState({String? error, this.user}) : super(error);
 
   factory AuthState.initial() => AuthState();
 
-  AuthState _authenticated() => _copyWith(isAuthanticated: true);
-  AuthState _unauthenticated() => _copyWith(isAuthanticated: false);
-  AuthState _loading() => _copyWith();
-  AuthState _error(String error) => _copyWith(error: error);
+  AuthState _authenticated() => _copyWith(user: user);
+  AuthState _unauthenticated() => AuthState.initial();
 
-  AuthState _copyWith({bool? isAuthanticated, String? error}) =>
-      AuthState(error: error);
+
+  AuthState _copyWith({String? error, UserModel? user}) =>
+      AuthState(error: error, user: user);
 }

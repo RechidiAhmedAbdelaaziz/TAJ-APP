@@ -31,9 +31,7 @@ Future<void> setupLocator() async {
 
   //CacheService
   locator.registerLazySingleton(() => CacheService());
-  locator.registerLazySingleton<AuthCache>(
-    () => kIsWeb ? WebAuthCache() : SecureAuthCache(),
-  );
+  locator.registerLazySingleton<AuthCache>(() => SecureAuthCache());
 
   //Dio
   locator.registerLazySingleton(() => DioService.getDio());

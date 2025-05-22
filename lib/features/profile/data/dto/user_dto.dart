@@ -10,15 +10,15 @@ class UpdateUserDto extends FormDTO {
   UpdateUserDto(this._user)
     : imageController = EditingController<ImageDTO>(
         _user.imageUrl != null
-            ? RemoteImageDTO( _user.imageUrl!)
+            ? RemoteImageDTO(_user.imageUrl!)
             : null,
       ),
       nameController = TextEditingController(text: _user.name),
       contactNumberController = TextEditingController(
-        text: _user.contactNumber,
+        text: _user.phone.toString().replaceAll('null', ''),
       ),
       altContactNumberController = TextEditingController(
-        text: _user.altContactNumber,
+        text: _user.mobile.toString().replaceAll('null', ''),
       ),
       emailController = TextEditingController(text: _user.email);
 
@@ -28,7 +28,7 @@ class UpdateUserDto extends FormDTO {
   final TextEditingController altContactNumberController;
   final TextEditingController emailController;
 
-  String get id => _user.id!;
+  int get id => _user.id!;
 
   @override
   void dispose() {
@@ -41,22 +41,18 @@ class UpdateUserDto extends FormDTO {
 
   @override
   Future<Map<String, dynamic>> toMap() async {
-    final imageUrl = await imageController.value?.url;
+    // final imageUrl = await imageController.value?.url;
 
     return {
-      if (imageUrl != _user.imageUrl) 'image': imageUrl,
+      'user_id': id,
 
-      if (nameController.text != _user.name)
+      // if (imageUrl != _user.imageUrl) 'image': imageUrl, //TODO: uncomment this line when the image upload is implemented
+      "profile_data": {
         'name': nameController.text,
-
-      if (contactNumberController.text != _user.contactNumber)
-        'contact_number': contactNumberController.text,
-
-      if (altContactNumberController.text != _user.altContactNumber)
-        'alt_contact_number': altContactNumberController.text,
-
-      if (emailController.text != _user.email)
+        'mobile': contactNumberController.text,
+        'phone': altContactNumberController.text,
         'email': emailController.text,
+      },
     };
   }
 }

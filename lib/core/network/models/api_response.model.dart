@@ -7,41 +7,33 @@ part 'pagination.model.dart';
 
 part 'api_response.model.g.dart';
 
+const _resultKey = 'result';
+
 abstract class ApiResponseModel {
   final bool? success;
-  final int? statusCode;
 
-  ApiResponseModel({this.success, this.statusCode});
-}
-
-@JsonSerializable(createToJson: false)
-class AuthResponse extends ApiResponseModel {
-  final AuthTokens? tokens;
-
-  AuthResponse({super.success, super.statusCode, this.tokens});
-
-  factory AuthResponse.fromJson(Map<String, dynamic>? json) =>
-      _$AuthResponseFromJson(json ?? {});
+  ApiResponseModel({String? success})
+    : success = success == 'success';
 }
 
 @JsonSerializable(createToJson: false)
 class MessageResponse extends ApiResponseModel {
   final String? message;
 
-  MessageResponse({super.success, super.statusCode, this.message});
+  MessageResponse({super.success, this.message});
 
-  factory MessageResponse.fromJson(Map<String, dynamic>? json) =>
-      _$MessageResponseFromJson(json ?? {});
+  factory MessageResponse.fromJson(Map<String, dynamic> json) =>
+      _$MessageResponseFromJson(json[_resultKey] ?? {});
 }
 
 @JsonSerializable(createToJson: false)
-class SingleDataResponse extends ApiResponseModel {
+class DataApiResponse extends ApiResponseModel {
   final Map<String, dynamic>? data;
 
-  SingleDataResponse({super.success, super.statusCode, this.data});
+  DataApiResponse({super.success, this.data});
 
-  factory SingleDataResponse.fromJson(Map<String, dynamic>? json) =>
-      _$SingleDataResponseFromJson(json ?? {});
+  factory DataApiResponse.fromJson(Map<String, dynamic> json) =>
+      _$DataApiResponseFromJson(json[_resultKey] ?? {});
 }
 
 @JsonSerializable(createToJson: false)
@@ -51,12 +43,10 @@ class PaginatedDataResponse extends ApiResponseModel {
 
   PaginatedDataResponse({
     super.success,
-    super.statusCode,
     this.data = const [],
     this.pagination,
   });
 
-  factory PaginatedDataResponse.fromJson(
-    Map<String, dynamic>? json,
-  ) => _$PaginatedDataResponseFromJson(json ?? {});
+  factory PaginatedDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$PaginatedDataResponseFromJson(json[_resultKey] ?? {});
 }

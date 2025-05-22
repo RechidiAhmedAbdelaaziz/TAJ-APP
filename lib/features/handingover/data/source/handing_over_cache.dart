@@ -7,12 +7,12 @@ class HandingOverCache {
   final CacheService _cacheService;
   HandingOverCache(this._cacheService);
 
-  Future<SingleDataResponse> getConditions() async {
+  Future<DataApiResponse> getConditions() async {
     //TODO change to get by key
     final json = await _cacheService.getJson(
       "assets/json/handing_over.json",
     );
 
-    return SingleDataResponse.fromJson(json);
+    return DataApiResponse.fromJson(json);
   }
 }
