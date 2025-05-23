@@ -7,7 +7,7 @@ class TicketCache {
   final CacheService _cacheService;
   TicketCache(this._cacheService);
 
-  Future<PaginatedDataResponse> getTicket({
+  Future<MultiDataApiResponse> getTicket({
     required String stateId,
   }) async {
     //TODO change to get by key
@@ -15,6 +15,6 @@ class TicketCache {
       "assets/json/tickets_$stateId.json",
     );
 
-    return PaginatedDataResponse.fromJson(json);
+    return MultiDataApiResponse.fromJson(json);
   }
 }

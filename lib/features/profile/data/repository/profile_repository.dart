@@ -1,6 +1,7 @@
 import 'package:taj_elsafa/core/di/locator.dart';
 import 'package:taj_elsafa/core/network/repo_base.dart';
 import 'package:injectable/injectable.dart';
+import 'package:taj_elsafa/features/auth/configs/auth_cache.dart';
 import 'package:taj_elsafa/features/profile/data/dto/update_password_dto.dart';
 import 'package:taj_elsafa/features/profile/data/dto/user_dto.dart';
 import 'package:taj_elsafa/features/profile/data/models/user_model.dart';
@@ -15,6 +16,15 @@ class ProfileRepo extends NetworkRepository {
     return tryApiCall(
       apiCall:
           () async => _profileApi.updateProfile(await dto.toMap()),
+      onResult: (response) => UserModel.fromJson(response.data!),
+    );
+  }
+
+  RepoResult<UserModel> getProfile() async {
+    return tryApiCall(
+      apiCall: () async => _profileApi.getProfile(
+        userId: locator<AuthCache>().user!.id!,
+      ),
       onResult: (response) => UserModel.fromJson(response.data!),
     );
   }

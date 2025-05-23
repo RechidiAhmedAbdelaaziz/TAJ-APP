@@ -27,11 +27,11 @@ class _RequestItem extends StatelessWidget {
             value: request.id.toString(),
           ),
           heightSpace(12),
-          _buildInfo(title: 'Title:', value: request.title),
+          _buildInfo(title: 'Title:', value: request.name),
           heightSpace(12),
           _buildInfo(
             title: 'Request Status:',
-            value: request.status,
+            value: request.stage,
             color: request.statusColor,
           ),
 

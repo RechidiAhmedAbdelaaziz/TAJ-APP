@@ -22,7 +22,8 @@ class RequesDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const AppBackButton(),
-        title: Text("Request Details No.${request.id}")),
+        title: Text("Request Details No.${request.id}"),
+      ),
       body: Column(
         children: [
           if (request.needConfirmation)
@@ -140,7 +141,7 @@ class RequesDetailsScreen extends StatelessWidget {
             request.appointmentDate?.toDayMonthYearHourMinute(),
           ),
 
-          _buildInfo("Title:", request.title),
+          _buildInfo("Title:", request.name),
 
           _buildInfo("Description:", request.description),
         ],

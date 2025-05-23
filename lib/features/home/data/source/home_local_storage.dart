@@ -9,7 +9,7 @@ class HomeLocalStorage {
   final _cacheService = locator<CacheService>();
   final _filesService = locator<FilesService>();
 
-  Future<PaginatedDataResponse> fetchBanners() async {
+  Future<MultiDataApiResponse> fetchBanners() async {
     // final dataJson = await locator<CacheService>().getJson(
     //   _storageKey,
     // ); //TODO: uncomment this line to fetch from cache
@@ -18,6 +18,6 @@ class HomeLocalStorage {
       'assets/json/home_banners.json', //TODO : Create a local json file
     );
 
-    return PaginatedDataResponse.fromJson(dataJson);
+    return MultiDataApiResponse.fromJson(dataJson);
   }
 }

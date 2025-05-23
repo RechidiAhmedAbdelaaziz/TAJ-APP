@@ -7,21 +7,21 @@ class RealStatesCache {
   final CacheService _cacheService;
   RealStatesCache(this._cacheService);
 
-  Future<PaginatedDataResponse> getRealStates() async {
+  Future<MultiDataApiResponse> getRealStates() async {
     //TODO change to get by key
     final json = await _cacheService.getJson(
       "assets/json/real_states.json",
     );
 
-    return PaginatedDataResponse.fromJson(json);
+    return MultiDataApiResponse.fromJson(json);
   }
 
-  Future<PaginatedDataResponse> getRealStatesWarranty() async {
+  Future<MultiDataApiResponse> getRealStatesWarranty() async {
     //TODO change to get by key
     final json = await _cacheService.getJson(
       "assets/json/real_state_warranty.json",
     );
 
-    return PaginatedDataResponse.fromJson(json);
+    return MultiDataApiResponse.fromJson(json);
   }
 }

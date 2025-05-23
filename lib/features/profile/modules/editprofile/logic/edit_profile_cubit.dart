@@ -17,8 +17,15 @@ class EditProfileCubit
 
   UpdateUserDto get dto => state._dto!;
 
-  void init() =>
-      emit(state._loaded(UpdateUserDto(locator<AuthCache>().user!)));
+  void init() async {
+    emit(state._loading());
+    final result = await _repo.getProfile();
+
+    result.when(
+      success: (user) => emit(state._loaded(UpdateUserDto(user))),
+      error: (error) => emit(state._error(error.message)),
+    );
+  }
 
   void save() async {
     if (state.isLoading || !dto.validate()) return;

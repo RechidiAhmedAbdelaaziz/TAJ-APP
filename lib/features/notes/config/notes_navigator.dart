@@ -12,7 +12,7 @@ class NotesNavigator extends AppNavigatorBase {
   NotesNavigator.notes([RequestModel? request])
     : super(
         path: AppRoutes.notes,
-        pathParams: {'requestId': request?.id ?? '1'},
+        pathParams: {'requestId': request?.id.toString() ?? '1'},
       );
 
   NotesNavigator.create() : super(path: AppRoutes.createNote);

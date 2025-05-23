@@ -11,6 +11,11 @@ abstract class ProfileApi {
   @factoryMethod
   factory ProfileApi(Dio dio) = _ProfileApi;
 
+  @GET('/api/v1/customer_info')
+  Future<DataApiResponse> getProfile({
+    @Query('user_id') required int userId,
+  });
+
   @PUT('api/v1/update_profile')
   Future<DataApiResponse> updateProfile(
     @Body() Map<String, dynamic> body,

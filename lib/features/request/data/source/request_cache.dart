@@ -7,7 +7,7 @@ class RequestCache {
   final CacheService _cacheService;
   RequestCache(this._cacheService);
 
-  Future<PaginatedDataResponse> getRequest({
+  Future<MultiDataApiResponse> getRequest({
     required String stateId,
   }) async {
     //TODO change to get by key
@@ -15,6 +15,6 @@ class RequestCache {
       "assets/json/request_$stateId.json",
     );
 
-    return PaginatedDataResponse.fromJson(json);
+    return MultiDataApiResponse.fromJson(json);
   }
 }

@@ -37,16 +37,16 @@ class DataApiResponse extends ApiResponseModel {
 }
 
 @JsonSerializable(createToJson: false)
-class PaginatedDataResponse extends ApiResponseModel {
+class MultiDataApiResponse extends ApiResponseModel {
   final List<Map<String, dynamic>>? data;
   final Pagination? pagination;
 
-  PaginatedDataResponse({
+  MultiDataApiResponse({
     super.success,
     this.data = const [],
     this.pagination,
   });
 
-  factory PaginatedDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$PaginatedDataResponseFromJson(json[_resultKey] ?? {});
+  factory MultiDataApiResponse.fromJson(Map<String, dynamic> json) =>
+      _$PaginatedDataResponseFromJson(json);
 }

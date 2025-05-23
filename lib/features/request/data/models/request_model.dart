@@ -8,23 +8,33 @@ part 'request_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class RequestModel extends Equatable {
-  final String? id;
+  final int? id;
   final RealStateModel? realState;
 
-  final String? title;
+  final String? name;
   final String? description;
+
+  @JsonKey(name: 'maintenance_classification')
   final String? maintenanceClassification;
+
   final String? type;
+
+  @JsonKey(name: 'urgency_level')
   final String? urgency;
 
-  final String? status;
+  final String? stage;
+  @JsonKey(name: 'create_date')
   final DateTime? createdAt;
+
+  @JsonKey(name: 'preferred_appointment')
   final DateTime? appointmentDate;
+
+  @JsonKey(name: 'qr_code')
   final String? qrCodeUrl;
 
-  bool get needConfirmation => status == 'Waiting for confirmation';
+  bool get needConfirmation => stage == 'Waiting for confirmation';
   Color get statusColor {
-    switch (status) {
+    switch (stage) {
       case 'Completed':
         return Colors.green;
       case 'Rejected':
@@ -39,17 +49,17 @@ class RequestModel extends Equatable {
   const RequestModel({
     this.id,
     this.realState,
-    this.title,
+    this.name,
     this.description,
     this.maintenanceClassification,
     this.type,
     this.urgency,
-    this.status,
+    this.stage,
     this.createdAt,
     this.appointmentDate,
     String? qrCodeUrl,
     this.attachments = const [],
-  }) : qrCodeUrl = status == 'Open' ? qrCodeUrl : null;
+  }) : qrCodeUrl = stage == 'Open' ? qrCodeUrl : null;
 
   factory RequestModel.fromJson(Map<String, dynamic> json) =>
       _$RequestModelFromJson(json);

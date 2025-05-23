@@ -27,9 +27,11 @@ class _TicketItem extends StatelessWidget {
             value: ticket.id.toString(),
           ),
           heightSpace(12),
-          _buildInfo(title: 'Title:', value: ticket.title),
+          _buildInfo(title: 'Title:', value: ticket.name),
           heightSpace(12),
-          _buildInfo(title: 'Ticket Status:', value: ticket.status, 
+          _buildInfo(
+            title: 'Ticket Status:',
+            value: ticket.stage,
             color: ticket.statusColor,
           ),
 
@@ -128,7 +130,11 @@ class _TicketItem extends StatelessWidget {
     );
   }
 
-  Widget _buildInfo({required String title, String? value, Color? color}) {
+  Widget _buildInfo({
+    required String title,
+    String? value,
+    Color? color,
+  }) {
     return Row(
       children: [
         Text(

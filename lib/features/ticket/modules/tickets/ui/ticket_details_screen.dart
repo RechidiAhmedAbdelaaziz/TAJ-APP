@@ -140,7 +140,7 @@ class TicketDetailsScreen extends StatelessWidget {
             ticket.appointmentDate?.toDayMonthYearHourMinute(),
           ),
 
-          _buildInfo("Title:", ticket.title),
+          _buildInfo("Title:", ticket.name),
 
           _buildInfo("Description:", ticket.description),
         ],

@@ -7,12 +7,12 @@ class NotesCache {
   final CacheService _cacheService;
   NotesCache(this._cacheService);
 
-  Future<PaginatedDataResponse> getNotes() async {
+  Future<MultiDataApiResponse> getNotes() async {
     //TODO change to get by key
     final json = await _cacheService.getJson(
       "assets/json/notes.json",
     );
 
-    return PaginatedDataResponse.fromJson(json);
+    return MultiDataApiResponse.fromJson(json);
   }
 }

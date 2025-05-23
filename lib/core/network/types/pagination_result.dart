@@ -34,13 +34,11 @@ class PaginationResult<T> {
     );
   }
 
-  
-
   bool get isEmpty => data.isEmpty;
   bool get isNotEmpty => data.isNotEmpty;
 
   PaginationResult.fromResponse({
-    required PaginatedDataResponse response,
+    required MultiDataApiResponse response,
     required T Function(Map<String, dynamic>) fromJson,
   }) : pagination = response.pagination ?? const Pagination(),
        data = response.data!.map((e) => fromJson(e)).toList();

@@ -8,11 +8,11 @@ class NotificationCache {
 
   NotificationCache(this._cacheService);
 
-  Future<PaginatedDataResponse> getNotification() async {
+  Future<MultiDataApiResponse> getNotification() async {
     final json = await _cacheService.getJson(
       "assets/json/notification.json",
     );
 
-    return PaginatedDataResponse.fromJson(json);
+    return MultiDataApiResponse.fromJson(json);
   }
 }
