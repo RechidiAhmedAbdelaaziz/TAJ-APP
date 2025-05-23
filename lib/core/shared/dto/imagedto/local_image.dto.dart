@@ -2,13 +2,13 @@ part of 'image.dto.dart';
 
 abstract class LocalImageDTO extends ImageDTO {
   final XFile file;
-  final _cloudStorageService = locator<ImageCloudStorageService>();
 
   LocalImageDTO({required this.file});
 
+  // convert the file to a base64 string
   @override
   Future<String> get url async =>
-      await _cloudStorageService.upload(file);
+      await file.readAsBytes().then((value) => base64Encode(value));
 }
 
 class MobileImageDTO extends LocalImageDTO {
