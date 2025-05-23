@@ -35,4 +35,10 @@ class EditProfileCubit
       error: (error) => emit(state._error(error.message)),
     );
   }
+
+  @override
+  Future<void> close() {
+    dto.dispose();
+    return super.close();
+  }
 }

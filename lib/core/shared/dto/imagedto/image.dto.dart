@@ -20,6 +20,7 @@ abstract class MediaDTO {
   });
 
   Future<String> get url;
+
 }
 
 abstract class ImageDTO extends MediaDTO {
@@ -38,6 +39,8 @@ abstract class ImageDTO extends MediaDTO {
       borderRadius: borderRadius,
     );
   }
+
+ 
 }
 
 abstract class VideoDTO extends MediaDTO {
