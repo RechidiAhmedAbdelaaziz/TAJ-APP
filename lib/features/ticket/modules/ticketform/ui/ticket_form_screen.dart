@@ -29,7 +29,7 @@ class TicketFormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLoading = context.select(
-      (TicketFormCubit cubit) => cubit.isLoading && !cubit.isLoaded,
+      (TicketFormCubit cubit) => cubit.isLoading,
     );
     return BlocListener<TicketFormCubit, TicketFormState>(
       listener: (context, state) {

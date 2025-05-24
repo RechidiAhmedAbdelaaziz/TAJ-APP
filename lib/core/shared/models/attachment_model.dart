@@ -6,10 +6,12 @@ part 'attachment_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class AttachmentModel extends Equatable {
+  final int? id;
+  @JsonKey(name: 'media_url')
   final String? url;
   final String? type;
 
-  const AttachmentModel({this.url, this.type});
+  const AttachmentModel({this.url, this.type , this.id});
 
   factory AttachmentModel.fromJson(Map<String, dynamic> json) =>
       _$AttachmentModelFromJson(json);

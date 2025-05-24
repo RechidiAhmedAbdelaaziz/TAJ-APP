@@ -1,7 +1,7 @@
 part of '../ticket_form_screen.dart';
 
 class _RecipientForm extends StatelessWidget {
-  const _RecipientForm({super.key});
+  const _RecipientForm();
 
   @override
   Widget build(BuildContext context) {

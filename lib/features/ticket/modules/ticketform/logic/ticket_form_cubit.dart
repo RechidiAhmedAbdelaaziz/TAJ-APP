@@ -28,6 +28,8 @@ class CreateTicketCubit extends TicketFormCubit<CreateTicketDto> {
 
   @override
   void submit() async {
+    if (isLoading || !dto.validate()) return;
+
     emit(state._loading());
 
     final result = await _repo.createTicket(dto);
