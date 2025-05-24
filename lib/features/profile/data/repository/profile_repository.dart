@@ -22,10 +22,14 @@ class ProfileRepo extends NetworkRepository {
 
   RepoResult<UserModel> getProfile() async {
     return tryApiCall(
-      apiCall: () async => _profileApi.getProfile(
-        userId: locator<AuthCache>().user!.id!,
-      ),
-      onResult: (response) => UserModel.fromJson(response.data!),
+      apiCall:
+          () async => await _profileApi.getProfile(
+            userId: locator<AuthCache>().user!.id!,
+          ),
+      onResult: (response) {
+        
+        return UserModel.fromJson(response.data!);
+      },
     );
   }
 

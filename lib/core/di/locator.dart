@@ -18,7 +18,7 @@ final locator = GetIt.instance;
 @InjectableInit()
 void configureDependencies() => locator.init();
 
-Future<void> setupLocator() async {
+Future<void> setupLocator({required AppRouter router}) async {
   configureDependencies();
 
   // Local Authentication
@@ -36,13 +36,13 @@ Future<void> setupLocator() async {
   //Dio
   locator.registerLazySingleton(() => DioService.getDio());
 
-  //Router
-  locator.registerSingleton(AppRouter());
-
   //File Picker
   locator.registerLazySingleton<MediaPickerService>(
     () => kIsWeb ? WebFilePicker() : MobileFilePicker(),
   );
+
+  //Router
+  locator.registerLazySingleton<AppRouter>(() => router);
 
   //Cloud storage service
   locator.registerLazySingleton<ImageCloudStorageService>(

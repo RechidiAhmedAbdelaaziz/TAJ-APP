@@ -97,7 +97,7 @@ class _TicketItem extends StatelessWidget {
 
                     onPressed: () {
                       context.dialog(
-                        child: _QrCode(ticket.qrCodeUrl!),
+                        child: _QrCode(ticket.qrCodeUrl ?? ''),
                       );
                     },
                   ),

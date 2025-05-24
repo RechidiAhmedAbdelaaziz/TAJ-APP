@@ -7,6 +7,7 @@ class _Form extends StatelessWidget {
   Widget build(BuildContext context) {
     final dto = context.read<TicketFormCubit>().dto;
     return Form(
+      key: dto.formKey,
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(

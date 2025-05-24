@@ -18,7 +18,9 @@ class EditProfileState<T> extends CubitErrorState {
 
   factory EditProfileState.initial() => EditProfileState();
 
-  bool get isLoading => _status == _EditProfileStatus.loading;
+  bool get isLoading =>
+      _status == _EditProfileStatus.loading ||
+      _status == _EditProfileStatus.initial;
 
   EditProfileState<T> _copyWith({
     T? dto,

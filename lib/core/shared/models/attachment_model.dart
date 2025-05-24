@@ -11,7 +11,7 @@ class AttachmentModel extends Equatable {
   final String? url;
   final String? type;
 
-  const AttachmentModel({this.url, this.type , this.id});
+  const AttachmentModel({this.url, this.type, this.id});
 
   factory AttachmentModel.fromJson(Map<String, dynamic> json) =>
       _$AttachmentModelFromJson(json);
@@ -22,11 +22,12 @@ class AttachmentModel extends Equatable {
   MediaDTO get mediaDto {
     switch (type) {
       case 'image':
-        return RemoteImageDTO(url!);
+        return RemoteImageDTO(url ?? '');
       case 'video':
-        return RemoteVideoDTO(url!);
-      default:
-        throw Exception('Unsupported media type: $type');
+        return RemoteVideoDTO(url ?? '');
+      default :
+        return RemoteImageDTO(url ?? '');
+     
     }
   }
 }

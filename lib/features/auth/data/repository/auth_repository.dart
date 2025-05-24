@@ -14,7 +14,10 @@ class AuthRepo extends NetworkRepository {
   RepoResult<AuthResponse> login(LoginDTO dto) async {
     return tryApiCall(
       apiCall: () async => _authApi.login(await dto.toMap()),
-      onResult: (response) => response,
+      onResult: (response) {
+
+        return response;
+      },
     );
   }
 

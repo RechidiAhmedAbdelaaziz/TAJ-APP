@@ -10,17 +10,17 @@ part 'api_response.model.g.dart';
 const _resultKey = 'result';
 
 abstract class ApiResponseModel {
-  final bool? success;
+  final String? status;
   final String? message;
 
-  ApiResponseModel({String? success, this.message})
-    : success = success == 'success';
+  ApiResponseModel({this.status, this.message});
+
+  bool get success => status == 'success';
 }
 
 @JsonSerializable(createToJson: false)
 class MessageResponse extends ApiResponseModel {
-
-  MessageResponse({super.success, super.message});
+  MessageResponse({super.status, super.message});
 
   factory MessageResponse.fromJson(Map<String, dynamic> json) =>
       _$MessageResponseFromJson(json);
@@ -30,11 +30,21 @@ class MessageResponse extends ApiResponseModel {
 class DataApiResponse extends ApiResponseModel {
   final Map<String, dynamic>? data;
 
-  DataApiResponse({super.success, this.data , super.message});
+  DataApiResponse({super.status, this.data, super.message});
 
   factory DataApiResponse.fromJson(Map<String, dynamic> json) =>
       _$DataApiResponseFromJson(json[_resultKey] ?? {});
 }
+@JsonSerializable(createToJson: false)
+class DataApiResponseWithoutResult extends ApiResponseModel {
+  final Map<String, dynamic>? data;
+
+  DataApiResponseWithoutResult({super.status, this.data, super.message});
+
+  factory DataApiResponseWithoutResult.fromJson(Map<String, dynamic> json) =>
+      _$DataApiResponseWithoutResultFromJson(json);
+}
+
 
 @JsonSerializable(createToJson: false)
 class MultiDataApiResponse extends ApiResponseModel {
@@ -42,7 +52,7 @@ class MultiDataApiResponse extends ApiResponseModel {
   final Pagination? pagination;
 
   MultiDataApiResponse({
-    super.success,
+    super.status,
     this.data = const [],
     this.pagination,
   });

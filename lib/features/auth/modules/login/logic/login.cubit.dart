@@ -21,16 +21,16 @@ class LoginCubit extends Cubit<LoginState> {
     final result = await _authRepo.login(state.loginDTO);
 
     result.when(
-      success: (response) {
-      
-
-        locator<AuthCubit>().authenticate(
+      success: (response) async{
+     await   locator<AuthCubit>().authenticate(
           response.apiToken,
           response.user,
         );
         emit(state._success());
       },
-      error: (error) => emit(state._error(error.message)),
+      error: (error) {
+        emit(state._error(error.message));
+      },
     );
   }
 

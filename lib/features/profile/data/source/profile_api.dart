@@ -12,7 +12,7 @@ abstract class ProfileApi {
   factory ProfileApi(Dio dio) = _ProfileApi;
 
   @GET('/api/v1/customer_info')
-  Future<DataApiResponse> getProfile({
+  Future<DataApiResponseWithoutResult> getProfile({
     @Query('user_id') required int userId,
   });
 

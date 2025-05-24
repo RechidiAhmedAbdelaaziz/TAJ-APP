@@ -22,9 +22,6 @@ class TicketRepo extends NetworkRepository {
             userId: locator<AuthCache>().user!.id!,
           ),
 
-      localApiCall:
-          () => _ticketCache.getTicket(stateId: filter.stateId),
-
       onResult:
           (response) => PaginationResult.fromResponse(
             response: response,

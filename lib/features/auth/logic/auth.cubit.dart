@@ -24,7 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
         : emit(state._unauthenticated());
   }
 
-  void authenticate([String? token, UserModel? user]) async {
+  Future<void> authenticate([String? token, UserModel? user]) async {
     if (token != null && user != null) {
       await Future.wait([
         _authCache.setToken(token),

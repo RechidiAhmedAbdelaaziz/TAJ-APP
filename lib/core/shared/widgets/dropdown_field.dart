@@ -119,8 +119,6 @@ class AppDropDownField<T> extends StatelessWidget {
                   ),
                   items: (filter, loadProps) => itemsBuilder(context),
 
-                  validator: (value) => validator?.call(value),
-
                   onChanged:
                       (value) =>
                           value != null
@@ -134,7 +132,6 @@ class AppDropDownField<T> extends StatelessWidget {
 
                     decoration: InputDecoration(
                       error: state.hasError ? const SizedBox() : null,
-                      errorText: null,
 
                       contentPadding: EdgeInsets.symmetric(
                         vertical: 12.h,
@@ -158,10 +155,10 @@ class AppDropDownField<T> extends StatelessWidget {
                         ),
                       ),
 
-                      // errorBorder: OutlineInputBorder(
-                      //   borderRadius: BorderRadius.circular(2).r,
-                      //   borderSide: BorderSide(color: AppColors.red),
-                      // ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(2).r,
+                        borderSide: BorderSide(color: AppColors.red),
+                      ),
                     ),
                   ),
                 ),

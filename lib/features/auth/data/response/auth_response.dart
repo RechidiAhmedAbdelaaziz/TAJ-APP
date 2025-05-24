@@ -6,6 +6,24 @@ part 'auth_response.g.dart';
 
 @JsonSerializable(createToJson: false)
 class AuthResponse extends ApiResponseModel {
+  final _AuthResponseData? data;
+
+  AuthResponse({super.status, this.data});
+
+  UserModel get user => UserModel(
+    id: data?.userId,
+    name: data?.name,
+    imageUrl: data?.imageUrl,
+  );
+
+  String get apiToken => data?.apiToken ?? '';
+
+  factory AuthResponse.fromJson(Map<String, dynamic>? json) =>
+      _$AuthResponseFromJson(json ?? {});
+}
+
+@JsonSerializable(createToJson: false)
+class _AuthResponseData {
   @JsonKey(name: 'user_id')
   final int? userId;
 
@@ -17,20 +35,13 @@ class AuthResponse extends ApiResponseModel {
   @JsonKey(name: 'image_url')
   final String? imageUrl;
 
-  AuthResponse({
-    super.success,
+  _AuthResponseData({
     this.userId,
     this.apiToken,
     this.name,
     this.imageUrl,
   });
 
-  UserModel get user => UserModel(
-    id: userId,
-    name: name,
-    imageUrl: imageUrl,
-  );
-
-  factory AuthResponse.fromJson(Map<String, dynamic>? json) =>
-      _$AuthResponseFromJson(json ?? {});
+  factory _AuthResponseData.fromJson(Map<String, dynamic> json) =>
+      _$AuthResponseDataFromJson(json);
 }

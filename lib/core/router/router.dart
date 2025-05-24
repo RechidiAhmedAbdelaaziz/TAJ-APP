@@ -19,39 +19,35 @@ import 'package:go_router/go_router.dart';
 import 'package:taj_elsafa/features/intro/welcome_screen.dart';
 import 'package:taj_elsafa/features/splashscreen/splash_screen.dart';
 import 'package:taj_elsafa/features/ticket/config/ticket_navigator.dart';
+
+part 'client_router.dart';
+part 'admin_router.dart';
 part 'routes.dart';
 part 'navigator_base.dart';
 
-class AppRouter {
-  final routerConfig = GoRouter(
-    initialLocation: AppRoutes.splash,
-    routes: [...HandingOverNavigator.routes, 
-      ...RatingNavigator.routes,
-      ...NotesNavigator.routes,
-      ...RequestNavigator.routes,
-      ...RealStatesNavigator.routes,
-      ...AboutNavigator.routes,
-      ...DocumentsNavigator.routes,
-      ...NotificationNavigator.routes,
-      ...ProfileNavigator.routes,
-      ...HomeNavigator.routes,
-      ...AuthNavigator.routes,
-      ...TicketNavigator.routes,
+abstract class AppRouter {
+  final List<RouteBase> routes;
 
-      GoRoute(
-        path: AppRoutes.splash,
-        builder: (context, state) => const SplashScreen(),
-      ),
+  AppRouter({required this.routes})
+    : routerConfig = GoRouter(
+        routes: [
+          ...routes,
+          ...AuthNavigator.routes,
+          GoRoute(
+            path: AppRoutes.splash,
+            builder: (context, state) => const SplashScreen(),
+          ),
+          GoRoute(
+            path: AppRoutes.welcome,
+            builder: (context, state) => const WelcomeScreen(),
+          ),
+        ],
+        redirect: _handelRedirect,
+        initialLocation: AppRoutes.splash,
+        debugLogDiagnostics: true,
+      );
 
-      GoRoute(
-        path: AppRoutes.welcome,
-        builder: (context, state) => const WelcomeScreen(),
-      ),
-    ],
-    debugLogDiagnostics: true,
-
-    redirect: _handelRedirect,
-  );
+  final GoRouter routerConfig;
 
   static FutureOr<String?> _handelRedirect(
     BuildContext context,

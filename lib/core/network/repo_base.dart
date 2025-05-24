@@ -18,11 +18,11 @@ class NetworkRepository {
       final response = await apiCall();
 
       if (response.success == false) {
+        
         return ApiResult.error(ApiErrorHandler.handle(response));
       }
 
       return ApiResult.success(onResult(response));
-      
     } catch (e) {
       //Try get data from local cache
       if (localApiCall != null) {
