@@ -11,26 +11,26 @@ const _resultKey = 'result';
 
 abstract class ApiResponseModel {
   final bool? success;
+  final String? message;
 
-  ApiResponseModel({String? success})
+  ApiResponseModel({String? success, this.message})
     : success = success == 'success';
 }
 
 @JsonSerializable(createToJson: false)
 class MessageResponse extends ApiResponseModel {
-  final String? message;
 
-  MessageResponse({super.success, this.message});
+  MessageResponse({super.success, super.message});
 
   factory MessageResponse.fromJson(Map<String, dynamic> json) =>
-      _$MessageResponseFromJson(json[_resultKey] ?? {});
+      _$MessageResponseFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
 class DataApiResponse extends ApiResponseModel {
   final Map<String, dynamic>? data;
 
-  DataApiResponse({super.success, this.data});
+  DataApiResponse({super.success, this.data , super.message});
 
   factory DataApiResponse.fromJson(Map<String, dynamic> json) =>
       _$DataApiResponseFromJson(json[_resultKey] ?? {});
@@ -48,5 +48,5 @@ class MultiDataApiResponse extends ApiResponseModel {
   });
 
   factory MultiDataApiResponse.fromJson(Map<String, dynamic> json) =>
-      _$PaginatedDataResponseFromJson(json);
+      _$MultiDataApiResponseFromJson(json);
 }

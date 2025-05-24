@@ -18,6 +18,25 @@ class CreateTicketDto extends TicketDto {
 
   @override
   Future<Map<String, dynamic>> toMap() async {
-    return {};
+    return {
+      'user_id': locator<AuthCache>().user!.id!,
+      'title': titleController.text,
+      'description': descriptionController.text,
+      'maintenance_classification_id': int.tryParse(
+        maintenanceController.value ?? '',
+      ),
+      'urgency_level_id': int.tryParse(urgencyController.value ?? ''),
+      'preferred_appointment_datetime':
+          appointmentDateController.value?.toIso8601String(),
+      'attachments': await Future.wait(
+        attachmentsController.value.map(
+          (e) async => {
+            // base64
+            "media": await e.url,
+            'type': e.runtimeType,
+          },
+        ),
+      ),
+    }.withoutNullsOrEmpty();
   }
 }

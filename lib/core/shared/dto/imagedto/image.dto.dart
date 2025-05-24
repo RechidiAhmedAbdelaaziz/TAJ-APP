@@ -22,6 +22,7 @@ abstract class MediaDTO {
 
   Future<String> get url;
 
+  String get type;
 }
 
 abstract class ImageDTO extends MediaDTO {
@@ -41,7 +42,8 @@ abstract class ImageDTO extends MediaDTO {
     );
   }
 
- 
+  @override
+  String get type => 'image';
 }
 
 abstract class VideoDTO extends MediaDTO {
@@ -63,6 +65,9 @@ abstract class VideoDTO extends MediaDTO {
       borderRadius: borderRadius,
     );
   }
+
+  @override
+  String get type => 'video';
 }
 
 extension FileDtoMapper on List<MediaDTO> {

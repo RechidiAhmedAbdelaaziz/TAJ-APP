@@ -3,6 +3,7 @@ import 'package:taj_elsafa/core/network/repo_base.dart';
 import 'package:injectable/injectable.dart';
 import 'package:taj_elsafa/core/network/types/pagination_result.dart';
 import 'package:taj_elsafa/features/auth/configs/auth_cache.dart';
+import 'package:taj_elsafa/features/ticket/data/dto/ticket_dto.dart';
 import 'package:taj_elsafa/features/ticket/data/dto/tickets_filter.dart';
 
 import '../models/ticket_model.dart';
@@ -29,6 +30,14 @@ class TicketRepo extends NetworkRepository {
             response: response,
             fromJson: TicketModel.fromJson,
           ),
+    );
+  }
+
+  RepoResult<TicketModel> createTicket(CreateTicketDto dto) {
+    return tryApiCall(
+      apiCall: () async => _ticketApi.createTicket(await dto.toMap()),
+
+      onResult: (response) => TicketModel.fromJson(response.data!),
     );
   }
 }

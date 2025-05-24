@@ -30,8 +30,13 @@ class CreateTicketCubit extends TicketFormCubit<CreateTicketDto> {
   void submit() async {
     emit(state._loading());
 
-    await Future.delayed(const Duration(seconds: 2));
+    final result = await _repo.createTicket(dto);
 
-    emit(state._success(TicketModel()));
+    emit(
+      result.when(
+        success: (data) => state._success(data),
+        error: (error) => state._error(error.message),
+      ),
+    );
   }
 }

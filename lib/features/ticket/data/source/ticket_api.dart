@@ -15,4 +15,9 @@ abstract class TicketApi {
   Future<MultiDataApiResponse> getTickets({
     @Query('user_id') required int userId,
   });
+
+  @POST('/api/v1/create_ticket')
+  Future<DataApiResponse> createTicket(
+    @Body() Map<String, dynamic> body,
+  );
 }
