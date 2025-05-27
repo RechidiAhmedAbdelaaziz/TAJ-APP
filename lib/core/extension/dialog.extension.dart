@@ -55,26 +55,57 @@ extension DialogExtension on BuildContext {
     return showDialog(
       context: this,
       builder:
-          (context) => AlertDialog(
-            title: Text(title.tr(context)),
-            content:
-                content != null ? Text(content.tr(context)) : null,
-            actions: [
-              AppButton.secondary(
-                text: cancelText.tr(context),
-                onPressed: () {
-                  onCancel?.call();
-                  context.back();
-                },
+          (context) => Material(
+            color: Colors.transparent,
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 24.w,
+                  vertical: 16.h,
+                ),
+                margin: EdgeInsets.symmetric(horizontal: 32.w),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(12).r,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(title.tr(this), style: AppTextStyles.h3),
+                    if (content != null) ...[
+                      heightSpace(8),
+                      Text(
+                        content.tr(this),
+                        style: AppTextStyles.medium,
+                      ),
+                    ],
+                    heightSpace(16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          child: AppButton.secondary(
+                            text: cancelText.tr(this),
+                            onPressed: () {
+                              onCancel?.call();
+                              back();
+                            },
+                          ),
+                        ),
+                        widthSpace(8),
+                        Expanded(
+                          child: AppButton.primary(
+                            text: okText.tr(this),
+                            onPressed: onConfirm,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              AppButton.primary(
-                text: okText.tr(context),
-                onPressed: () {
-                  onConfirm();
-                  context.back();
-                },
-              ),
-            ],
+            ),
           ),
     );
   }

@@ -64,6 +64,7 @@ class EditProfileScreen extends StatelessWidget {
                               heightSpace(40),
 
                               LocalizationButton(),
+                              heightSpace(16),
 
                               ...[
                                 AppInputField(

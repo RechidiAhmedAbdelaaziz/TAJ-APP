@@ -100,6 +100,16 @@ class AppDropDownField<T> extends StatelessWidget {
                     expandedBorder: Border(
                       bottom: BorderSide(color: AppColors.black),
                     ),
+                    expandedShadow: [
+                      BoxShadow(
+                        color: Color(0x40000000),
+                        blurRadius: 4.r,
+                      ),
+                      BoxShadow(
+                        color: Color(0x40000000),
+                        blurRadius: 4.r,
+                      ),
+                    ],
                   ),
 
                   listItemBuilder: (_, item, isSelected, _) {

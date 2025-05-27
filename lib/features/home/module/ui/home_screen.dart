@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:taj_elsafa/core/di/locator.dart';
+import 'package:taj_elsafa/core/extension/dialog.extension.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/localization/localization_button.dart';
@@ -37,42 +40,57 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      appBar: const _AppBar(),
-      drawer: const _SideBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            heightSpace(21),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        context.alertDialog(
+          title: 'Exit'.tr(context),
+          content: 'Are you sure you want to exit?'.tr(context),
+          okText: 'Exit'.tr(context),
+          onConfirm: () async {
+            if (didPop) context.pop();
+            exit(0);
+          },
+        );
+      },
 
-            const _Banners(),
-            heightSpace(15),
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        appBar: const _AppBar(),
+        drawer: const _SideBar(),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              heightSpace(21),
 
-            _buildText(
-              'ChooseRequirement'.tr(context),
-              AppTextStyles.medium.copyWith(color: AppColors.black),
-            ),
-            heightSpace(24),
+              const _Banners(),
+              heightSpace(15),
 
-            _buildText(
-              'ChooseRequirementDesc'.tr(context),
-              AppTextStyles.medium.copyWith(color: AppColors.black),
-              textAlign: TextAlign.justify,
-            ),
-            heightSpace(72),
-
-            const _Buttons(),
-            heightSpace(85),
-
-            _buildText(
-              "typesetting, remaining essentially  versions of".tr(
-                context,
+              _buildText(
+                'ChooseRequirement'.tr(context),
+                AppTextStyles.medium.copyWith(color: AppColors.black),
               ),
-              AppTextStyles.normal.copyWith(color: AppColors.black),
-            ),
-            heightSpace(20),
-          ],
+              heightSpace(24),
+
+              _buildText(
+                'ChooseRequirementDesc'.tr(context),
+                AppTextStyles.medium.copyWith(color: AppColors.black),
+                textAlign: TextAlign.justify,
+              ),
+              heightSpace(72),
+
+              const _Buttons(),
+              heightSpace(85),
+
+              _buildText(
+                "typesetting, remaining essentially  versions of".tr(
+                  context,
+                ),
+                AppTextStyles.normal.copyWith(color: AppColors.black),
+              ),
+              heightSpace(20),
+            ],
+          ),
         ),
       ),
     );

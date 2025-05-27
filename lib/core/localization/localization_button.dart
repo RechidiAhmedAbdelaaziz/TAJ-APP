@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:taj_elsafa/core/extension/localization.extension.dart';
-import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
-import 'package:taj_elsafa/gen/assets.gen.dart';
 
 import 'localization_cubit.dart';
 
@@ -15,70 +11,73 @@ class LocalizationButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-
-    return PopupMenuButton<String>(
-      offset: Offset(0, 50.h),
-      color: AppColors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.r),
-      ),
-      icon: Row(
-        children: [
-          widthSpace(32),
-          Expanded(
-            child: Text(
-              'Languages'.tr(context),
-              style: AppTextStyles.normal,
-            ),
+    return BlocBuilder<LocalizationCubit, Locale?>(
+      builder: (context, state) {
+        return Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+            vertical: 8.h,
           ),
-          widthSpace(20),
-          SvgPicture.asset(Assets.icons.arrowRight),
-          widthSpace(32),
-        ],
-      ),
-      itemBuilder:
-          (context) => [
-            PopupMenuItem(
-              value: 'en',
-              child: _buildLangButton(
+
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(24.r),
+            border: Border.all(color: AppColors.grey),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: 12.w,
+            children: [
+              _buildLanguageButton(
+                context: context,
+                languageCode: 'en',
                 text: 'English',
-                onPressed: () {
-                  Navigator.pop(context);
-                  context.read<LocalizationCubit>().changeLanguage(
-                    'en',
-                  );
-                },
+                isSelected: state?.languageCode == 'en',
               ),
-            ),
-            PopupMenuItem(
-              value: 'ar',
-              child: _buildLangButton(
+              Container(
+                height: 20.h,
+                width: 1.w,
+                color: AppColors.grey,
+              ),
+              _buildLanguageButton(
+                context: context,
+                languageCode: 'ar',
                 text: 'العربية',
-                onPressed: () {
-                  Navigator.pop(context);
-                  context.read<LocalizationCubit>().changeLanguage(
-                    'ar',
-                  );
-                },
+                isSelected: state?.languageCode == 'ar',
               ),
-            ),
-          ],
-      onSelected: (_) {},
+            ],
+          ),
+        );
+      },
     );
   }
 
-  Widget _buildLangButton({
+  Widget _buildLanguageButton({
+    required BuildContext context,
+    required String languageCode,
     required String text,
-    required VoidCallback onPressed,
+    required bool isSelected,
   }) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Text(
-        text,
-        style: AppTextStyles.normal.copyWith(
-          color: AppColors.black,
-          fontSize: 16.sp,
+    return InkWell(
+      onTap: () {
+        context.read<LocalizationCubit>().changeLanguage(
+          languageCode,
+        );
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 16.w,
+          vertical: 6.h,
+        ),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primary : Colors.transparent,
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        child: Text(
+          text,
+          style: AppTextStyles.xLarge.copyWith(
+            color: isSelected ? AppColors.white : AppColors.black,
+          ),
         ),
       ),
     );

@@ -40,20 +40,18 @@ class RequestsScreen extends StatelessWidget {
         final requests = context.select(
           (RequestsCubit cubit) => cubit.requests,
         );
-        return Padding(
-          padding: EdgeInsets.only(
-            left: 20.w,
-            right: 20.w,
-            top: 25.h,
-          ),
-          child: RefreshIndicator(
-            onRefresh:
-                () async =>
-                    context
-                        .read<RequestsCubit>()
-                        .getFilteredRequests(),
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
+        return RefreshIndicator(
+          onRefresh:
+              () async =>
+                  context.read<RequestsCubit>().getFilteredRequests(),
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 12.w,
+                right: 12.w,
+                top: 24.h,
+              ),
               child: Column(
                 children: [
                   Row(
