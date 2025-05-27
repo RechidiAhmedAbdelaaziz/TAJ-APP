@@ -24,7 +24,6 @@ class HandingOverNavigator extends AppNavigatorBase {
                 final cubit = RealStatesCubit()..getRealStates();
 
                 cubit.selectedStateController.addListener(() {
-                  print("Selected state: ${cubit.selectedRealState}");
                   final selectedState = cubit.selectedRealState!;
                   context
                       .read<HandingOverCubit>()

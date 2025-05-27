@@ -29,75 +29,81 @@ class HandingOverScreen extends StatelessWidget {
       isLoading: isLoading,
 
       builder: (context, state) {
-        final handingOver = context.select(
-          (HandingOverCubit cubit) => cubit.handingOver,
-        );
+        final handingOver =
+            context.watch<HandingOverCubit>().handingOver;
 
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              if (handingOver.hasNotes)
-                _buildShowNotesButton(context),
+        return RefreshIndicator(
+          onRefresh:
+              () async => context
+                  .read<HandingOverCubit>()
+                  .getProjectCondition(state),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                if (handingOver.hasNotes)
+                  _buildShowNotesButton(context),
 
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 24.w,
-                  vertical: 24.h,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ...handingOver.conditions.map(
-                      (condition) => Container(
-                        width: double.infinity,
-                        margin: EdgeInsets.only(bottom: 16.h),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 16.w,
-                          vertical: 24.h,
-                        ),
-                        color: Color(0x999F9F9F),
-                        child: Column(
-                          crossAxisAlignment:
-                              CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '${handingOver.conditions.indexOf(condition) + 1}- ${condition.title}',
-                              style: AppTextStyles.large.copyWith(
-                                color: AppColors.black,
-                              ),
-                            ),
-                            heightSpace(16),
-
-                            if (condition.points != null)
-                              ...condition.points!.map(
-                                (point) => Padding(
-                                  padding: EdgeInsetsDirectional.only(
-                                    start: 8.w,
-                                    bottom: 4.h,
-                                  ),
-                                  child: Text(
-                                    '- $point',
-                                    style: AppTextStyles.normal
-                                        .copyWith(
-                                          color: AppColors.black,
-                                        ),
-                                  ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24.w,
+                    vertical: 24.h,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ...handingOver.conditions.map(
+                        (condition) => Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.only(bottom: 16.h),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.w,
+                            vertical: 24.h,
+                          ),
+                          color: Color(0x999F9F9F),
+                          child: Column(
+                            crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${handingOver.conditions.indexOf(condition) + 1}- ${condition.title}',
+                                style: AppTextStyles.large.copyWith(
+                                  color: AppColors.black,
                                 ),
                               ),
+                              heightSpace(16),
 
-                            heightSpace(24),
+                              if (condition.points != null)
+                                ...condition.points!.map(
+                                  (point) => Padding(
+                                    padding:
+                                        EdgeInsetsDirectional.only(
+                                          start: 8.w,
+                                          bottom: 4.h,
+                                        ),
+                                    child: Text(
+                                      '- $point',
+                                      style: AppTextStyles.normal
+                                          .copyWith(
+                                            color: AppColors.black,
+                                          ),
+                                    ),
+                                  ),
+                                ),
 
-                            MultiMediaField(
-                              controller: condition.medias,
-                            ),
-                          ],
+                              heightSpace(24),
+
+                              MultiMediaField(
+                                controller: condition.medias,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

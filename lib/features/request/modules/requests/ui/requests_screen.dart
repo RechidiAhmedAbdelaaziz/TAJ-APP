@@ -10,7 +10,6 @@ import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/button.dart';
-import 'package:taj_elsafa/core/shared/widgets/loadign_indicator.dart';
 import 'package:taj_elsafa/core/shared/widgets/states_page.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
@@ -47,46 +46,45 @@ class RequestsScreen extends StatelessWidget {
             right: 20.w,
             top: 25.h,
           ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: RefreshIndicator(
+            onRefresh:
+                () async =>
+                    context
+                        .read<RequestsCubit>()
+                        .getFilteredRequests(),
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
                 children: [
-                  Text(
-                    'Track Request'.tr(context),
-                    style: AppTextStyles.medium.copyWith(
-                      color: AppColors.black,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Track Request'.tr(context),
+                        style: AppTextStyles.medium.copyWith(
+                          color: AppColors.black,
+                        ),
+                      ),
+                      _FilterButton(),
+                    ],
                   ),
-                  _FilterButton(),
-                ],
-              ),
-              heightSpace(4),
-              const Divider(color: Color(0x26000000)),
-              heightSpace(20),
+                  heightSpace(4),
+                  const Divider(color: Color(0x26000000)),
+                  heightSpace(20),
 
-              if (requests.isEmpty)
-                Expanded(
-                  child: Center(
-                    child: Text(
+                  if (requests.isEmpty) ...[
+                    heightSpace(220),
+                    Text(
                       'No Requests'.tr(context),
                       style: AppTextStyles.medium,
                     ),
-                  ),
-                )
-              else
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        ...requests.map(
-                          (request) => _RequestItem(request),
-                        ),
-                      ],
+                  ] else
+                    ...requests.map(
+                      (request) => _RequestItem(request),
                     ),
-                  ),
-                ),
-            ],
+                ],
+              ),
+            ),
           ),
         );
       },
