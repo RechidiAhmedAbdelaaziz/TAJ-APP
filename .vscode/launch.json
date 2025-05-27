@@ -4,22 +4,20 @@
 {
 	"version": "0.2.0",
 	"configurations": [
-		
-
 		//ANDROID
 		{
 			"name": "ADMIN",
 			"request": "launch",
 			"type": "dart",
-			"program": "lib/main_development.dart",
-			"args": ["--target", "lib/main_development.dart"]
+			"program": "lib/main_admin.dart",
+			"args": ["--target", "lib/main_admin.dart", "--flavor", "admin"],
 		},
 		{
 			"name": "CLIENT",
 			"request": "launch",
 			"type": "dart",
-			"program": "lib/main_production.dart",
-			"args": ["--target", "lib/main_production.dart"]
+			"program": "lib/main_client.dart",
+			"args": ["--target", "lib/main_client.dart" , "--flavor", "client"],
 		}
 	],
 	"compounds": []

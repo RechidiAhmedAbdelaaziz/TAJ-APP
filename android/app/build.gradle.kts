@@ -56,6 +56,23 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
+
+    flavorDimensions += "default"
+    productFlavors {
+        create("client") {
+            dimension = "default"
+            applicationIdSuffix = ".client"
+            versionNameSuffix = "-client"
+            resValue("string", "app_name", "Taj AlSafa")
+        }
+        create("admin") {
+            dimension = "default"
+            applicationIdSuffix = ".admin"
+            versionNameSuffix = "-admin"
+            resValue("string", "app_name", "Taj AlSafa Engineer")
+        }
+        
+    }
 }
 
 flutter {

@@ -3,6 +3,7 @@ import 'package:local_auth/local_auth.dart';
 import 'package:taj_elsafa/core/di/locator.dart';
 import 'package:taj_elsafa/core/types/cubitstate/error.state.dart';
 import 'package:taj_elsafa/features/auth/configs/auth_cache.dart';
+import 'package:taj_elsafa/features/auth/data/dto/login.dto.dart';
 import 'package:taj_elsafa/features/auth/logic/auth.cubit.dart';
 
 part 'local_auth_state.dart';
@@ -36,6 +37,19 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
       return;
     }
 
+    final credinatials =
+        await locator<AuthCache>().getCredentials() ?? {};
+
+    if (!credinatials.containsKey('email') ||
+        !credinatials.containsKey('password')) {
+      emit(
+        state._error(
+          'You should login with email and password first',
+        ),
+      );
+      return;
+    }
+
     try {
       final isAuthenticated = await _auth.authenticate(
         localizedReason: 'Please authenticate to access the app',
@@ -46,8 +60,10 @@ class LocalAuthCubit extends Cubit<LocalAuthState> {
         ),
       );
       if (isAuthenticated) {
-        locator<AuthCubit>().authenticate();
-        emit(state._success());
+        
+        emit(state._success(LoginDTO()
+            ..emailController.text = credinatials['email']!
+            ..passwordController.text = credinatials['password']!,));
       } else {
         emit(state._error('Authentication failed'));
       }

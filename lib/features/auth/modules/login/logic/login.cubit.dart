@@ -2,6 +2,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taj_elsafa/core/di/locator.dart';
 import 'package:taj_elsafa/core/types/cubitstate/error.state.dart';
+import 'package:taj_elsafa/features/auth/configs/auth_cache.dart';
 import 'package:taj_elsafa/features/auth/data/dto/login.dto.dart';
 import 'package:taj_elsafa/features/auth/data/repository/auth_repository.dart';
 import 'package:taj_elsafa/features/auth/logic/auth.cubit.dart';
@@ -13,6 +14,10 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit() : super(LoginState.initial());
 
+  void setDTO(LoginDTO dto) {
+    emit(state._copyWith(loginDTO: dto));
+  }
+
   void login() async {
     if (state.isLoading || !state.loginDTO.validate()) return;
 
@@ -21,11 +26,17 @@ class LoginCubit extends Cubit<LoginState> {
     final result = await _authRepo.login(state.loginDTO);
 
     result.when(
-      success: (response) async{
-     await   locator<AuthCubit>().authenticate(
+      success: (response) async {
+        await locator<AuthCubit>().authenticate(
           response.apiToken,
           response.user,
         );
+
+        await locator<AuthCache>().setCredentials(
+          state.loginDTO.emailController.text,
+          state.loginDTO.passwordController.text,
+        );
+
         emit(state._success());
       },
       error: (error) {

@@ -8,9 +8,31 @@ abstract class AuthCache {
   final _cacheHelper = locator<CacheService>();
 
   Future<void> setToken(String token);
+
   Future<void> setUser(UserModel user) async {
     await _cacheHelper.setData('USER', json.encode(user.toJson()));
   }
+
+  Future<void> setCredentials(String email, String password) async {
+    await _cacheHelper.setSecuredString('CREDENTIALS', json.encode({
+      'email': email,
+      'password': password,
+    }));
+  }
+
+  Future<Map<String, String>?> getCredentials() async {
+    final credentials = await _cacheHelper.getSecuredString('CREDENTIALS');
+    if (credentials != null) {
+      final decoded = json.decode(credentials);
+      return {
+        'email': decoded['email'],
+        'password': decoded['password'],
+      };
+    }
+    return null;
+  }
+
+
 
   Future<String?> get token;
   UserModel? get user {
