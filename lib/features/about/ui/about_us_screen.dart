@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/back_button.dart';
 import 'package:taj_elsafa/core/shared/widgets/logo.dart';
@@ -14,7 +15,7 @@ class AboutUsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: AppBackButton(),
-        title: const Text('About Us'),
+        title: Text('About Us'.tr(context)),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -27,7 +28,8 @@ class AboutUsScreen extends StatelessWidget {
               heightSpace(32),
 
               Text(
-                'Taj AL Safa Real Estate Development was established in Amman in 2014 by industry specialists with more than 20 years of expertise in the real estate business. We provide our customers with a diverse choice of outstanding high-end residential and commercial projects. We also offer our clients a unique array of services and professional guidance to assist them in making the finest property decisions. We embrace change and constantly challenge tradition because we strongly desire to improve the construction method and raise the efficiency and quality of our projects to meet customer\'s needs, requirements, and well-being.',
+                'Taj AL Safa Real Estate Development was established in Amman in 2014 by industry specialists with more than 20 years of expertise in the real estate business. We provide our customers with a diverse choice of outstanding high-end residential and commercial projects. We also offer our clients a unique array of services and professional guidance to assist them in making the finest property decisions. We embrace change and constantly challenge tradition because we strongly desire to improve the construction method and raise the efficiency and quality of our projects to meet customer\'s needs, requirements, and well-being.'
+                    .tr(context),
                 style: AppTextStyles.medium.copyWith(
                   color: Colors.black,
                 ),
@@ -49,7 +51,12 @@ class AboutUsScreen extends StatelessWidget {
 
                 "sustainability":
                     "Taj Alsafa Real Estate Development was established in Amman in 2014 by industry specialists with more than 20 years of expertise in the real estate business. We provide our customers with a diverse choice of outstanding high-end residential and commercial projects. We also offer our clients a unique array of services and professional guidance to assist them in making the finest property decisions.  We embrace change and constantly challenge tradition because we strongly desire to improve the construction method and raise the efficiency and quality of our projects to meet customers' needs, requirements, and well-being.",
-              }.entries.map((e) => _boxedText(e.key, e.value)),
+              }.entries.map(
+                (e) => _boxedText(
+                  e.key.tr(context),
+                  e.value.tr(context),
+                ),
+              ),
             ],
           ),
         ),

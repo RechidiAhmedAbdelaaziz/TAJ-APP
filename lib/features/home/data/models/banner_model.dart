@@ -5,7 +5,8 @@ part 'banner_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class BannerModel extends Equatable {
-  final String? id;
+  final int? id;
+  @JsonKey(name: 'image_url')
   final String? imageUrl;
 
   const BannerModel({this.id, this.imageUrl});

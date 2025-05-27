@@ -11,28 +11,28 @@ class _RecipientForm extends StatelessWidget {
       children: [
         AppInputField(
           controller: dto.recipientNameController,
-          hintText: 'Full Name',
+          hintText: 'Full Name'.tr(context),
           validator:
               (value) =>
                   value.isEmptyOrNull
-                      ? 'Recipient name is required'
+                      ? 'Recipient name is required'.tr(context)
                       : null,
         ),
         heightSpace(16),
 
         AppInputField(
           controller: dto.recipientContactController,
-          hintText: 'Phone Number',
+          hintText: 'Phone Number'.tr(context),
           validator:
               (value) =>
                   value.isEmptyOrNull
-                      ? 'Recipient phone number is required'
+                      ? 'Recipient phone number is required'.tr(context)
                       : null,
         ),
         heightSpace(16),
 
         AppSelectorField(
-          label: 'Gender',
+          label: 'Gender'.tr(context),
           controller: dto.recipientGenderController,
           items: (_) => ['Male', 'Female'],
           builder:
@@ -44,7 +44,7 @@ class _RecipientForm extends StatelessWidget {
                 children: [
                   checkBox,
                   Text(
-                    item,
+                    item.tr(context),
                     style: AppTextStyles.medium.copyWith(
                       color: AppColors.black,
                     ),
@@ -56,3 +56,4 @@ class _RecipientForm extends StatelessWidget {
     );
   }
 }
+

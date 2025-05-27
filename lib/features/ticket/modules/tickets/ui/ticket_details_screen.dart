@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/extension/date_formatter.extension.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/back_button.dart';
@@ -22,7 +23,9 @@ class TicketDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const AppBackButton(),
-        title: Text("Ticket Details No.${ticket.id}"),
+        title: Text(
+          "Ticket Details No.".tr(context) + ticket.id.toString(),
+        ),
       ),
       body: Column(
         children: [
@@ -34,9 +37,9 @@ class TicketDetailsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildInfos(),
+                  _buildInfos(context),
                   heightSpace(24),
-                  _buildAttachments(),
+                  _buildAttachments(context),
                 ],
               ),
             ),
@@ -64,7 +67,7 @@ class TicketDetailsScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: AppButton(
-                        text: 'Send A Note',
+                        text: 'Send A Note'.tr(context),
                         textStyle: AppTextStyles.normal.copyWith(
                           color: AppColors.white,
                         ),
@@ -76,7 +79,7 @@ class TicketDetailsScreen extends StatelessWidget {
 
                     Expanded(
                       child: AppButton(
-                        text: 'Recive',
+                        text: 'Recive'.tr(context),
                         textStyle: AppTextStyles.normal.copyWith(
                           color: AppColors.white,
                         ),
@@ -101,7 +104,7 @@ class TicketDetailsScreen extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
       decoration: BoxDecoration(color: AppColors.grey),
       child: AppButton(
-        text: 'Attached notes',
+        text: 'Attached notes'.tr(context),
         textStyle: AppTextStyles.normal.copyWith(
           color: AppColors.black,
         ),
@@ -111,7 +114,7 @@ class TicketDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInfos() {
+  Widget _buildInfos(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
@@ -126,35 +129,45 @@ class TicketDetailsScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 12.w,
         children: [
-          _buildInfo('Ticket Type:', ticket.type),
+          _buildInfo(
+            'Ticket type',
+            ticket.type?.tr(context),
+            context,
+          ),
 
-          _buildInfo('Urgency:', ticket.urgency),
+          _buildInfo('Urgency', ticket.urgency, context),
 
           _buildInfo(
-            'Maintenance Classification:',
+            'Maintenance Classification',
             ticket.maintenanceClassification,
+            context,
           ),
 
           _buildInfo(
-            'Preferred Appointment:',
+            'Preferred Appointment',
             ticket.appointmentDate?.toDayMonthYearHourMinute(),
+            context,
           ),
 
-          _buildInfo("Title:", ticket.name),
+          _buildInfo("Title", ticket.name, context),
 
-          _buildInfo("Description:", ticket.description),
+          _buildInfo("Description", ticket.description, context),
         ],
       ),
     );
   }
 
-  Widget _buildInfo(String title, String? value) {
+  Widget _buildInfo(
+    String title,
+    String? value,
+    BuildContext context,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       // spacing: 4.h,
       children: [
         Text(
-          title,
+          '${title.tr(context)}:',
           style: AppTextStyles.medium.copyWith(
             color: AppColors.black,
           ),
@@ -169,13 +182,13 @@ class TicketDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAttachments() {
+  Widget _buildAttachments(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 12.w,
       children: [
         Text(
-          'Attached Files',
+          'Attached Files'.tr(context),
           style: AppTextStyles.medium.copyWith(
             color: AppColors.black,
           ),

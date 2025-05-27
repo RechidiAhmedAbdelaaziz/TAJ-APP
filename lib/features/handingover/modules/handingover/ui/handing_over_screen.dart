@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/extension/dialog.extension.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/button.dart';
-import 'package:taj_elsafa/core/shared/widgets/indicated_pagview.dart';
 import 'package:taj_elsafa/core/shared/widgets/loadign_indicator.dart';
 import 'package:taj_elsafa/core/shared/widgets/media_field.dart';
 import 'package:taj_elsafa/core/shared/widgets/signature_pad.dart';
 import 'package:taj_elsafa/core/shared/widgets/states_page.dart';
-import 'package:taj_elsafa/core/shared/widgets/zoomable_widget.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/features/notes/config/notes_navigator.dart';
@@ -23,7 +22,7 @@ class HandingOverScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLoading = context.select(
-      (HandingOverCubit cubit) => cubit.isLoading && !cubit.isLoaded,
+      (HandingOverCubit cubit) => cubit.isLoading || !cubit.isLoaded,
     );
     return StatesPage(
       title: "Handing Over",
@@ -102,7 +101,6 @@ class HandingOverScreen extends StatelessWidget {
       bottomNavigationBar:
           (context) =>
               context.select(
-                    //TODO remove not(!)
                     (HandingOverCubit cubit) =>
                         cubit.isLoaded &&
                         cubit.handingOver.isVerified,
@@ -126,7 +124,7 @@ class HandingOverScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: AppButton(
-                            text: 'Send A Note',
+                            text: 'Send A Note'.tr(context),
                             textStyle: AppTextStyles.normal.copyWith(
                               color: AppColors.white,
                             ),
@@ -140,7 +138,7 @@ class HandingOverScreen extends StatelessWidget {
 
                         Expanded(
                           child: AppButton(
-                            text: 'Recive',
+                            text: 'Recive'.tr(context),
                             textStyle: AppTextStyles.normal.copyWith(
                               color: AppColors.white,
                             ),
@@ -149,12 +147,11 @@ class HandingOverScreen extends StatelessWidget {
 
                             onPressed:
                                 () => context.dialogWith<bool>(
-                                  child: SignaturePad(
-                                    
-                                  ),
+                                  child: SignaturePad(),
                                   onResult: (_) {
                                     context.showSuccessDialog(
-                                      'The property has been successfully received.',
+                                      'The property has been successfully received.'
+                                          .tr(context),
                                     );
                                   },
                                 ),
@@ -173,7 +170,7 @@ class HandingOverScreen extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
       color: Color(0x999F9F9F),
       child: AppButton(
-        text: 'Attached notes',
+        text: 'Attached notes'.tr(context),
         textStyle: AppTextStyles.normal.copyWith(
           color: AppColors.white,
         ),

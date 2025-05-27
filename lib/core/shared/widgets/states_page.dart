@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/widgets/back_button.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/features/realstates/data/models/real_state_model.dart';
@@ -41,7 +42,7 @@ class StatesPage extends StatelessWidget {
                 return state == null
                     ? Center(
                       child: Text(
-                        "There is no state selected",
+                        "There is no state selected".tr(context),
                         style: AppTextStyles.large,
                       ),
                     )
@@ -73,7 +74,7 @@ class _AppBar extends StatelessWidget {
       width: double.infinity,
       child: Column(
         children: [
-          AppBar(title: Text(title), leading: AppBackButton()),
+          AppBar(title: Text(title.tr(context)), leading: AppBackButton()),
 
           StatesHeader(),
         ],

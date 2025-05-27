@@ -76,7 +76,7 @@ class _Filter extends StatelessWidget {
           return InkWell(
             onTap: () => context.back(filter.key),
             child: Text(
-              filter.key,
+              filter.key.tr(context),
               textAlign: TextAlign.center,
               style: AppTextStyles.medium.copyWith(
                 color: filter.value,

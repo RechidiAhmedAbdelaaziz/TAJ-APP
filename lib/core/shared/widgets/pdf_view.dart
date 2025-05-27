@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/gen/assets.gen.dart';
@@ -64,7 +65,7 @@ class PdfView extends StatelessWidget {
           children: [
             SvgPicture.asset(Assets.icons.pdfIcon),
             Text(
-              'View File',
+              'View File'.tr(context),
               style: AppTextStyles.normal.copyWith(
                 color: AppColors.white,
               ),

@@ -44,6 +44,7 @@ abstract class AppRouter {
         ],
         redirect: _handelRedirect,
         initialLocation: AppRoutes.splash,
+        
         debugLogDiagnostics: true,
       );
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taj_elsafa/core/extension/date_formatter.extension.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/indicated_pagview.dart';
 import 'package:taj_elsafa/core/shared/widgets/zoomable_widget.dart';
@@ -15,7 +15,9 @@ class NotesDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Note Details No.${note.id}")),
+      appBar: AppBar(
+        title: Text("${"Note Details No.".tr(context)}${note.id}"),
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 20.w,
@@ -28,7 +30,7 @@ class NotesDetails extends StatelessWidget {
 
             heightSpace(20),
             Text(
-              'Attached Files:',
+              '${'Attached Files'.tr(context)}:',
               style: AppTextStyles.medium.copyWith(
                 color: AppColors.black,
               ),
@@ -80,9 +82,9 @@ class _Note extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildInfo('Title:', note.title),
+              _buildInfo('Title', note.title, context),
               heightSpace(16),
-              _buildInfo('Description:', note.description),
+              _buildInfo('Description', note.description, context),
             ],
           ),
         ),
@@ -90,12 +92,16 @@ class _Note extends StatelessWidget {
     );
   }
 
-  Widget _buildInfo(String title, String? value) {
+  Widget _buildInfo(
+    String title,
+    String? value,
+    BuildContext context,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          title,
+          '${title.tr(context)}:',
           style: AppTextStyles.medium.copyWith(
             color: AppColors.black,
           ),

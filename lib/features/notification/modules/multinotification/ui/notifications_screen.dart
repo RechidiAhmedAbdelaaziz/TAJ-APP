@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/extension/date_formatter.extension.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/back_button.dart';
 import 'package:taj_elsafa/core/themes/colors.dart';
@@ -19,7 +20,7 @@ class NotificationsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: AppBackButton(),
-        title: const Text('Notifications'),
+        title:  Text('Notifications'.tr(context)),
         centerTitle: true,
       ),
       body: ListView.builder(

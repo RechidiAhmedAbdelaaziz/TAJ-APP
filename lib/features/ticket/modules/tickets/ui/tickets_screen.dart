@@ -34,7 +34,7 @@ class TicketsScreen extends StatelessWidget {
           cubit.tickets.isEmpty && cubit.state.isLoading,
     );
     return StatesPage(
-      title: "My Tickets",
+      title: "My Tickets".tr(context),
 
 
       builder: (context, state) {

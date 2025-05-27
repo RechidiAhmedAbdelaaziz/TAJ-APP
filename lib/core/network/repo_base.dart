@@ -18,7 +18,6 @@ class NetworkRepository {
       final response = await apiCall();
 
       if (response.success == false) {
-        
         return ApiResult.error(ApiErrorHandler.handle(response));
       }
 

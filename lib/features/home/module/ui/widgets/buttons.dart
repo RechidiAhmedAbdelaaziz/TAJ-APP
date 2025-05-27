@@ -15,12 +15,12 @@ class _Buttons extends StatelessWidget {
             onPressed: () => context.to(TicketNavigator.myTickets()),
           ),
           _buildButton(
-            text: 'MyRequest'.tr(context),
+            text: 'My Requests'.tr(context),
             onPressed:
                 () => context.to(RequestNavigator.myRequests()),
           ),
           _buildButton(
-            text: 'HandingOver'.tr(context),
+            text: 'Handing Over'.tr(context),
             onPressed: () => context.to(HandingOverNavigator()),
           ),
         ],

@@ -22,7 +22,7 @@ class ContactUs extends StatelessWidget {
       appBar: AppBar(
         leading: AppBackButton(),
 
-        title: const Text('Contact Us'),
+        title: Text('Contact Us'.tr(context)),
         centerTitle: true,
       ),
       body: Column(
@@ -43,6 +43,7 @@ class ContactUs extends StatelessWidget {
                   //   "E-mail": "info@tajalsafa.com",
                   // }
                   _buildInfo(
+                    context,
                     "Phone Number",
                     "00962799263003",
                     onTap:
@@ -52,11 +53,13 @@ class ContactUs extends StatelessWidget {
                   ),
 
                   _buildInfo(
+                    context,
                     "Site",
                     "Prince Rashid District, King Abdullah Street next to Zain, Amman, Jordan",
                   ),
 
                   _buildInfo(
+                    context,
                     "Email",
                     "info@tajalsafa.com",
                     onTap:
@@ -68,6 +71,7 @@ class ContactUs extends StatelessWidget {
                   _buildSocialMedia(context),
 
                   _buildInfo(
+                    context,
                     "Website",
                     "www.Tajalsafa.com",
                     onTap:
@@ -92,7 +96,7 @@ class ContactUs extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Your Suggestions",
+            "Your Suggestions".tr(context),
             style: AppTextStyles.xLarge.copyWith(
               color: AppColors.black,
             ),
@@ -105,7 +109,7 @@ class ContactUs extends StatelessWidget {
                 child: SubmitSuggestions(),
                 onResult: (_) {
                   context.showSuccessDialog(
-                    "Thank you for your suggestion",
+                    "Thank you for your suggestion".tr(context),
                   );
                 },
               );
@@ -142,7 +146,7 @@ class ContactUs extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Follow Us",
+            "Follow Us".tr(context),
             style: AppTextStyles.xLarge.copyWith(
               color: AppColors.black,
             ),
@@ -179,7 +183,7 @@ class ContactUs extends StatelessWidget {
       onTap: () async {
         if (!await launchUrl(Uri.parse(link))) {
           // ignore: use_build_context_synchronously
-          context.showErrorSnackbar("Error opening link");
+          context.showErrorSnackbar("Error opening link".tr(context));
         }
       },
       child: icon.image(height: 18),
@@ -196,6 +200,7 @@ class ContactUs extends StatelessWidget {
   }
 
   Widget _buildInfo(
+    BuildContext context,
     String title,
     String item, {
     VoidCallback? onTap,
@@ -205,7 +210,7 @@ class ContactUs extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title,
+            title.tr(context),
             style: AppTextStyles.xLarge.copyWith(
               color: AppColors.black,
             ),
@@ -272,7 +277,7 @@ class SubmitSuggestions extends StatelessWidget {
             child: TextField(
               maxLines: 8,
               decoration: InputDecoration(
-                hintText: "Write Here ...",
+                hintText: "Write Here ...".tr(context),
                 hintStyle: AppTextStyles.normal.copyWith(
                   color: AppColors.black,
                 ),

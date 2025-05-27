@@ -13,7 +13,7 @@ class DocumentsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('MyDocs'.tr(context))),
+      appBar: AppBar(title: Text('My Docs'.tr(context))),
       body: DefaultTabController(
         length: 3,
         initialIndex: 0,
@@ -27,9 +27,9 @@ class DocumentsScreen extends StatelessWidget {
               labelPadding: EdgeInsets.zero,
 
               tabs: [
-                _buildTab('Quotation '.tr(context)),
-                _buildTab('Invoice '.tr(context)),
-                _buildTab('Payment '.tr(context)),
+                _buildTab('Quotation'.tr(context)),
+                _buildTab('Invoice'.tr(context)),
+                _buildTab('Payment'.tr(context)),
               ],
             ),
 
@@ -155,12 +155,12 @@ class _DocumentTabView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '$title Number : ${doc.docNumber}',
+                '${title.tr(context)} ${'number'.tr(context)} : ${doc.docNumber}',
                 style: AppTextStyles.medium,
               ),
               heightSpace(4),
               Text(
-                'Request Number : ${doc.requestNumber}',
+                '${'Request'.tr(context)} ${'number'.tr(context)} : ${doc.requestNumber}',
                 style: AppTextStyles.medium,
               ),
               heightSpace(22),

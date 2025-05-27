@@ -24,9 +24,9 @@ class StatesHeader extends StatelessWidget {
           color: AppColors.grey,
           child: Column(
             children: [
-              _buildWarrantyStatus(state),
-              _buildDropDown(states, state, controller),
-              _buildWarrantyInfos(state),
+              _buildWarrantyStatus(state, context),
+              _buildDropDown(states, state, controller, context),
+              _buildWarrantyInfos(state,context),
             ],
           ),
         );
@@ -34,7 +34,7 @@ class StatesHeader extends StatelessWidget {
     );
   }
 
-  Widget _buildWarrantyStatus(RealStateModel? state) {
+  Widget _buildWarrantyStatus(RealStateModel? state , BuildContext context) {
     return state?.waarrantyIsActive == null
         ? const SizedBox.shrink()
         : Column(
@@ -43,7 +43,7 @@ class StatesHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Warranty Status :',
+                  "${'Warranty Status'.tr(context)} :",
                   style: AppTextStyles.small.copyWith(
                     color: AppColors.black,
                   ),
@@ -70,7 +70,7 @@ class StatesHeader extends StatelessWidget {
         );
   }
 
-  Widget _buildWarrantyInfos(RealStateModel? state) {
+  Widget _buildWarrantyInfos(RealStateModel? state , BuildContext context) {
     return (state?.warrantyEndDate == null ||
             state?.ticketsLeft == null)
         ? const SizedBox.shrink()
@@ -80,25 +80,27 @@ class StatesHeader extends StatelessWidget {
             const Divider(color: Color(0x59FFFFFF)),
             heightSpace(10),
             _buildInfo(
-              'Warranty Valid Till :',
+              'Warranty Valid Till',
               state!.warrantyEndDate!.toDayMonthYear(),
+              context,
             ),
             heightSpace(4),
             _buildInfo(
-              'Tickets Left :',
+              'Tickets Left',
               //  [tickets left] in this form 000000001
               state.ticketsLeft!.toString().padLeft(9, '0'),
+              context,
             ),
           ],
         );
   }
 
-  Widget _buildInfo(String title, String info) {
+  Widget _buildInfo(String title, String info, BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          title,
+          "${title.tr(context)} :",
           style: AppTextStyles.small.copyWith(color: AppColors.black),
         ),
         Text(
@@ -113,10 +115,11 @@ class StatesHeader extends StatelessWidget {
     List<RealStateModel> states,
     RealStateModel? value,
     EditingController<RealStateModel> controller,
+  BuildContext context,
   ) {
     return DropdownMenu(
       width: double.infinity,
-      hintText: "Select State ...",
+      hintText: "Select State ...".tr(context),
       initialSelection: controller.value,
       inputDecorationTheme: InputDecorationTheme(
         fillColor: AppColors.white.withValues(alpha: 0.25),

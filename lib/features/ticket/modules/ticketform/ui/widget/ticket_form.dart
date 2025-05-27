@@ -19,32 +19,32 @@ class _Form extends StatelessWidget {
             children: [
               AppInputField(
                 controller: dto.titleController,
-                hintText: 'What do you need help with?',
-                label: 'Title',
+                hintText: 'What do you need help with?'.tr(context),
+                label: 'Title'.tr(context),
                 validator:
                     (value) =>
                         value.isEmptyOrNull
-                            ? 'Title is required'
+                            ? 'Title is required'.tr(context)
                             : null,
               ),
               heightSpace(16),
 
               AppInputField(
                 controller: dto.descriptionController,
-                hintText: 'Description',
-                label: 'Description',
+                hintText: 'Description'.tr(context),
+                label: 'Description'.tr(context),
                 maxLines: 5,
                 validator:
                     (value) =>
                         value.isEmptyOrNull
-                            ? 'Description is required'
+                            ? 'Description is required'.tr(context)
                             : null,
               ),
               heightSpace(16),
 
               AppDropDownField(
                 controller: dto.maintenanceController,
-                label: 'Maintenance Classification',
+                label: 'Maintenance Classification'.tr(context),
                 itemsBuilder:
                     (_) => [
                       'Electrical',
@@ -53,32 +53,32 @@ class _Form extends StatelessWidget {
                       'Painting',
                       'Cleaning',
                     ],
-                itemToString: (value) => value,
+                itemToString: (value) => value.tr(context),
                 validator:
                     (value) =>
                         value.isEmptyOrNull
-                            ? 'Maintenance classification is required'
+                            ? 'Maintenance classification is required'.tr(context)
                             : null,
               ),
               heightSpace(16),
 
               AppDropDownField(
                 controller: dto.urgencyController,
-                label: 'Urgency',
+                label: 'Urgency'.tr(context),
                 itemsBuilder:
                     (_) => ['Minor', 'Moderate', 'Major', 'Critical'],
-                itemToString: (value) => value,
+                itemToString: (value) => value.tr(context),
                 validator:
                     (value) =>
                         value.isEmptyOrNull
-                            ? 'Priority is required'
+                            ? 'Priority is required'.tr(context)
                             : null,
               ),
               heightSpace(16),
 
               AppDateField(
                 controller: dto.appointmentDateController,
-                label: 'Preferred Appointment',
+                label: 'Preferred Appointment'. tr(context),
                 firstDate: DateTime.now(),
                 lastDate: DateTime.now().add(
                   const Duration(days: 365),
@@ -88,7 +88,7 @@ class _Form extends StatelessWidget {
 
               AppSelectorField(
                 controller: dto.recipientController,
-                label: 'Service Recipient',
+                label: 'Service Recipient'.tr(context) ,
                 items: (_) => ['Owner', 'Representative'],
                 builder:
                     (_, checkBox, item) => Row(
@@ -98,7 +98,7 @@ class _Form extends StatelessWidget {
                       children: [
                         checkBox,
                         Text(
-                          item,
+                          item.tr(context),
                           style: AppTextStyles.normal.copyWith(
                             color: AppColors.black,
                           ),
@@ -123,11 +123,11 @@ class _Form extends StatelessWidget {
 
               AppCheckBoxField(
                 controller: dto.termsController,
-                label: 'Terms And Conditions',
+                label: 'Terms and conditions'.tr(context),
                 validator:
                     (value) =>
                         value == false
-                            ? 'You must accept the terms and conditions'
+                            ? 'You must accept the terms and conditions'.tr(context)
                             : null,
               ),
               heightSpace(40),

@@ -1,23 +1,5 @@
 part of '../home_screen.dart';
 
-final _banners = [
-  BannerModel(
-    id: '1',
-    imageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTN95v_Wp3ArxMA0_de_60qBBZG2eYFBDO0A&s',
-  ),
-  BannerModel(
-    id: '2',
-    imageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI82m2wkwyxYvdjGDo7KW4-dXxEvpIWBVmcQ&s',
-  ),
-  BannerModel(
-    id: '3',
-    imageUrl:
-        'https://zb2g8qspmxpc-u2909.pressidiumcdn.com/wp-content/uploads/2024/07/Hotels.jpg',
-  ),
-];
-
 class _Banners extends StatefulWidget {
   const _Banners();
 
@@ -26,6 +8,7 @@ class _Banners extends StatefulWidget {
 }
 
 class _BannersState extends State<_Banners> {
+  final List<BannerModel> _banners = [];
   late Timer _timer;
   late PageController _pageController;
   int _currentPage = 0;
@@ -52,6 +35,24 @@ class _BannersState extends State<_Banners> {
         curve: Curves.easeIn,
       );
     });
+
+    final dio = locator<Dio>();
+    dio
+        .get('api/v1/slides')
+        .then((response) {
+          if (response.statusCode == 200) {
+            final data = response.data['data'] as List;
+            _banners.addAll(
+              data.map((e) => BannerModel.fromJson(e)).toList(),
+            );
+            print('Banners fetched successfully: ${_banners.length}');
+            setState(() {});
+          }
+        })
+        .catchError((error) {
+          // Handle error
+          print('Error fetching banners: $error');
+        });
 
     super.initState();
   }

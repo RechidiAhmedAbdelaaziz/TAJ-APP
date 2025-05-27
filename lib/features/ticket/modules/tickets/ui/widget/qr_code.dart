@@ -17,7 +17,7 @@ class _QrCode extends StatelessWidget {
             children: [
               heightSpace(44),
               Text(
-                'Scan QR Code',
+                'Scan QR Code'.tr(context),
                 style: AppTextStyles.medium.copyWith(
                   color: AppColors.black,
                 ),
@@ -53,7 +53,7 @@ class _QrCode extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            'Share',
+            'Share'.tr(context),
             style: AppTextStyles.normal.copyWith(
               color: AppColors.black,
             ),

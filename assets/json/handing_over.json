@@ -1,45 +1,47 @@
 {
-    "data": {
-        "id": "1",
-        "isVerified": true,
-        "hasNotes": true,
-        "conditions": [
-            {
-                "title": "Monitoring system",
-                "points": [
-                    "The monitoring system is functioning properly.",
-                    "The monitoring system is connected to the main server.",
-                    "The monitoring system is accessible remotely."
-                ],
-                "attachments": [
-                    {
-                        "url": "https://lh3.googleusercontent.com/p/AF1QipPBPLg3VXK2j1BZlE7m7rMvaBgnmAZqLes0E761=s680-w680-h510",
-                        "type": "image"
-                    },
-                    {
-                        "url": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
-                        "type": "video"
-                    }
-                ]
-            },
-            {
-                "title": "Fire system",
-                "points": [
-                    "The fire system is functioning properly.",
-                    "The fire system is connected to the main server.",
-                    "The fire system is accessible remotely."
-                ],
-                "attachments": []
-            },
-            {
-                "title": "Water supply",
-                "points": [
-                    "The water supply is functioning properly.",
-                    "The water supply is connected to the main server.",
-                    "The water supply is accessible remotely."
-                ],
-                "attachments": []
-            }
-        ]
+    "result": {
+        "data": {
+            "id": "1",
+            "isVerified": true,
+            "hasNotes": true,
+            "conditions": [
+                {
+                    "title": "Monitoring system",
+                    "points": [
+                        "The monitoring system is functioning properly.",
+                        "The monitoring system is connected to the main server.",
+                        "The monitoring system is accessible remotely."
+                    ],
+                    "attachments": [
+                        {
+                            "url": "https://lh3.googleusercontent.com/p/AF1QipPBPLg3VXK2j1BZlE7m7rMvaBgnmAZqLes0E761=s680-w680-h510",
+                            "type": "image"
+                        },
+                        {
+                            "url": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+                            "type": "video"
+                        }
+                    ]
+                },
+                {
+                    "title": "Fire system",
+                    "points": [
+                        "The fire system is functioning properly.",
+                        "The fire system is connected to the main server.",
+                        "The fire system is accessible remotely."
+                    ],
+                    "attachments": []
+                },
+                {
+                    "title": "Water supply",
+                    "points": [
+                        "The water supply is functioning properly.",
+                        "The water supply is connected to the main server.",
+                        "The water supply is accessible remotely."
+                    ],
+                    "attachments": []
+                }
+            ]
+        }
     }
 }

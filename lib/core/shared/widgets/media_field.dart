@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/di/locator.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/xfile_extension.dart';
 import 'package:taj_elsafa/core/services/filepicker/filepick.service.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
@@ -31,7 +32,7 @@ class MultiMediaField<T extends MediaDTO> extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildUploadButton(),
+        _buildUploadButton(context),
         heightSpace(22),
 
         if (note != null) ...[note!, heightSpace(40)],
@@ -94,9 +95,9 @@ class MultiMediaField<T extends MediaDTO> extends StatelessWidget {
     );
   }
 
-  Widget _buildUploadButton() {
+  Widget _buildUploadButton(BuildContext context) {
     return AppButton(
-      text: 'Attach File',
+      text: 'Attach File'.tr(context),
       textStyle: AppTextStyles.normal.copyWith(
         color: AppColors.white,
       ),

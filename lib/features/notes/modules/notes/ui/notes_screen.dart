@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/extension/date_formatter.extension.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/widgets/back_button.dart';
 import 'package:taj_elsafa/core/shared/widgets/button.dart';
@@ -26,7 +27,7 @@ class NotesScreen extends StatelessWidget {
     );
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Attached Notes"),
+        title:  Text("Attached notes".tr(context)),
         leading: AppBackButton(),
       ),
 

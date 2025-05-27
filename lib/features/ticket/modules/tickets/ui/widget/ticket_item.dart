@@ -23,15 +23,17 @@ class _TicketItem extends StatelessWidget {
           heightSpace(16),
 
           _buildInfo(
-            title: 'Ticket Number:',
+            context,
+            title: 'Ticket Number',
             value: ticket.id.toString(),
           ),
           heightSpace(12),
-          _buildInfo(title: 'Title:', value: ticket.name),
+          _buildInfo(context, title: 'Title', value: ticket.name),
           heightSpace(12),
           _buildInfo(
-            title: 'Ticket Status:',
-            value: ticket.stage,
+            context,
+            title: 'Ticket Status',
+            value: ticket.stage?.tr(context),
             color: ticket.statusColor,
           ),
 
@@ -47,7 +49,8 @@ class _TicketItem extends StatelessWidget {
                 SvgPicture.asset(Assets.icons.alert),
                 Expanded(
                   child: Text(
-                    'Please open the ticket and confirm receipt of the maintenance work.',
+                    'Please open the ticket and confirm receipt of the maintenance work.'
+                        .tr(context),
                     maxLines: 2,
                     style: AppTextStyles.small.copyWith(
                       color: AppColors.greyDark,
@@ -130,7 +133,8 @@ class _TicketItem extends StatelessWidget {
     );
   }
 
-  Widget _buildInfo({
+  Widget _buildInfo(
+    BuildContext context, {
     required String title,
     String? value,
     Color? color,
@@ -138,7 +142,7 @@ class _TicketItem extends StatelessWidget {
     return Row(
       children: [
         Text(
-          title,
+          '${title.tr(context)}:',
           style: AppTextStyles.normal.copyWith(
             color: AppColors.black,
           ),

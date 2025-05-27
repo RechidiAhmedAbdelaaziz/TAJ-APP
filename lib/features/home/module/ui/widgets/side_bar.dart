@@ -15,15 +15,18 @@ class _SideBar extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             _DrawerHeder(),
+
+            LocalizationButton(),
+
             heightSpace(28),
 
             ...{
-              "AboutUs": () => context.to(AboutNavigator.aboutUs()),
+              "About Us": () => context.to(AboutNavigator.aboutUs()),
 
-              "PropertyInfo":
+              "Property Info":
                   () => context.to(RealStatesNavigator.states()),
 
-              "TermsAndConditions":
+              "Terms and conditions":
                   () =>
                       context.to(AboutNavigator.termsAndConditions()),
             }.entries.map(
@@ -42,10 +45,10 @@ class _SideBar extends StatelessWidget {
             heightSpace(35),
 
             ...{
-              "ContactUs":
+              "Contact Us":
                   () => context.to(AboutNavigator.contactUs()),
 
-              "MyDocs": () => context.to(DocumentsNavigator.docs()),
+              "My Docs": () => context.to(DocumentsNavigator.docs()),
 
               "Logout": () => locator<AuthCubit>().logout(),
             }.entries.map(

@@ -31,7 +31,7 @@ class TajApp extends StatelessWidget {
           builder: (_, __) {
             return BlocProvider(
               create: (context) => LocalizationCubit(),
-              child: _MaterialApp(),
+              child: SafeArea(child: _MaterialApp()),
             );
           },
         );
@@ -63,7 +63,6 @@ class _MaterialApp extends StatelessWidget {
         ),
       ),
       supportedLocales: [
-        Locale('fr'), // French
         Locale('en'), // English
         Locale('ar'), // Arabic
       ],

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/extension/dialog.extension.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/extension/snackbar.extension.dart';
 import 'package:taj_elsafa/core/extension/validator.extension.dart';
@@ -36,7 +37,7 @@ class TicketFormScreen extends StatelessWidget {
         state.onSuccess((ticket) {
           context.back(ticket);
           context.showSuccessDialog(
-            'Your ticket has been received successfully',
+            'Your ticket has been received successfully'.tr(context),
           );
         });
 
@@ -45,7 +46,7 @@ class TicketFormScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: AppBackButton(),
-          title: const Text('Send Ticket'),
+          title:  Text('Send Ticket'.tr(context)),
         ),
 
         body: ConditionalBuilder(
@@ -78,7 +79,7 @@ class TicketFormScreen extends StatelessWidget {
               ],
             ),
             child: AppButton(
-              text: 'Send',
+              text: 'Send'.tr(context),
               textStyle: AppTextStyles.medium.copyWith(
                 color: AppColors.white,
               ),
