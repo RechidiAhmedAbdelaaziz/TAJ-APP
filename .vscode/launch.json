@@ -11,6 +11,7 @@
 			"type": "dart",
 			"program": "lib/main_admin.dart",
 			"args": ["--target", "lib/main_admin.dart", "--flavor", "admin"],
+			// flutter build apk --flavor admin --target lib/main_admin.dart --release
 		},
 		{
 			"name": "CLIENT",
@@ -18,6 +19,7 @@
 			"type": "dart",
 			"program": "lib/main_client.dart",
 			"args": ["--target", "lib/main_client.dart" , "--flavor", "client"],
+			// flutter build apk --flavor client --target lib/main_client.dart --release
 		}
 	],
 	"compounds": []

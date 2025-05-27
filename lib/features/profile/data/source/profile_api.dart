@@ -17,7 +17,7 @@ abstract class ProfileApi {
   });
 
   @PUT('api/v1/update_profile')
-  Future<DataApiResponse> updateProfile(
+  Future<DataApiResponseWithoutResult> updateProfile(
     @Body() Map<String, dynamic> body,
   );
 

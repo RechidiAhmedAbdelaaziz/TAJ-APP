@@ -30,6 +30,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   }
 
   @override
+  dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // show video and up of it show Login button
     return Scaffold(

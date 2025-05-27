@@ -17,8 +17,10 @@ class FingerprintAuthWidget extends StatelessWidget {
       child: BlocListener<LocalAuthCubit, LocalAuthState>(
         listener: (context, state) {
           state.onError(context.showErrorDialog);
-          state.onSuccess((dto) {
-            context.read<LoginCubit>().setDTO(dto);
+          state.onSuccess((email, password) {
+            context.read<LoginCubit>().state.loginDTO.emailController.text = email;
+            context.read<LoginCubit>().state.loginDTO.passwordController.text = password;
+            
             context.read<LoginCubit>().login();
           });
         },

@@ -5,13 +5,15 @@ class CreateTicketDto extends TicketDto {
     : super(
         titleController: TextEditingController(),
         descriptionController: TextEditingController(),
-        maintenanceController: EditingController<String>(),
-        urgencyController: EditingController<String>(),
+        maintenanceController: EditingController<String>(
+          '1',
+        ),
+        urgencyController: EditingController<String>('1'),
         appointmentDateController: EditingController<DateTime>(),
-        recipientController: EditingController<String>(),
+        recipientController: EditingController<String>('Owner'),
         recipientNameController: TextEditingController(),
         recipientContactController: TextEditingController(),
-        recipientGenderController: EditingController<String>(),
+        recipientGenderController: EditingController<String>('Male'),
         attachmentsController: ListEditingController<MediaDTO>(),
         termsController: BooleanEditingController(),
       );
@@ -27,13 +29,13 @@ class CreateTicketDto extends TicketDto {
       ),
       'urgency_level_id': int.tryParse(urgencyController.value ?? ''),
       'preferred_appointment_datetime':
-          appointmentDateController.value?.toIso8601String(),
+          appointmentDateController.value?.toSqlDateTime(),
       'attachments': await Future.wait(
         attachmentsController.value.map(
           (e) async => {
             // base64
             "media": await e.url,
-            'type': e.runtimeType,
+            'type': e.type,
           },
         ),
       ),

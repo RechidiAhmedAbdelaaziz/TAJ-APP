@@ -16,8 +16,6 @@ class _SideBar extends StatelessWidget {
           children: [
             _DrawerHeder(),
 
-            LocalizationButton(),
-
             heightSpace(28),
 
             ...{

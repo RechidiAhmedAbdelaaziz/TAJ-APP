@@ -46,6 +46,12 @@ class TicketsState extends CubitErrorState {
         status: _TicketsStatus.loaded,
       );
 
+  TicketsState _addTicket(TicketModel ticket) =>
+      _copyWith(
+        result: _result?.add(ticket) ?? PaginationResult(data: [ticket]),
+        status: _TicketsStatus.loaded,
+      );
+
   TicketsState _error(String error) =>
       _copyWith(status: _TicketsStatus.error, error: error);
 }

@@ -34,25 +34,25 @@ class TicketFormScreen extends StatelessWidget {
     );
     return BlocListener<TicketFormCubit, TicketFormState>(
       listener: (context, state) {
-        state.onSuccess((ticket) {
-          context.back(ticket);
-          context.showSuccessDialog(
-            'Your ticket has been received successfully'.tr(context),
-          );
-        });
+        state.onSuccess(context.back);
 
         state.onError(context.showErrorSnackbar);
       },
       child: Scaffold(
         appBar: AppBar(
           leading: AppBackButton(),
-          title:  Text('Send Ticket'.tr(context)),
+          title: Text('Send Ticket'.tr(context)),
         ),
 
-        body: ConditionalBuilder(
-          condition: !isLoading,
-          builder: (_) => _Form(),
-          fallback: (_) => AppLoadignIndicator(),
+        body: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+
+          // behavior: HitTestBehavior.deferToChild,
+          child: ConditionalBuilder(
+            condition: !isLoading,
+            builder: (_) => _Form(),
+            fallback: (_) => AppLoadignIndicator(),
+          ),
         ),
 
         bottomNavigationBar: Container(

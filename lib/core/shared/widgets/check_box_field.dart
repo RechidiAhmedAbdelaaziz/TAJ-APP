@@ -21,27 +21,59 @@ class AppCheckBoxField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ValueListenableBuilder(
-          valueListenable: controller,
-          builder: (context, value, _) {
-            return InkWell(
-              onTap: controller.toggle,
-              child: buildCheckBox(value),
-            );
-          },
-        ),
-        widthSpace(8),
-        Expanded(
-          child: Text(
-            label,
-            style: AppTextStyles.normal.copyWith(
-              color: AppColors.black,
+    return FormField(
+      validator: (_) => validator?.call(controller.value),
+      builder: (state) {
+        return Column(
+          children: [
+            Row(
+              children: [
+                ValueListenableBuilder(
+                  valueListenable: controller,
+                  builder: (context, value, _) {
+                    return InkWell(
+                      onTap: controller.toggle,
+                      child: buildCheckBox(value),
+                    );
+                  },
+                ),
+                widthSpace(8),
+                Expanded(
+                  child: Text(
+                    label,
+                    style: AppTextStyles.normal.copyWith(
+                      color: AppColors.black,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ),
-      ],
+
+            if (state.hasError) ...[
+              heightSpace(4),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  widthSpace(8),
+                  Icon(
+                    Icons.error_outline,
+                    color: AppColors.red,
+                    size: 20.r,
+                  ),
+                  widthSpace(8),
+                  Expanded(
+                    child: Text(
+                      state.errorText!,
+                      style: AppTextStyles.error,
+                    ),
+                  ),
+                  widthSpace(8),
+                ],
+              ),
+            ],
+          ],
+        );
+      },
     );
   }
 

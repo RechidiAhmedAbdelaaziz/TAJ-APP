@@ -17,7 +17,7 @@ abstract class TicketApi {
   });
 
   @POST('/api/v1/create_ticket')
-  Future<DataApiResponse> createTicket(
+  Future<DataApiResponseWithoutResult> createTicket(
     @Body() Map<String, dynamic> body,
   );
 }

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taj_elsafa/core/extension/dialog.extension.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/extension/snackbar.extension.dart';
+import 'package:taj_elsafa/core/localization/localization_button.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
 import 'package:taj_elsafa/core/shared/dto/imagedto/image.dto.dart';
@@ -60,6 +62,8 @@ class EditProfileScreen extends StatelessWidget {
 
                               _buildImageField(dto.imageController),
                               heightSpace(40),
+
+                              LocalizationButton(),
 
                               ...[
                                 AppInputField(
@@ -126,8 +130,15 @@ class EditProfileScreen extends StatelessWidget {
                                     .copyWith(color: AppColors.white),
                                 color: AppColors.buttonColor,
                                 onPressed:
-                                    () => context.to(
+                                    () => context.toWith<bool>(
                                       ProfileNavigator.changePassword(),
+                                      onResult:
+                                          (value) => context
+                                              .showSuccessDialog(
+                                                'PasswordUpdated'.tr(
+                                                  context,
+                                                ),
+                                              ),
                                     ),
                               ),
                             ],

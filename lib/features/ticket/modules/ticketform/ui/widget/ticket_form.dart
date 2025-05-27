@@ -46,18 +46,27 @@ class _Form extends StatelessWidget {
                 controller: dto.maintenanceController,
                 label: 'Maintenance Classification'.tr(context),
                 itemsBuilder:
-                    (_) => [
+                    (_) =>
+                        [
+                          1,
+                          2,
+                          3,
+                          4,
+                          5,
+                        ].map((e) => e.toString()).toList(),
+                itemToString:
+                    (value) => [
                       'Electrical',
                       'Plumbing',
                       'Carpentry',
                       'Painting',
                       'Cleaning',
-                    ],
-                itemToString: (value) => value.tr(context),
+                    ][int.parse(value) - 1].tr(context),
                 validator:
                     (value) =>
                         value.isEmptyOrNull
-                            ? 'Maintenance classification is required'.tr(context)
+                            ? 'Maintenance classification is required'
+                                .tr(context)
                             : null,
               ),
               heightSpace(16),
@@ -66,8 +75,20 @@ class _Form extends StatelessWidget {
                 controller: dto.urgencyController,
                 label: 'Urgency'.tr(context),
                 itemsBuilder:
-                    (_) => ['Minor', 'Moderate', 'Major', 'Critical'],
-                itemToString: (value) => value.tr(context),
+                    (_) =>
+                        [
+                          1,
+                          2,
+                          3,
+                          4,
+                        ].map((e) => e.toString()).toList(),
+                itemToString:
+                    (value) => [
+                      'Minor',
+                      'Moderate',
+                      'Major',
+                      'Critical',
+                    ][int.parse(value) - 1].tr(context),
                 validator:
                     (value) =>
                         value.isEmptyOrNull
@@ -78,7 +99,7 @@ class _Form extends StatelessWidget {
 
               AppDateField(
                 controller: dto.appointmentDateController,
-                label: 'Preferred Appointment'. tr(context),
+                label: 'Preferred Appointment'.tr(context),
                 firstDate: DateTime.now(),
                 lastDate: DateTime.now().add(
                   const Duration(days: 365),
@@ -88,7 +109,7 @@ class _Form extends StatelessWidget {
 
               AppSelectorField(
                 controller: dto.recipientController,
-                label: 'Service Recipient'.tr(context) ,
+                label: 'Service Recipient'.tr(context),
                 items: (_) => ['Owner', 'Representative'],
                 builder:
                     (_, checkBox, item) => Row(
@@ -127,10 +148,16 @@ class _Form extends StatelessWidget {
                 validator:
                     (value) =>
                         value == false
-                            ? 'You must accept the terms and conditions'.tr(context)
+                            ? 'You must accept the terms and conditions'
+                                .tr(context)
                             : null,
               ),
-              heightSpace(40),
+              heightSpace(32),
+
+              //add keyboard space
+              SizedBox(
+                height: MediaQuery.of(context).viewInsets.bottom,
+              ),
             ],
           ),
         ),

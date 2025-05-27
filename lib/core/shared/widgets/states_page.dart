@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/shared/widgets/back_button.dart';
+import 'package:taj_elsafa/core/shared/widgets/loadign_indicator.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
 import 'package:taj_elsafa/features/realstates/data/models/real_state_model.dart';
 import 'package:taj_elsafa/features/realstates/module/realstates/logic/real_states_cubit.dart';
@@ -13,6 +14,8 @@ class StatesPage extends StatelessWidget {
   final Widget Function(BuildContext context, RealStateModel state)
   builder;
 
+  final bool isLoading;
+
   final Widget? floatingActionButton;
   final Widget Function(BuildContext context)? bottomNavigationBar;
 
@@ -21,6 +24,7 @@ class StatesPage extends StatelessWidget {
     required this.title,
     required this.builder,
     this.floatingActionButton,
+    required this.isLoading,
     this.bottomNavigationBar,
   });
 
@@ -33,24 +37,26 @@ class StatesPage extends StatelessWidget {
       body: Column(
         children: [
           _AppBar(title),
-
           Expanded(
-            child: ValueListenableBuilder(
-              valueListenable: controller,
+            child:
+                isLoading
+                    ? Center(child: AppLoadignIndicator())
+                    : ValueListenableBuilder(
+                      valueListenable: controller,
 
-              builder: (context, state, _) {
-                return state == null
-                    ? Center(
-                      child: Text(
-                        "There is no state selected".tr(context),
-                        style: AppTextStyles.large,
-                      ),
-                    )
-                    : SingleChildScrollView(
-                      child: builder(context, state),
-                    );
-              },
-            ),
+                      builder: (context, state, _) {
+                        return state == null
+                            ? Center(
+                              child: Text(
+                                "There is no state selected".tr(
+                                  context,
+                                ),
+                                style: AppTextStyles.large,
+                              ),
+                            )
+                            : builder(context, state);
+                      },
+                    ),
           ),
         ],
       ),
@@ -74,7 +80,10 @@ class _AppBar extends StatelessWidget {
       width: double.infinity,
       child: Column(
         children: [
-          AppBar(title: Text(title.tr(context)), leading: AppBackButton()),
+          AppBar(
+            title: Text(title.tr(context)),
+            leading: AppBackButton(),
+          ),
 
           StatesHeader(),
         ],

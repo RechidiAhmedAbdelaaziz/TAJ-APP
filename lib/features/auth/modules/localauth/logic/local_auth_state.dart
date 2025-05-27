@@ -21,7 +21,8 @@ class LocalAuthState extends CubitErrorState {
   LocalAuthState _loading() =>
       _copyWith(status: _LocalAuthStatus.loading);
 
-  LocalAuthState _success(LoginDTO dto) => _Success(dto);
+  LocalAuthState _success(String email, String password) =>
+      _Success(email, password);
 
   LocalAuthState _error(String error) =>
       _copyWith(status: _LocalAuthStatus.error, error: error);
@@ -33,19 +34,22 @@ class LocalAuthState extends CubitErrorState {
     return LocalAuthState(status: status ?? _status, error: error);
   }
 
-  void onSuccess(void Function(LoginDTO dto) onSuccess) {}
+  void onSuccess(
+    void Function(String email, String password) onSuccess,
+  ) {}
 }
 
-class  _Success extends LocalAuthState {
-  final LoginDTO loginDTO;
+class _Success extends LocalAuthState {
+  final String email;
+  final String password;
 
-  _Success(this.loginDTO)
-      : super(
-          status: _LocalAuthStatus.success,
-        );
+  _Success(this.email, this.password)
+    : super(status: _LocalAuthStatus.success);
 
   @override
-  void onSuccess(void Function(LoginDTO dto) onSuccess) {
-    onSuccess(loginDTO);
+  void onSuccess(
+    void Function(String email, String password) onSuccess,
+  ) {
+    onSuccess(email, password);
   }
 }

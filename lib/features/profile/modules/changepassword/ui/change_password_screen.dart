@@ -26,8 +26,8 @@ class ChangePasswordScreen extends StatelessWidget {
       listener: (context, state) {
         state.onError(context.showErrorDialog);
         state.onSuccess(() {
-          context.back();
-          context.showSuccessDialog('PasswordUpdated'.tr(context));
+          context.back(true);
+          
         });
       },
       child: Scaffold(

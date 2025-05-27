@@ -17,4 +17,16 @@ extension DateFormatter on DateTime {
     final amPm = this.hour >= 12 ? 'PM' : 'AM';
     return '$day/$month/$year   -   $hour:$minute $amPm';
   }
+
+// this format %Y-%m-%d %H:%M:%S'
+  String toSqlDateTime() {
+    final year = this.year.toString().padLeft(4, '0');
+    final month = this.month.toString().padLeft(2, '0');
+    final day = this.day.toString().padLeft(2, '0');
+    final hour = this.hour.toString().padLeft(2, '0');
+    final minute = this.minute.toString().padLeft(2, '0');
+    final second = this.second.toString().padLeft(2, '0');
+    return '$year-$month-$day $hour:$minute:$second';
+  }
+
 }

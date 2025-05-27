@@ -35,19 +35,16 @@ class TicketsScreen extends StatelessWidget {
     );
     return StatesPage(
       title: "My Tickets".tr(context),
-
+      isLoading: isLoading,
 
       builder: (context, state) {
-        if (isLoading) return AppLoadignIndicator();
-
-        final tickets = context.select(
-          (TicketsCubit cubit) => cubit.tickets,
-        );
+        final tickets = context.watch<TicketsCubit>().tickets;
 
         return Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20.w,
-            vertical: 25.h,
+          padding: EdgeInsets.only(
+            left: 20.w,
+            right: 20.w,
+            top: 25.h,
           ),
           child: Column(
             children: [
@@ -68,21 +65,44 @@ class TicketsScreen extends StatelessWidget {
               heightSpace(20),
 
               if (tickets.isEmpty)
-                Center(
-                  child: Text(
-                    'No Tickets'.tr(context),
-                    style: AppTextStyles.medium,
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      'No Tickets'.tr(context),
+                      style: AppTextStyles.medium,
+                    ),
                   ),
                 )
               else
-                ...tickets.map((ticket) => _TicketItem(ticket)),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ...tickets.map(
+                          (ticket) => _TicketItem(ticket),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
             ],
           ),
         );
       },
 
       floatingActionButton: InkWell(
-        onTap: () => context.to(TicketNavigator.createTicket()),
+        onTap:
+            () => context.toWith<TicketModel>(
+              TicketNavigator.createTicket(),
+              onResult: (ticket) {
+                context.read<TicketsCubit>().getFilteredTickets();
+                context.showSuccessDialog(
+                  'Your ticket has been received successfully'.tr(
+                    context,
+                  ),
+                );
+              },
+            ),
         child: SvgPicture.asset(Assets.icons.addButton),
       ),
     );

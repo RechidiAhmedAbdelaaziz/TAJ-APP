@@ -26,6 +26,10 @@ class RealStatesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return StatesPage(
       title: "Real State Info",
+      isLoading: context.select(
+        (RealStatesCubit cubit) => cubit.state.isLoading,
+      ),
+
       builder:
           (context, state) => Column(
             children: [

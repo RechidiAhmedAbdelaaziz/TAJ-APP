@@ -36,4 +36,6 @@ class TicketsCubit extends Cubit<TicketsState> {
       error: (error) => emit(state._error(error.message)),
     );
   }
+
+  void addTicket(TicketModel ticket) => emit(state._addTicket(ticket));
 }

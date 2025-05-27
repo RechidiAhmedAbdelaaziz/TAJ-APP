@@ -35,19 +35,17 @@ class RequestsScreen extends StatelessWidget {
     );
     return StatesPage(
       title: "My Requests",
-
+      isLoading: isLoading,
 
       builder: (context, state) {
-        if (isLoading) return AppLoadignIndicator();
-
         final requests = context.select(
           (RequestsCubit cubit) => cubit.requests,
         );
-
         return Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20.w,
-            vertical: 25.h,
+          padding: EdgeInsets.only(
+            left: 20.w,
+            right: 20.w,
+            top: 25.h,
           ),
           child: Column(
             children: [
@@ -68,14 +66,26 @@ class RequestsScreen extends StatelessWidget {
               heightSpace(20),
 
               if (requests.isEmpty)
-                Center(
-                  child: Text(
-                    'No Requests'.tr(context),
-                    style: AppTextStyles.medium,
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      'No Requests'.tr(context),
+                      style: AppTextStyles.medium,
+                    ),
                   ),
                 )
               else
-                ...requests.map((request) => _RequestItem(request)),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ...requests.map(
+                          (request) => _RequestItem(request),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
             ],
           ),
         );

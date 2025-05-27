@@ -1,3 +1,4 @@
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
 import 'package:taj_elsafa/core/shared/classes/editioncontollers/generic_editingcontroller.dart';
 import 'package:taj_elsafa/core/themes/font_styles.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppDropDownField<T> extends StatelessWidget {
   final EditingController<T> controller;
-  final T? initialValue;
 
   final String label;
 
@@ -25,7 +25,6 @@ class AppDropDownField<T> extends StatelessWidget {
 
   const AppDropDownField({
     super.key,
-    this.initialValue,
     required this.controller,
     required this.label,
     this.validator,
@@ -91,76 +90,61 @@ class AppDropDownField<T> extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: DropdownSearch<T>(
-                  itemAsString: itemToString,
-
-                  selectedItem: initialValue,
-
-                  // compareFn: (item1, item2) {
-                  //   if (item1 == null || item2 == null) return false;
-                  //   return item1.toString() == item2.toString();
-                  // },
-                  autoValidateMode:
-                      AutovalidateMode.onUserInteraction,
-
-                  suffixProps: DropdownSuffixProps(
-                    dropdownButtonProps: DropdownButtonProps(
-                      iconOpened: Icon(
-                        Icons.keyboard_arrow_up,
-                        color: AppColors.black,
-                        size: 32.r,
-                      ),
-                      iconClosed: Icon(
-                        Icons.keyboard_arrow_down,
-                        color: AppColors.black,
-                        size: 32.r,
-                      ),
+                child: CustomDropdown<T>(
+                  items: itemsBuilder(context),
+                  onChanged: (value) => controller.value = value,
+                  initialItem: controller.value,
+                  excludeSelected: true,
+                  decoration: CustomDropdownDecoration(
+                    expandedBorderRadius: BorderRadius.circular(12.r),
+                    expandedBorder: Border(
+                      bottom: BorderSide(color: AppColors.black),
                     ),
                   ),
-                  items: (filter, loadProps) => itemsBuilder(context),
 
-                  onChanged:
-                      (value) =>
-                          value != null
-                              ? controller.setValue(value)
-                              : controller.clear(),
+                  listItemBuilder: (_, item, isSelected, _) {
+                    return itemToWidget != null
+                        ? itemToWidget!(item)
+                        : Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.w,
+                            vertical: 8.h,
+                          ),
+                          alignment: Alignment.centerLeft,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.r),
+                            border: Border.all(
+                              color:
+                                  isSelected
+                                      ? AppColors.primary
+                                      : AppColors.greyLight,
+                            ),
+                          ),
 
-                  decoratorProps: DropDownDecoratorProps(
-                    baseStyle: AppTextStyles.medium.copyWith(
-                      color: AppColors.black,
-                    ),
-
-                    decoration: InputDecoration(
-                      error: state.hasError ? const SizedBox() : null,
-
-                      contentPadding: EdgeInsets.symmetric(
-                        vertical: 12.h,
-                        horizontal: 12.w,
+                          child: Text(
+                            itemToString(item),
+                            style: AppTextStyles.normal.copyWith(
+                              color:
+                                  isSelected
+                                      ? AppColors.primary
+                                      : AppColors.black,
+                            ),
+                          ),
+                        );
+                  },
+                  headerBuilder: (context, selectedItem, enabled) {
+                    return Text(
+                      selectedItem != null
+                          ? itemToString(selectedItem)
+                          : 'Select an option',
+                      style: AppTextStyles.normal.copyWith(
+                        color:
+                            enabled
+                                ? AppColors.black
+                                : AppColors.greyDark,
                       ),
-
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(2).r,
-                        borderSide: BorderSide(color: AppColors.grey),
-                      ),
-
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(2).r,
-                        borderSide: BorderSide(color: AppColors.grey),
-                      ),
-
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(2).r,
-                        borderSide: BorderSide(
-                          color: AppColors.primary,
-                        ),
-                      ),
-
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(2).r,
-                        borderSide: BorderSide(color: AppColors.red),
-                      ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ),
 
