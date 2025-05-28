@@ -19,12 +19,14 @@ class MultiMediaField<T extends MediaDTO> extends StatelessWidget {
   final Widget? note;
 
   final int maxMedia;
+  final bool autoScroll;
 
   const MultiMediaField({
     super.key,
     required this.controller,
     this.note,
     this.maxMedia = 5,
+    this.autoScroll = true,
   });
 
   @override
@@ -43,6 +45,7 @@ class MultiMediaField<T extends MediaDTO> extends StatelessWidget {
             return SizedBox(
               height: medias.isEmpty ? 0 : 280.h,
               child: IndicatedPagview(
+                isAutoPlay: autoScroll,
                 pages: [
                   ...medias.map(
                     (dto) => Stack(

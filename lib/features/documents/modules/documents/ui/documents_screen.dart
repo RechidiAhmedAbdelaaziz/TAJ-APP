@@ -23,9 +23,10 @@ class DocumentsScreen extends StatelessWidget {
               labelColor: AppColors.black,
               indicatorColor: Colors.teal,
               indicatorSize: TabBarIndicatorSize.tab,
-
               labelPadding: EdgeInsets.zero,
+              dividerColor: Colors.transparent,
 
+              // automaticIndicatorColorAdjustment: false,
               tabs: [
                 _buildTab('Quotation'.tr(context)),
                 _buildTab('Invoice'.tr(context)),
@@ -51,6 +52,7 @@ class DocumentsScreen extends StatelessWidget {
   Widget _buildTab(String text) {
     return Container(
       width: double.infinity,
+      height: 48.h,
       padding: EdgeInsets.symmetric(vertical: 12.h),
       color: AppColors.grey,
       child: Text(

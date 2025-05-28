@@ -31,19 +31,21 @@ class RealStatesScreen extends StatelessWidget {
       ),
 
       builder:
-          (context, state) => Column(
-            children: [
-              heightSpace(25),
+          (context, state) => SingleChildScrollView(
+            child: Column(
+              children: [
+                heightSpace(25),
 
-              _Info(state),
-              heightSpace(45),
+                _Info(state),
+                heightSpace(45),
 
-              _Files(state),
-              heightSpace(45),
+                _Files(state),
+                heightSpace(45),
 
-              _Images(state.imagesUrls),
-              heightSpace(25),
-            ],
+                _Images(state.imagesUrls),
+                heightSpace(25),
+              ],
+            ),
           ),
     );
   }

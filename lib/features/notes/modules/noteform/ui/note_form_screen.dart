@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taj_elsafa/core/extension/dialog.extension.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/extension/snackbar.extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
@@ -29,7 +30,7 @@ class NoteFormScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: AppBackButton(),
-        title: const Text('Send a Note'),
+        title: Text('Send a note'.tr(context)),
       ),
 
       body: BlocListener<NoteFormCubit, NoteFormState>(
@@ -37,7 +38,7 @@ class NoteFormScreen extends StatelessWidget {
           state.onSave((note) {
             context.back(note);
             context.showSuccessDialog(
-              'The note has been sent successfully',
+              'The note has been sent successfully'.tr(context)
             );
           });
 
@@ -66,7 +67,7 @@ class NoteFormScreen extends StatelessWidget {
           ],
         ),
         child: AppButton(
-          text: 'Send Note',
+          text: 'Send'.tr(context),
           textStyle: AppTextStyles.normal.copyWith(
             color: AppColors.white,
           ),

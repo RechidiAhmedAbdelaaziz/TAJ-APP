@@ -5,6 +5,7 @@ import 'package:signature/signature.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:taj_elsafa/core/extension/localization.extension.dart';
 import 'package:taj_elsafa/core/extension/navigator.extension.dart';
 import 'package:taj_elsafa/core/extension/xfile_extension.dart';
 import 'package:taj_elsafa/core/shared/classes/dimensions.dart';
@@ -50,10 +51,10 @@ class SignaturePad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const AppBackButton(),
-        title: const Text('Signature'),
-      ),
+      // appBar: AppBar(
+      //   leading: const AppBackButton(),
+      //   title: Text('Signature'.tr(context)),
+      // ),
       backgroundColor: Colors.transparent,
       body: Center(
         child: Container(
@@ -63,28 +64,36 @@ class SignaturePad extends StatelessWidget {
           ),
           padding: EdgeInsets.symmetric(
             horizontal: 32.w,
-            vertical: 44.h,
+            vertical: 24.h,
           ),
           color: Color(0xFFFAF7FF),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: InkWell(
+                  onTap: () => context.back(),
+                  child: Icon(Icons.close_sharp),
+                ),
+              ),
               Center(
                 child: Text(
-                  'Your Signature',
+                  'Your Signature'.tr(context),
                   style: AppTextStyles.medium.copyWith(
                     color: AppColors.black,
                   ),
                 ),
               ),
-              heightSpace(32),
+              heightSpace(16),
 
               AppSelectorField(
-                label: 'Signature Type:',
+                label: '${'Signature Type'.tr(context)}:',
                 controller: _options,
                 // select between two options : upload image or draw signature
                 items: (_) => ['Draw Signature', 'Upload Image'],
+
                 onChanged: (value) {
                   if (value != 'Draw Signature') _controller.clear();
 
@@ -99,7 +108,7 @@ class SignaturePad extends StatelessWidget {
                         checkBox,
                         widthSpace(4),
                         Text(
-                          item,
+                          item.tr(context),
                           style: AppTextStyles.normal.copyWith(
                             color: AppColors.black,
                           ),
@@ -163,7 +172,7 @@ class SignaturePad extends StatelessWidget {
           ],
         ),
         child: AppButton(
-          text: 'Sign',
+          text: 'Sign'.tr(context),
           textStyle: AppTextStyles.medium.copyWith(
             color: AppColors.white,
           ),

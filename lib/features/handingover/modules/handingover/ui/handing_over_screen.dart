@@ -117,7 +117,7 @@ class HandingOverScreen extends StatelessWidget {
                   )
                   ? Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 35.w,
+                      horizontal: 24.w,
                       vertical: 12.h,
                     ),
                     decoration: BoxDecoration(
@@ -134,7 +134,7 @@ class HandingOverScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: AppButton(
-                            text: 'Send A Note'.tr(context),
+                            text: 'Send a note'.tr(context),
                             textStyle: AppTextStyles.normal.copyWith(
                               color: AppColors.white,
                             ),

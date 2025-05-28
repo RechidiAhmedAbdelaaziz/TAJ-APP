@@ -74,14 +74,25 @@ class _MaterialApp extends StatelessWidget {
       ],
       locale: local,
       localeResolutionCallback: (locale, supportedLocales) {
+        if (context.read<LocalizationCubit>().state != null) {
+          return context.read<LocalizationCubit>().state;
+        }
+
         if (locale != null &&
             supportedLocales.any(
               (element) =>
                   element.languageCode == locale.languageCode,
             )) {
+          context.read<LocalizationCubit>().changeLanguage(
+            locale.languageCode,
+          );
           return locale;
         }
+
         // If the current device locale is not supported, use the first one
+        context.read<LocalizationCubit>().changeLanguage(
+          supportedLocales.first.languageCode,
+        );
         return supportedLocales.first;
       },
     );

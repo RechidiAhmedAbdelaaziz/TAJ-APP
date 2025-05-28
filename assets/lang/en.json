@@ -1,5 +1,10 @@
 {
-  
+  "Signature": "Signature",
+  "Your Signature": "Your Signature",
+  "Signature Type": "Signature Type",
+  "Draw Signature": "Draw Signature",
+  "Upload Image": "Upload Image",
+  "Sign": "Sign",
   "AltContactNumber": "Alternative Contact Number",
   "Attached Files": "Attached Files",
   "Attached notes": "Attached Notes",
@@ -47,7 +52,7 @@
   "Major": "Major",
   "Minor": "Minor",
   "Moderate": "Moderate",
-  "MyDocs": "My Docs",
+  "My Docs": "My Docs",
   "MyRequest": "My Request",
   "My Requests": "My Requests",
   "My Tickets": "My Tickets",

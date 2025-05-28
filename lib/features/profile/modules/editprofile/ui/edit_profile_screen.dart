@@ -27,7 +27,7 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLoading = context.select(
-      (EditProfileCubit cubit) => cubit.state.isLoading,
+      (EditProfileCubit cubit) => cubit.state.isLoading || !cubit.state.isLoaded
     );
 
     return BlocListener<EditProfileCubit, EditProfileState>(

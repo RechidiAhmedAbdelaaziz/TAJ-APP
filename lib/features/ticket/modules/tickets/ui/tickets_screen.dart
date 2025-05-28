@@ -47,8 +47,8 @@ class TicketsScreen extends StatelessWidget {
             physics: const AlwaysScrollableScrollPhysics(),
             child: Padding(
               padding: EdgeInsets.only(
-                left: 12.w,
-                right: 12.w,
+                left: 20.w,
+                right: 20.w,
                 top: 24.h,
               ),
               child: Column(

@@ -73,7 +73,7 @@ class CacheService {
   }
 
   /// Gets an String value from SharedPreferences with given [key].
-  Future<String?> getString(String key) async {
+  String? getString(String key)  {
     debugPrint('SharedPrefHelper : getString with key : $key');
 
     return _sharedPreferences.getString(key);
